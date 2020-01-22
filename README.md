@@ -2,6 +2,9 @@
 
 This project is a Reddit style app with Ruby on Rails, React and Redux.
 
+##### Entity Relationship diagram
+![](./docs/e-r-diagram.png)
+
 ## Built With
 
 - Ruby 2.6.3
