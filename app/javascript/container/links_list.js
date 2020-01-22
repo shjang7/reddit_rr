@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getLinks } from '../actions';
 
-class Links extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        Links List
-        <button className="getLinksBtn" onClick={() => this.props.getLinks()}>getLinks</button>
-      </React.Fragment>
-    )
-  }
+const LinksList = ({ links, getLinks }) => {
+  // useEffect(() => {
+  //   getLinks();
+  // }, [getLinks]);
+
+  const linksRender = links.map((link) => {
+    return <li key={link.id}>{link.title} {link.url}</li>;
+  });
+
+  // <button className="getLinksBtn" onClick={() => getLinks()}>getLinks</button>
+  return (
+    <React.Fragment>
+      Links List
+      <ul>{ linksRender }</ul>
+    </React.Fragment>
+  );
 }
 
-export default connect(({ links }) => ({ links }), { getLinks })(Links);
+export default connect(({ links }) => ({ links }), { getLinks })(LinksList);
