@@ -2,7 +2,13 @@ import { createStore } from 'redux';
 import rootReducer from './reducers';
 
 const initialState = {
-  links: []
+  links: [
+    {
+      id: 1,
+      title: "Sample title",
+      url: "www.naver.com"
+    }
+  ]
 };
 
 export default function configureStore() {
