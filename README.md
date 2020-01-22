@@ -36,6 +36,13 @@ $ cd reddit_rr
 $ rails db:create
 ```
 
+> Install the needed gems:
+
+```
+$ bundle install
+$ yarn install
+```
+
 > Migrate database
 
 ```
@@ -46,12 +53,6 @@ $ rails db:migrate
 
 ```
 $ rails db:seed
-```
-
-> Install the needed gems:
-
-```
-$ bundle install
 ```
 
 > Open server
