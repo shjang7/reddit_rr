@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 import rootReducer from './reducers';
 
 const initialState = {
-  things: []
+  links: []
 };
 
 export default function configureStore() {
