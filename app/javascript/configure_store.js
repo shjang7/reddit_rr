@@ -1,17 +1,12 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 const initialState = {
-  links: [
-    {
-      id: 1,
-      title: "Sample title",
-      url: "www.naver.com"
-    }
-  ]
+  links: []
 };
 
 export default function configureStore() {
-  const store = createStore(rootReducer, initialState);
+  const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
   return store;
 }
