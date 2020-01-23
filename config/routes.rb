@@ -1,3 +1,14 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'static/index'
+  namespace :api do
+    namespace :v1 do
+      resources :links, only: [:index]
+    end
+  end
+
+  get '*page', to: 'static#index', constraints: -> (req) do
+    !req.xhr? && req.format.html?
+  end
+
+  root 'static#index'
 end
