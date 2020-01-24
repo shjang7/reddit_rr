@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updateUser } from '../actions';
 
-const Form = ({ title, type, handleSubmit, errors }) => {
+const Form = ({ title, type, updateUser, history }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [errors, setErrors] = useState('');
+
+  const redirect = () => {
+    history.push('/');
+  }
 
   const handleSubmitLocal = (event) => {
     event.preventDefault();
@@ -16,7 +23,8 @@ const Form = ({ title, type, handleSubmit, errors }) => {
       passwordConfirmation
     };
 
-    handleSubmit(user);
+    updateUser(username);
+    redirect();
   }
 
   const handleChange = (event) => {
@@ -55,4 +63,4 @@ const Form = ({ title, type, handleSubmit, errors }) => {
   );
 }
 
-export default Form;
+export default connect(null, { updateUser })(Form);

@@ -4,8 +4,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from '../configure_store';
 import LinksList from '../container/links_list';
-import Login from '../container/login';
-import Signup from '../container/signup';
+import Login from '../components/login';
+import Signup from '../components/signup';
 
 const store = configureStore();
 
