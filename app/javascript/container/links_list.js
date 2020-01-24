@@ -21,7 +21,7 @@ const LinksList = ({ links, username, getLinks, loggedInStatus, handleLogout, hi
 
   return (
     <React.Fragment>
-      <Navbar loggedInStatus={ loggedInStatus } handleLogout={ handleLogout } />
+      <Navbar loggedInStatus={ loggedInStatus } handleLogout={ handleLogout } history={ history }/>
       Links List
       <ul>{ linksRender }</ul>
     </React.Fragment>
