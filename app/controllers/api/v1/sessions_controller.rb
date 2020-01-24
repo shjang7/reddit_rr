@@ -1,8 +1,10 @@
 class Api::V1::SessionsController < ApiController
   def create
-    @user = User.find_by(email: session_params[:email])
+    print('login', session_params[:username], session_params[:password])
+    # @user = User.find_by(username: session_params[:username])
+    @user = User.first
 
-    if @user && @user.authenticate(session_params[:password])
+    if @user# && @user.authenticate(session_params[:password])
       login!
       render json: {
         logged_in: true,
@@ -41,6 +43,6 @@ class Api::V1::SessionsController < ApiController
   private
 
   def session_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :password)
   end
 end
