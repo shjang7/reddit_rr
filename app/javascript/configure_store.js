@@ -3,7 +3,8 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 const initialState = {
-  links: []
+  links: [],
+  user: {},
 };
 
 export default function configureStore() {

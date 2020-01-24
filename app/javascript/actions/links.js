@@ -1,4 +1,7 @@
-import { GET_LINKS_REQUEST, GET_LINKS_SUCCESS } from '../common/variables';
+import {
+  GET_LINKS_REQUEST,
+  GET_LINKS_SUCCESS
+} from '../common/variables';
 
 export const getLinks = () => {
   console.log('getLinks() Action!!')
@@ -11,7 +14,7 @@ export const getLinks = () => {
   };
 };
 
-export function getLinksSuccess(data) {
+export const getLinksSuccess = (data) => {
   return {
     type: GET_LINKS_SUCCESS,
     data
