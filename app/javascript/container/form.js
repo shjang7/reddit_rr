@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateUser } from '../actions';
+import { createSession } from '../actions';
 
-const Form = ({ title, type, updateUser, history }) => {
+const Form = ({ title, type, createSession, history }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +23,7 @@ const Form = ({ title, type, updateUser, history }) => {
       passwordConfirmation
     };
 
-    updateUser(username);
+    createSession(user);
     redirect();
   }
 
@@ -63,4 +63,4 @@ const Form = ({ title, type, updateUser, history }) => {
   );
 }
 
-export default connect(null, { updateUser })(Form);
+export default connect(null, { createSession })(Form);
