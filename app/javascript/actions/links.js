@@ -17,6 +17,6 @@ export const getLinks = () => {
 export const getLinksSuccess = (data) => {
   return {
     type: GET_LINKS_SUCCESS,
-    data
+    payload: data.links
   };
 };

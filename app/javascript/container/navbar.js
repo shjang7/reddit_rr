@@ -2,18 +2,16 @@ import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LoginNavbar from '../components/login_navbar';
-import LogoutNavbar from '../components/logout_navbar';
-import { updateUser } from '../actions';
+import { destroySession } from '../actions';
 
-const Navbar = ({ user, updateUser, history }) => {
+const Navbar = ({ session, destroySession, history }) => {
   const [uname, setUname] = useState(null);
   useEffect(() => {
-    setUname(user.username);
-  }, [user]);
+    setUname(session.username);
+  }, [session]);
 
-  const handleLogoutLocal = () => {
-    updateUser();
+  const handleLogout = () => {
+    destroySession(session);
     redirect();
   }
 
@@ -21,11 +19,31 @@ const Navbar = ({ user, updateUser, history }) => {
     history.push('/');
   }
 
+  const userLinks = () => (
+    <div>
+      <Link to='/' onClick={ handleLogout }>Log Out</Link>
+      <br />
+      { 'login with: ' + uname }
+      <br />
+      <hr />
+    </div>
+  );
+
+  const guestLinks = () => (
+    <div>
+      <Link to='/login'>Log In</Link>
+      <br />
+      <Link to='/signup'>Sign Up</Link>
+      <br />
+      <hr />
+    </div>
+  );
+
   return (
     <>
-      { uname ? <LogoutNavbar uname={ uname } handleLogout={ handleLogoutLocal } /> : <LoginNavbar /> }
+      { uname ? userLinks() : guestLinks() }
     </>
   );
 };
 
-export default connect(({ user }) => ({ user }), { updateUser })(Navbar);
+export default connect(({ session }) => ({ session }), { destroySession })(Navbar);
