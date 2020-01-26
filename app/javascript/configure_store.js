@@ -5,6 +5,7 @@ import rootReducer from './reducers';
 const initialState = {
   links: [],
   session: {},
+  errors: [],
 };
 
 export default function configureStore() {
