@@ -1,30 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { createSession } from '../actions';
 
-const Form = ({ title, type, createSession, history }) => {
+const Form = ({ title, type, handleSubmit }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [errors, setErrors] = useState('');
 
-  const redirect = () => {
-    history.push('/');
-  }
-
   const handleSubmitLocal = (event) => {
     event.preventDefault();
-    let user = {
+    handleSubmit({
       username,
       email,
       password,
-      passwordConfirmation
-    };
-
-    createSession(user);
-    redirect();
+      password_confirmation: passwordConfirmation
+    });
   }
 
   const handleChange = (event) => {
@@ -33,6 +25,7 @@ const Form = ({ title, type, createSession, history }) => {
     else if (name == 'email') setEmail(value);
     else if (name == 'password') setPassword(value);
     else if (name == 'password_confirmation') setPasswordConfirmation(value);
+    setErrors(null);
   }
 
   const handleErrors = errors ? (
@@ -63,4 +56,4 @@ const Form = ({ title, type, createSession, history }) => {
   );
 }
 
-export default connect(null, { createSession })(Form);
+export default Form;

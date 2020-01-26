@@ -33,7 +33,7 @@ class Api::V1::UsersController < ApiController
       login!
       render json: {
         status: :created,
-        user: @user
+        user: @user.as_json(only: %i[id username email])
       }
     else
       render json: {
