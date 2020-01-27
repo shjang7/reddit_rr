@@ -17,6 +17,9 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.9'
+  gem 'capybara', '~> 3.31'
+  gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
+  gem 'faker', '~> 2.10', '>= 2.10.1'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
