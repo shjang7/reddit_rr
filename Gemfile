@@ -16,6 +16,7 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.9'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
