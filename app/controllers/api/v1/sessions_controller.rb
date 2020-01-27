@@ -1,6 +1,4 @@
 class Api::V1::SessionsController < ApiController
-  include Api::V1::SessionsHelper
-
   def create
     @user = User.find_by(username: session_params[:username])
 
