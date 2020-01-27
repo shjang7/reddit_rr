@@ -15,7 +15,7 @@ export const createRegistration = (userData) => {
         if (data.status === 'created') return data.user;
         throw new Error(data.status);
       })
-      .then(payload => dispatch(createSession(payload)))  // ?
+      .then(payload => dispatch(createSession(payload)))  // ? remove createsession after logged in check
       .catch(error => dispatch({ type: FAIL_REGISTRATION, payload: error}));
   }
 }
