@@ -2,15 +2,16 @@ import axios from 'axios';
 import {
   CREATE_SESSION,
   DESTROY_SESSION,
-  FAIL_LOGIN
+  FAIL_LOGIN,
+  FAIL_LOGOUT
 } from '../common/variables';
 
-export const createSession = (sessionData) => {
+export const createSession = (userData) => {
   return dispatch => {
-    return axios.post('login', { session: sessionData })
+    return axios.post('login', { session: userData })
       .then((response) => {
         if (response.data) return response.data;
-        throw new Error('no data');
+        throw new Error('Failed login');
       })
       .then((data) => {
         if (data.logged_in) return data.user;
@@ -21,6 +22,18 @@ export const createSession = (sessionData) => {
   }
 }
 
-export const destroySession = (payload) => {
-  return { type: DESTROY_SESSION, payload };
+export const destroySession = (userData) => {
+  return dispatch => {
+    return axios.delete('logout', { session: userData })
+      .then((response) => {
+        if (response.data) return response.data;
+        throw new Error('Failed logout');
+      })
+      .then((data) => {
+        if (data.status === 200) return data.logged_out;
+        throw new Error('Failed logout');
+      })
+      .then(payload => dispatch({ type: DESTROY_SESSION, payload }))
+      .catch(error => dispatch({ type: FAIL_LOGOUT, payload: error }));
+  }
 }
