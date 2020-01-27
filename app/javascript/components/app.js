@@ -3,9 +3,9 @@ import PropTypes from "prop-types"
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from '../configure_store';
-import LinksList from '../container/links_list';
-import Login from '../container/login';
-import Signup from '../container/signup';
+import LinksList from '../container/links/links_list';
+import Login from '../container/users/login';
+import Signup from '../container/users/signup';
 
 const store = configureStore();
 

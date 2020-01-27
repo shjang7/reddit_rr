@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Navbar from './navbar';
-import { getLinks } from '../actions';
+import Navbar from '../navbar';
+import NewLinks from './new_links';
+import { getLinks } from '../../actions';
 
 const LinksList = ({ links, getLinks, history }) => {
   const [linkData, setLinkData] = useState(null);
@@ -24,9 +25,9 @@ const LinksList = ({ links, getLinks, history }) => {
       <Navbar history={ history }/>
       Links List
       <ul>{ linksRender }</ul>
+      <NewLinks history={ history } />
     </React.Fragment>
   );
-
 }
 
 export default connect(({ links }) => ({ links }), { getLinks })(LinksList);

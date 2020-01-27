@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const Form = ({ title, type, handleSubmit }) => {
+const UserForm = ({ title, type, handleSubmit }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -56,4 +56,4 @@ const Form = ({ title, type, handleSubmit }) => {
   );
 }
 
-export default Form;
+export default UserForm;

@@ -2,7 +2,8 @@ import {
   FAIL_LINKS_REQUEST,
   FAIL_REGISTRATION,
   FAIL_LOGIN,
-  FAIL_LOGOUT
+  FAIL_LOGOUT,
+  EXCEPTION_ERROR
 } from '../common/variables';
 
 export default (state = [], { type, payload }) => {
@@ -18,6 +19,9 @@ export default (state = [], { type, payload }) => {
       return payload;
     case FAIL_LOGOUT:
       console.log('fail logout');
+      return payload;
+    case EXCEPTION_ERROR:
+      console.log('exception error', payload);
       return payload;
     default:
       return state;

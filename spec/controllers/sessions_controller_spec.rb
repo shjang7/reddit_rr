@@ -9,7 +9,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
       login = JSON.parse(response.body)['status']
       expect(login).to be(401)
 
-      post :is_logged_in?
+      get :is_logged_in?
       logged_in = JSON.parse(response.body)['logged_in']
       expect(logged_in).to be(false)
     end
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
       login = JSON.parse(response.body)['status']
       expect(login).to be(201)
 
-      post :is_logged_in?
+      get :is_logged_in?
       logged_in = JSON.parse(response.body)['logged_in']
       expect(logged_in).to be(true)
 
