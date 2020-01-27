@@ -49,6 +49,12 @@ $ yarn install
 $ rails db:migrate
 ```
 
+> Test code
+
+```
+$ rspec --format documentation
+```
+
 > Seed sample data
 
 ```
