@@ -3,7 +3,9 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 const initialState = {
-  links: []
+  links: [],
+  session: {},
+  errors: [],
 };
 
 export default function configureStore() {
