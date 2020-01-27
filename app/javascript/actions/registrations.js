@@ -7,15 +7,15 @@ import { createSession } from './session';
 export const createRegistration = (userData) => {
   return dispatch => {
     return axios.post('api/v1/users', { user: userData })
-      .then((response) => {
-        if (response.data) return response.data;
-        throw new Error('no data');
+      .then(({ data }) => {
+        if (!data) throw new Error('no data');
+        if (data.status !== 'created') throw new Error(data.status);
+        return data.user;
       })
-      .then((data) => {
-        if (data.status === 'created') return data.user;
-        throw new Error(data.status);
+      .then(() => {
+        const logInUser = (({ username, password }) => ({ username, password }))(userData);
+        return dispatch(createSession(logInUser));
       })
-      .then(payload => dispatch(createSession(payload)))  // ? remove createsession after logged in check
-      .catch(error => dispatch({ type: FAIL_REGISTRATION, payload: error}));
+      .catch(error => dispatch({ type: FAIL_REGISTRATION, payload: error }));
   }
 }

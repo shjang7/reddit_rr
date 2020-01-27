@@ -9,29 +9,21 @@ import {
 export const createSession = (userData) => {
   return dispatch => {
     return axios.post('login', { session: userData })
-      .then((response) => {
-        if (response.data) return response.data;
-        throw new Error('Failed login');
-      })
-      .then((data) => {
-        if (data.logged_in) return data.user;
-        throw new Error(data.errors[0]);
+      .then(({ data }) => {
+        if (!data) throw new Error('Failed login');
+        if (!data.logged_in) throw new Error(data.errors[0]);
+        return data.user;
       })
       .then(payload => dispatch({ type: CREATE_SESSION, payload }))
       .catch(error => dispatch({ type: FAIL_LOGIN, payload: error }));
   }
 }
 
-export const destroySession = (userData) => {
+export const destroySession = () => {
   return dispatch => {
-    return axios.delete('logout', { session: userData })
-      .then((response) => {
-        if (response.data) return response.data;
-        throw new Error('Failed logout');
-      })
-      .then((data) => {
-        if (data.status === 200) return data.logged_out;
-        throw new Error('Failed logout');
+    return axios.delete('logout')
+      .then(({ data }) => {
+        if (!data || !data.logged_out) throw new Error('Failed logout');
       })
       .then(payload => dispatch({ type: DESTROY_SESSION, payload }))
       .catch(error => dispatch({ type: FAIL_LOGOUT, payload: error }));
