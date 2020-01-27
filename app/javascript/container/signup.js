@@ -6,7 +6,7 @@ import { createRegistration } from '../actions';
 
 const Signup = ({ history, createRegistration }) => {
   const redirect = () => {
-    history.push('/');
+    history.push('/');  // move to form
   }
 
   const handleSubmitLocal = (user) => {
