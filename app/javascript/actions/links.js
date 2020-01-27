@@ -10,7 +10,11 @@ export const getLinks = () => {
     dispatch({ type: GET_LINKS_REQUEST });
     return fetch(`api/v1/links`)
       .then(response => response.json())
-      .then(data => data.links ? data.links : null) // ?
+      .then(data => {
+        if(data.links) return data.links;
+
+        throw new Error('no data');
+      })
       .then(links => dispatch(getLinksSuccess(links)))
       .catch(error => (dispatch({ type: FAIL_LINKS_REQUEST, payload: error })));
   };
