@@ -1,12 +1,15 @@
 class Api::V1::SessionsController < ApiController
+  include Api::V1::SessionsHelper
+
   def create
     @user = User.find_by(username: session_params[:username])
 
     if @user && @user.authenticate(session_params[:password])
       login!
       render json: {
+        status: 201,
         logged_in: true,
-        user: @user
+        user: @user.as_json(only: %i[id username email])
       }
     else
       render json: {
