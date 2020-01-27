@@ -1,7 +1,10 @@
+import axios from 'axios';
 import {
   GET_LINKS_REQUEST,
   GET_LINKS_SUCCESS,
-  FAIL_LINKS_REQUEST
+  CREATE_LINK,
+  FAIL_LINKS_REQUEST,
+  EXCEPTION_ERROR
 } from '../common/variables';
 
 export const getLinks = () => {
@@ -26,3 +29,15 @@ export const getLinksSuccess = (data) => {
     payload: data
   };
 };
+
+export const createLinks = (linkData) => {
+  return dispatch => {
+    return axios.post('api/v1/links', { link: linkData })
+      .then(({ data }) => {
+        if (!data) throw new Error('no link data');
+        if (data.status !== 'created') throw new Error(data.errors[0]);
+        dispatch({ type: CREATE_LINK, payload: data.location });
+      })
+      .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }))
+  }
+}

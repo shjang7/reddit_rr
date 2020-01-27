@@ -1,8 +1,4 @@
 module Api::V1::SessionsHelper
-  def session_params
-    params.require(:session).permit(:username, :password)
-  end
-
   def login!
     session[:user_id] = @user.id
   end

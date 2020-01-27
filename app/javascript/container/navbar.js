@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { destroySession } from '../actions';
+import { destroySession, readSession } from '../actions';
 
-const Navbar = ({ session, destroySession, history }) => {
+const Navbar = ({ session, destroySession, readSession, history }) => {
   const [uname, setUname] = useState(null);
   useEffect(() => {
     setUname(session.username);
@@ -46,4 +46,4 @@ const Navbar = ({ session, destroySession, history }) => {
   );
 };
 
-export default connect(({ session }) => ({ session }), { destroySession })(Navbar);
+export default connect(({ session }) => ({ session }), { destroySession, readSession })(Navbar);

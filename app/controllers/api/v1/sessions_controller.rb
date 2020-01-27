@@ -21,12 +21,12 @@ class Api::V1::SessionsController < ApiController
     if logged_in? && current_user
       render json: {
         logged_in: true,
-        user: current_user
+        user: current_user.as_json(only: %i[id username email])
       }
     else
       render json: {
         logged_in: false,
-        message: 'no such user'
+        message: 'no logged in'
       }
     end
   end

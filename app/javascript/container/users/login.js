@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Form from '../components/form';
-import { createSession } from '../actions';
+import LoginForm from '../../components/users/user_form';
+import { createSession } from '../../actions';
 
 const Login = ({ history, createSession }) => {
   const redirect = () => {
@@ -14,7 +14,7 @@ const Login = ({ history, createSession }) => {
     redirect();
   }
 
-  return <Form title="Log In" type="login" handleSubmit={ handleSubmitLocal } />;
+  return <LoginForm title="Log In" type="login" handleSubmit={ handleSubmitLocal } />;
 }
 
 Login.propTypes = {
