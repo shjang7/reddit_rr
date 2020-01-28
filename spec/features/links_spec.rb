@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-RSpec.feature 'Links', type: :feature do
-  scenario 'user creates a new link' do
+RSpec.feature 'Comments', type: :feature do
+  scenario 'user creates a new comment' do
     user = create(:user)
-    new_link = user.links.build(title: 'sample link', url: 'www.example.com')
-    expect(new_link).to be_valid()
+    link = create(:link, user_id: user.id)
+    new_comment = user.comments.build(body: 'sample comment', link_id: link.id)
+    expect(new_comment).to be_valid()
   end
 end
