@@ -31,7 +31,8 @@ class Api::V1::LinksController < ApiController
       }
     else
       render json: {
-        head: :no_content
+        status: :fail,
+        message: 'failed delete'
       }
     end
   end

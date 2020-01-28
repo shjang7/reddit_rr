@@ -15,7 +15,7 @@ module Api::V1::SessionsHelper
     if !current_user
       render json: {
         status: :fail,
-        errors: 'no authenticated'
+        message: 'unauthenticated'
       }
     end
   end
@@ -29,7 +29,7 @@ module Api::V1::SessionsHelper
     if !params[:user_id] || !authorized_user?
       render json: {
         status: :fail,
-        errors: 'no authorized'
+        message: 'unauthorized'
       }
     end
   end

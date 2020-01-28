@@ -42,10 +42,10 @@ export const createLinks = (linkData) => async dispatch => {
 }
 
 export const destroyLink = ({ id }) => async dispatch => {
-  return await axios.delete(`api/v1/links/${id}`)
+  return await axios.delete(`api/v1/links/${id}`, { id })
     .then(({ data }) => {
       if (!data) throw new Error('failed delete');
-      if (data.head === 'no_content') throw new Error('failed delete');
+      if (data.status === 'fail') throw new Error(data.message);
       dispatch({ type: DELETE_LINK, payload: id });
     })
     .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));

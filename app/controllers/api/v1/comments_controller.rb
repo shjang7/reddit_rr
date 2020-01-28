@@ -28,7 +28,8 @@ class Api::V1::CommentsController < ApiController
       }
     else
       render json: {
-        head: :no_content
+        status: :fail,
+        message: 'failed delete'
       }
     end
   end

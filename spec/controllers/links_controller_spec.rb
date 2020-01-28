@@ -12,9 +12,9 @@ RSpec.describe Api::V1::LinksController, type: :controller do
 
       body = JSON.parse(response.body)
       expect(body).to include 'status'
-      expect(body).to include 'errors'
+      expect(body).to include 'message'
       expect(body['status']).to eq('fail')
-      expect(body['errors']).to eq('no authenticated')
+      expect(body['message']).to eq('unauthenticated')
     end
 
     it 'creates a link and delete' do
@@ -28,7 +28,7 @@ RSpec.describe Api::V1::LinksController, type: :controller do
 
       delete :destroy, params: { id: body['location']['id'] }
       expect(JSON.parse(response.body)['status']).to eq('fail')
-      expect(JSON.parse(response.body)['errors']).to eq('no authorized')
+      expect(JSON.parse(response.body)['message']).to eq('unauthorized')
 
       delete :destroy, params: { id: body['location']['id'], user_id: @user.id }
       expect(JSON.parse(response.body)['status']).to eq('destroyed')
