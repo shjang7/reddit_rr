@@ -1,5 +1,4 @@
 class Api::V1::LinksController < ApiController
-  include Api::V1::SessionsHelper
   before_action :set_link, only: %i[edit update destroy]
   # before_action :authenticate_user!, except: [:index]
 

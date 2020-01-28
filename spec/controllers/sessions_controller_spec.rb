@@ -15,6 +15,10 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
     end
 
     it 'returns success at login, logged_in, logout' do
+      get :is_logged_in?
+      logged_in = JSON.parse(response.body)['logged_in']
+      expect(logged_in).to be(false)
+      
       post :create, params: { session: { username: user.username, password: user.password }}
       login = JSON.parse(response.body)['status']
       expect(login).to be(201)
