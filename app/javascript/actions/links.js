@@ -30,14 +30,20 @@ export const getLinksSuccess = (data) => {
   };
 };
 
-export const createLinks = (linkData) => {
-  return dispatch => {
-    return axios.post('api/v1/links', { link: linkData })
-      .then(({ data }) => {
-        if (!data) throw new Error('no link data');
-        if (data.status !== 'created') throw new Error(data.errors[0]);
-        dispatch({ type: CREATE_LINK, payload: data.location });
-      })
-      .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }))
-  }
+export const createLinks = (linkData) => async dispatch => {
+  return await axios.post('api/v1/links', { link: linkData })
+    .then(({ data }) => {
+      if (!data) throw new Error('no link data');
+      if (data.status !== 'created') throw new Error(data.errors[0]);
+      dispatch({ type: CREATE_LINK, payload: data.location });
+    })
+    .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }))
+}
+
+export const destroyLink = ({ id }) => async dispatch => {
+  return await axios.delete(`api/v1/links/${id}`)
+    .then(({ data }) => {
+      console.log(data);
+    })
+    .catch(error => console.log(error));
 }
