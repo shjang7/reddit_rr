@@ -3,6 +3,7 @@ import {
   GET_LINKS_REQUEST,
   GET_LINKS_SUCCESS,
   CREATE_LINK,
+  DELETE_LINK,
   FAIL_LINKS_REQUEST,
   EXCEPTION_ERROR
 } from '../common/variables';
@@ -37,13 +38,15 @@ export const createLinks = (linkData) => async dispatch => {
       if (data.status !== 'created') throw new Error(data.errors[0]);
       dispatch({ type: CREATE_LINK, payload: data.location });
     })
-    .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }))
+    .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
 }
 
 export const destroyLink = ({ id }) => async dispatch => {
   return await axios.delete(`api/v1/links/${id}`)
     .then(({ data }) => {
-      console.log(data);
+      if (!data) throw new Error('failed delete');
+      if (data.head === 'no_content') throw new Error('failed delete');
+      dispatch({ type: DELETE_LINK, payload: id });
     })
-    .catch(error => console.log(error));
+    .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
 }
