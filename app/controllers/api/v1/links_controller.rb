@@ -1,6 +1,7 @@
 class Api::V1::LinksController < ApiController
   before_action :set_link, only: %i[edit update destroy]
-  # before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, only: [:create]
+  before_action :authorized_user!, only: [:destroy]
 
   def index
     @links = Link.all
@@ -18,7 +19,7 @@ class Api::V1::LinksController < ApiController
     else
       render json: {
         status: :unprocessable_entity,
-        errors: @link.errors
+        errors: @link.errors.full_messages
       }
     end
   end

@@ -1,4 +1,7 @@
 class Api::V1::CommentsController < ApiController
+  before_action :authenticate_user!, only: [:create]
+  before_action :authorized_user!, only: [:destroy]
+
   def create
     @link = Link.find(comment_params[:link_id])
     @comment = @link.comments.new(comment_params)
@@ -18,6 +21,16 @@ class Api::V1::CommentsController < ApiController
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
+      render json: {
+        status: :destroyed
+      }
+    else
+      render json: {
+        head: :no_content
+      }
+    end
   end
 
   private
