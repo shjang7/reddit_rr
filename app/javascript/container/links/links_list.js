@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Navbar from '../navbar';
 import NewLinks from './new_links';
-import { getLinks } from '../../actions';
+import { getLinks, destroyLink } from '../../actions';
 
-const LinksList = ({ links, getLinks, history }) => {
+const LinksList = ({ links, getLinks, destroyLink, history }) => {
   const [linkData, setLinkData] = useState(null);
 
   useEffect(() => {
@@ -16,8 +16,12 @@ const LinksList = ({ links, getLinks, history }) => {
     setLinkData(links);
   }, [links]);
 
+  const handleDelete = (link) => {
+    destroyLink(link);
+  }
+
   const linksRender = linkData ? linkData.map((link) => {
-    return <li key={link.id}>{link.title} {link.url}</li>;
+    return <li key={link.id}>{link.title} {link.url} <button type='button' onClick={ () => handleDelete(link) }>delete</button></li>;
   }) : null;
 
   return (
@@ -30,4 +34,4 @@ const LinksList = ({ links, getLinks, history }) => {
   );
 }
 
-export default connect(({ links }) => ({ links }), { getLinks })(LinksList);
+export default connect(({ links }) => ({ links }), { getLinks, destroyLink })(LinksList);

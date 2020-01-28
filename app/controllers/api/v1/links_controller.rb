@@ -1,5 +1,6 @@
 class Api::V1::LinksController < ApiController
   include Api::V1::SessionsHelper
+  before_action :set_link, only: %i[edit update destroy]
   # before_action :authenticate_user!, except: [:index]
 
   def index
@@ -23,9 +24,26 @@ class Api::V1::LinksController < ApiController
     end
   end
 
+  def destroy
+    print 'destroy - suhy'
+    if @link.destroy
+      render json: {
+        status: :destroyed
+      }
+    else
+      render json: {
+        head: :no_content
+      }
+    end
+  end
+
   private
 
   def link_params
     params.require(:link).permit(:title, :url)
+  end
+
+  def set_link
+    @link = Link.find(params[:id])
   end
 end
