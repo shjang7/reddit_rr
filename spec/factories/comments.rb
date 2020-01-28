@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :comment do
-    link_id { 1 }
+    link
+    user
     body { 'sample comment' }
-    user_id { 1 }
   end
 end
