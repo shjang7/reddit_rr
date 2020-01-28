@@ -25,7 +25,6 @@ class Api::V1::LinksController < ApiController
   end
 
   def destroy
-    print 'destroy - suhy'
     if @link.destroy
       render json: {
         status: :destroyed
