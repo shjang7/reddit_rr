@@ -3,9 +3,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :comments, only: %i[create destroy index]
+      resources :links, only: %i[show] do
+        resources :comments, only: %i[index]
+      end
       resources :links, only: %i[create index destroy]
       resources :users, only: %i[create show index]
-      resources :comments, only: %i[create destroy]
     end
   end
   post '/login', to: 'api/v1/sessions#create'

@@ -22,7 +22,6 @@ const LinkForm = ({ headTitle, type, handleSubmit }) => {
       setBlank(true);
       return;
     }
-    // console.log('submit', title, url);
     handleSubmit({ title, url });
   }
 
