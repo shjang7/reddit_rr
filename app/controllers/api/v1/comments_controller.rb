@@ -2,6 +2,11 @@ class Api::V1::CommentsController < ApiController
   before_action :authenticate_user!, only: [:create]
   before_action :authorized_user!, only: [:destroy]
 
+  def index
+    @comments = Comment.all
+    render json: { comments: @comments }
+  end
+
   def create
     @link = Link.find(comment_params[:link_id])
     @comment = @link.comments.new(comment_params)
