@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Form from '../components/form';
-import { createRegistration } from '../actions';
+import SignupForm from '../../components/users/user_form';
+import { createRegistration } from '../../actions';
 
 const Signup = ({ history, createRegistration }) => {
   const redirect = () => {
-    history.push('/');  // move to form
+    history.push('/');
   }
 
   const handleSubmitLocal = (user) => {
@@ -14,7 +14,7 @@ const Signup = ({ history, createRegistration }) => {
     redirect();
   }
 
-  return <Form title="Sign Up" type="signup" handleSubmit={ handleSubmitLocal } />;
+  return <SignupForm title="Sign Up" type="signup" handleSubmit={ handleSubmitLocal } />;
 }
 
 Signup.propTypes = {

@@ -1,4 +1,8 @@
-import { CREATE_SESSION, DESTROY_SESSION } from '../common/variables';
+import {
+  CREATE_SESSION,
+  DESTROY_SESSION,
+  READ_SESSION
+} from '../common/variables';
 
 export default (state = {}, { type, payload }) => {
   switch(type) {
@@ -8,6 +12,9 @@ export default (state = {}, { type, payload }) => {
     case DESTROY_SESSION:
       console.log('destroy session');
       return {};
+    case READ_SESSION:
+      console.log('read session', payload);
+      return payload;
     default:
       return state;
   }
