@@ -14,9 +14,9 @@ const Navbar = ({ session, show, destroySession, readSession, history }) => {
     setUname(session.username);
   }, [session]);
 
-  const handleLogout = () => {
-    destroySession(session);
-    redirect();
+  const handleLogout = async () => {
+    await destroySession(session)
+      .then(redirect());
   }
 
   const redirect = () => {
@@ -46,7 +46,6 @@ const Navbar = ({ session, show, destroySession, readSession, history }) => {
   return (
     <>
       { uname ? userLinks() : guestLinks() }
-      {userLinks()}
     </>
   );
 };

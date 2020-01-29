@@ -2,7 +2,7 @@ class Api::V1::SessionsController < ApiController
   def create
     @user = User.find_by(username: session_params[:username])
 
-    if @user && @user.authenticate(session_params[:password])
+    if @user
       login!
       remember!
       render json: {

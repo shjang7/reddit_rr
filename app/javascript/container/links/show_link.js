@@ -22,9 +22,9 @@ const ShowLink = ({ history, location, match: { params: { id: linkId } }, errors
     history.push('/');
   }
 
-  const handleDelete = (link) => {
-    destroyLink(link);
-    redirect();
+  const handleDelete = async (link) => {
+    await destroyLink(link)
+      .then(redirect());
   }
 
   const renderLink = link ? (
