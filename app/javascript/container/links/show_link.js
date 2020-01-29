@@ -8,7 +8,7 @@ import Comments from '../comments/comments';
 import { destroyLink, getLink } from '../../actions';
 import { timeSince } from '../../common/functions';
 
-const ShowLink = ({ history, location, match: { params: { id: linkId } }, destroyLink, show, getLink }) => {
+const ShowLink = ({ history, location, match: { params: { id: linkId } }, errors, destroyLink, show, getLink }) => {
   const [link, setLink] = useState(null);
   useEffect(() => {
     getLink(linkId);
@@ -40,6 +40,7 @@ const ShowLink = ({ history, location, match: { params: { id: linkId } }, destro
   return (
     <React.Fragment>
       <Navbar history={ history }/>
+      <div>{ errors }</div>
       <h1>Show Link</h1>
       <div>{ renderLink }</div>
       <Comments linkId={ linkId } />
@@ -47,4 +48,4 @@ const ShowLink = ({ history, location, match: { params: { id: linkId } }, destro
   );
 }
 
-export default connect(({ show }) => ({ show }), { destroyLink, getLink })(ShowLink);
+export default connect(({ errors, show }) => ({ errors, show }), { destroyLink, getLink })(ShowLink);

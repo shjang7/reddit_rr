@@ -22,8 +22,6 @@ const LinksList = ({ errors, links, getLinks, destroyLink, history }) => {
     destroyLink(link);
   }
 
-  const errorsRender = <div>{ errors }</div>;
-
   const linksRender = linkData ? linkData.map((link) => {
     return (
       <li key={ link.id }>
@@ -41,7 +39,7 @@ const LinksList = ({ errors, links, getLinks, destroyLink, history }) => {
   return (
     <React.Fragment>
       <Navbar history={ history }/>
-      <ul>{ errorsRender }</ul>
+      <div>{ errors }</div>
       Links List
       <ul>{ linksRender }</ul>
       <NewLinks history={ history } />
