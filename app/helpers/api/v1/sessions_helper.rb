@@ -12,7 +12,7 @@ module Api::V1::SessionsHelper
   end
 
   def logged_in?
-    !!current_user
+    !current_user.nil?
   end
 
   def current_user
@@ -25,6 +25,10 @@ module Api::V1::SessionsHelper
         current_user = user
       end
     end
+  end
+
+  def current_user=(user)
+    @current_user = user
   end
 
   def authenticate_user!

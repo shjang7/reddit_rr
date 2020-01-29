@@ -24,7 +24,7 @@ const ShowLink = ({ history, location, match: { params: { id: linkId } }, errors
 
   const handleDelete = async (link) => {
     await destroyLink(link)
-      .then(redirect());
+    redirect();
   }
 
   const renderLink = link ? (
@@ -40,6 +40,7 @@ const ShowLink = ({ history, location, match: { params: { id: linkId } }, errors
   return (
     <React.Fragment>
       <Navbar history={ history }/>
+      <Link to='/'>main</Link>
       <div>{ errors }</div>
       <h1>Show Link</h1>
       <div>{ renderLink }</div>

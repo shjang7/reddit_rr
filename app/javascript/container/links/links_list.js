@@ -15,7 +15,7 @@ const LinksList = ({ errors, links, getLinks, destroyLink, history }) => {
   }, [getLinks, destroyLink]);
 
   useEffect(() => {
-    if(links) setLinkData(links);
+    setLinkData(links);
   }, [links]);
 
   const handleDelete = (link) => {
