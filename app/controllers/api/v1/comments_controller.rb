@@ -1,6 +1,7 @@
 class Api::V1::CommentsController < ApiController
   before_action :authenticate_user!, only: %i[create destroy]
   before_action :find_comment, only: [:destroy]
+  before_action :find_author, only: [:destroy]
   before_action :authorized_user?, only: [:destroy]
 
   def index
@@ -49,12 +50,7 @@ class Api::V1::CommentsController < ApiController
     @comment = Comment.find(params[:id])
   end
 
-  def authorized_user?
-    if current_user && current_user.id != @comment.user_id
-      render json: {
-        status: :fail,
-        message: 'unauthorized'
-      }
-    end
+  def find_author
+    @user = @comment.user
   end
 end

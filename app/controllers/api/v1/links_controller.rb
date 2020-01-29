@@ -1,7 +1,8 @@
 class Api::V1::LinksController < ApiController
-  before_action :set_link, only: %i[edit update destroy]
+  before_action :set_link, only: %i[edit update destroy show]
   before_action :authenticate_user!, only: [:create]
-  before_action :authorized_user!, only: [:destroy]
+  before_action :find_author, only: [:destroy]
+  before_action :authorized_user?, only: [:destroy]
 
   def index
     @links = Link.all
@@ -37,6 +38,19 @@ class Api::V1::LinksController < ApiController
     end
   end
 
+  def show
+    if @link
+      render json: {
+        link: @link
+      }
+    else
+      render json: {
+        status: 500,
+        errors: ['link not found']
+      }
+    end
+  end
+
   private
 
   def link_params
@@ -45,5 +59,9 @@ class Api::V1::LinksController < ApiController
 
   def set_link
     @link = Link.find(params[:id])
+  end
+
+  def find_author
+    @user = @link.user
   end
 end

@@ -24,8 +24,8 @@ const Comments = ({ comments, getComments, createComments, destroyComment, linkI
     return (
       <li key={ data.id }>
         { data.body }
-        { timeSince(data.created_at) }
-        { data.user_id }
+        | { timeSince(data.created_at) }
+        | user id: { data.user_id }
         <button type='button' onClick={ () => handleDelete(data.id) }>
           delete
         </button>
