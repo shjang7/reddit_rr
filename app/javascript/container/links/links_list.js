@@ -12,7 +12,7 @@ const LinksList = ({ links, getLinks, destroyLink, history }) => {
 
   useEffect(() => {
     getLinks();
-  }, [getLinks]);
+  }, [destroyLink]);
 
   useEffect(() => {
     setLinkData(links);

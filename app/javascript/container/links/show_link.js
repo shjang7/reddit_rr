@@ -5,25 +5,31 @@ import PropTypes from 'prop-types';
 import Navbar from '../navbar';
 import NewLinks from './new_links';
 import Comments from '../comments/comments';
-import { destroyLink } from '../../actions';
+import { destroyLink, getLink } from '../../actions';
 import { timeSince } from '../../common/functions';
 
-const ShowLink = ({ destroyLink, links, history, location, match: { params: { id: linkId } } }) => {
+const ShowLink = ({ history, location, match: { params: { id: linkId } }, destroyLink, show, getLink }) => {
   const [link, setLink] = useState(null);
   useEffect(() => {
-    console.log('update link', links, ', ', linkId, ',');
-    const item = links.find(({ id }) => id == linkId);
-    console.log(item);
-    if (item) setLink(item);
+    getLink(linkId);
   }, []);
+
+  useEffect(() => {
+    setLink(show.link);
+  }, [show]);
+
+  const redirect = () => {
+    history.push('/');
+  }
 
   const handleDelete = (link) => {
     destroyLink(link);
+    redirect();
   }
 
   const renderLink = link ? (
       <div>
-        <Link to={`/links/${link.id}`}>{ link.title }</Link>
+        { link.title }
         { timeSince(link.created_at) }
         { link.url }
         <button type='button' onClick={ () => handleDelete(link) }>delete</button>
@@ -41,4 +47,4 @@ const ShowLink = ({ destroyLink, links, history, location, match: { params: { id
   );
 }
 
-export default connect(({ links }) => ({ links }), { destroyLink })(ShowLink);
+export default connect(({ show }) => ({ show }), { destroyLink, getLink })(ShowLink);
