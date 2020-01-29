@@ -7,6 +7,7 @@ const initialState = {
   comments: [],
   session: {},
   errors: [],
+  show: { session: {}, link: {} }
 };
 
 export default function configureStore() {

@@ -1,15 +1,32 @@
 module Api::V1::SessionsHelper
   def login!
+    print 'login', @user
     session[:user_id] = @user.id
     current_user
   end
 
+  def remember!
+    print 'remember', @user
+    @user.generate_token
+    cookies.permanent.signed[:user_id] = @user.id
+    cookies.permanent[:remember_token] = @user.remember_token
+    @user.update_token
+  end
+
   def logged_in?
-    !!session[:user_id]
+    !!current_user
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    if (user_id = session[:user_id])
+      current_user = User.find_by(id: user_id)
+    elsif (user_id = cookies.signed[:user_id])
+      user = User.find_by(id: user_id)
+      if user &.authenticated?(cookies[:remember_token])
+        login!
+        current_user = user
+      end
+    end
   end
 
   def authenticate_user!
@@ -31,6 +48,9 @@ module Api::V1::SessionsHelper
   end
 
   def logout!
-    session.clear
+    cookies.delete(:user_id)
+    cookies.delete(:remember_token)
+    session.delete(:user_id)
+    current_user = nil
   end
 end

@@ -4,6 +4,7 @@ class Api::V1::SessionsController < ApiController
 
     if @user && @user.authenticate(session_params[:password])
       login!
+      remember!
       render json: {
         status: 201,
         logged_in: true,
@@ -25,8 +26,7 @@ class Api::V1::SessionsController < ApiController
       }
     else
       render json: {
-        logged_in: false,
-        errors: ['no logged in']
+        logged_in: false
       }
     end
   end
