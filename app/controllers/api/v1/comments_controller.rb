@@ -2,10 +2,11 @@ class Api::V1::CommentsController < ApiController
   before_action :authenticate_user!, only: %i[create destroy]
   before_action :find_comment, only: [:destroy]
   before_action :find_author, only: [:destroy]
-  before_action :authorized_user?, only: [:destroy]
+  before_action :authorized_user!, only: [:destroy]
 
   def index
-    @comments = Comment.all
+    @link = Link.find(params[:link_id])
+    @comments = @link.comments
     render json: { comments: @comments }
   end
 

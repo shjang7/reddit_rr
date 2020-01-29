@@ -6,11 +6,9 @@ RSpec.describe Api::V1::SessionsHelper, type: :helper do
       @user = create(:user)
       login!
       expect(logged_in?).to be(true)
-      expect(authorized_user?).to be(true)
-      expect(current_user.id).to equal(@user.id)
+      expect(current_user.id).to eq(@user.id)
       logout!
       expect(logged_in?).to be(false)
-      expect(authorized_user?).to be(false)
       expect(current_user).to be_blank()
     end
   end
