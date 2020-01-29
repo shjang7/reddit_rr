@@ -13,8 +13,9 @@ export default (state = {}, { type, payload }) => {
       console.log('destroy session');
       return {};
     case READ_SESSION:
-      console.log('read session', payload);
-      return payload;
+      // console.log('read session', payload);
+      // if (payload == {}) return state;
+      return state;
     default:
       return state;
   }

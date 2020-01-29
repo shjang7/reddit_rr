@@ -4,10 +4,6 @@ export const CREATE_SESSION = 'CREATE_SESSION';
 export const DESTROY_SESSION = 'DESTROY_SESSION';
 export const CREATE_LINK = 'CREATE_LINK';
 export const DELETE_LINK = 'DELETE_LINK';
-export const READ_SESSION = 'READ_SESSION';
-export const FAIL_REGISTRATION = 'FAIL_REGISTRATION';
-export const FAIL_LOGIN = 'FAIL_LOGIN';
-export const FAIL_LOGOUT = 'FAIL_LOGOUT';
 export const CREATE_ERRORS = 'CREATE_ERRORS';
 export const EXCEPTION_ERROR = 'EXCEPTION_ERROR';
 
@@ -16,6 +12,5 @@ export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 
-export const GET_LINK = 'GET_LINK';
-export const GET_USER = 'GET_USER';
-export const CURRENT_USER = 'CURRENT_USER';
+export const READ_LINK = 'READ_LINK';
+export const READ_SESSION = 'READ_SESSION';

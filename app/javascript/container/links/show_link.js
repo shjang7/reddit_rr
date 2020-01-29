@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import Navbar from '../navbar';
 import NewLinks from './new_links';
 import Comments from '../comments/comments';
-import { destroyLink, getLink } from '../../actions';
+import { destroyLink, readLink } from '../../actions';
 import { timeSince } from '../../common/functions';
 
-const ShowLink = ({ history, location, match: { params: { id: linkId } }, errors, destroyLink, show, getLink }) => {
+const ShowLink = ({ history, location, match: { params: { id: linkId } }, errors, destroyLink, show, readLink }) => {
   const [link, setLink] = useState(null);
   useEffect(() => {
-    getLink(linkId);
+    readLink(linkId);
   }, []);
 
   useEffect(() => {
@@ -48,4 +48,4 @@ const ShowLink = ({ history, location, match: { params: { id: linkId } }, errors
   );
 }
 
-export default connect(({ errors, show }) => ({ errors, show }), { destroyLink, getLink })(ShowLink);
+export default connect(({ errors, show }) => ({ errors, show }), { destroyLink, readLink })(ShowLink);

@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { destroySession, readSession } from '../actions';
 
-const Navbar = ({ session, destroySession, readSession, history }) => {
+const Navbar = ({ session, show, destroySession, readSession, history }) => {
   const [uname, setUname] = useState(null);
+  useEffect(() => {
+    readSession();
+  }, []);
+
   useEffect(() => {
     setUname(session.username);
   }, [session]);
@@ -42,8 +46,9 @@ const Navbar = ({ session, destroySession, readSession, history }) => {
   return (
     <>
       { uname ? userLinks() : guestLinks() }
+      {userLinks()}
     </>
   );
 };
 
-export default connect(({ session }) => ({ session }), { destroySession, readSession })(Navbar);
+export default connect(({ session, show }) => ({ session, show }), { destroySession, readSession })(Navbar);
