@@ -7,20 +7,22 @@ import NewLinks from './new_links';
 import { getLinks, destroyLink } from '../../actions';
 import { timeSince } from '../../common/functions';
 
-const LinksList = ({ links, getLinks, destroyLink, history }) => {
-  const [linkData, setLinkData] = useState(null);
+const LinksList = ({ errors, links, getLinks, destroyLink, history }) => {
+  const [linkData, setLinkData] = useState([]);
 
   useEffect(() => {
     getLinks();
-  }, [destroyLink]);
+  }, [getLinks, destroyLink]);
 
   useEffect(() => {
-    setLinkData(links);
+    if(links) setLinkData(links);
   }, [links]);
 
   const handleDelete = (link) => {
     destroyLink(link);
   }
+
+  const errorsRender = <div>{ errors }</div>;
 
   const linksRender = linkData ? linkData.map((link) => {
     return (
@@ -39,6 +41,7 @@ const LinksList = ({ links, getLinks, destroyLink, history }) => {
   return (
     <React.Fragment>
       <Navbar history={ history }/>
+      <ul>{ errorsRender }</ul>
       Links List
       <ul>{ linksRender }</ul>
       <NewLinks history={ history } />
@@ -46,4 +49,4 @@ const LinksList = ({ links, getLinks, destroyLink, history }) => {
   );
 }
 
-export default connect(({ links }) => ({ links }), { getLinks, destroyLink })(LinksList);
+export default connect(({ errors, links }) => ({ errors, links }), { getLinks, destroyLink })(LinksList);

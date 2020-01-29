@@ -36,7 +36,7 @@ class Api::V1::CommentsController < ApiController
     else
       render json: {
         status: :fail,
-        message: 'failed delete'
+        errors: ['failed delete']
       }
     end
   end

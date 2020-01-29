@@ -11,7 +11,7 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
     it 'fails creating comments without login' do
       post :create, params: { link: comment_attr }
       expect(parsed_result['status']).to eq('fail')
-      expect(parsed_result['message']).to eq('unauthenticated')
+      expect(parsed_result['errors']).to eq(['unauthenticated'])
     end
 
     it 'creates a comment and delete' do
@@ -24,12 +24,12 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
 
       delete :destroy, params: { id: other_comment.id }
       expect(parsed_result['status']).to eq('fail')
-      expect(parsed_result['message']).to eq('unauthorized')
+      expect(parsed_result['errors']).to eq(['unauthorized'])
 
       logout!
       delete :destroy, params: { id: other_comment.id }
       expect(parsed_result['status']).to eq('fail')
-      expect(parsed_result['message']).to eq('unauthenticated')
+      expect(parsed_result['errors']).to eq(['unauthenticated'])
     end
   end
 end

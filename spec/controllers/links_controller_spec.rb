@@ -10,7 +10,7 @@ RSpec.describe Api::V1::LinksController, type: :controller do
     it 'fails creating links without login' do
       post :create, params: { link: link_attr }
       expect(parsed_result['status']).to eq('fail')
-      expect(parsed_result['message']).to eq('unauthenticated')
+      expect(parsed_result['errors']).to eq(['unauthenticated'])
     end
 
     it 'creates a link and delete' do
@@ -23,12 +23,12 @@ RSpec.describe Api::V1::LinksController, type: :controller do
 
       delete :destroy, params: { id: other_link.id }
       expect(parsed_result['status']).to eq('fail')
-      expect(parsed_result['message']).to eq('unauthorized')
+      expect(parsed_result['errors']).to eq(['unauthorized'])
 
       logout!
       delete :destroy, params: { id: other_link.id }
       expect(parsed_result['status']).to eq('fail')
-      expect(parsed_result['message']).to eq('unauthenticated')
+      expect(parsed_result['errors']).to eq(['unauthenticated'])
     end
   end
 end

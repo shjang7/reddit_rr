@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import links from './link_reducer.js';
+import links from './links_reducer.js';
 import comments from './comments_reducer.js';
 import show from './show_reducer.js';
 import session from './session_reducer.js';
