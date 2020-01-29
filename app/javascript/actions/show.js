@@ -9,7 +9,7 @@ export const getLink = (id) => dispatch => {
   return axios.get(`/api/v1/links/${id}`, { id })
     .then(({ data }) => {
       if (!data) throw new Error('no link data');
-      if (!data.statue === 500) throw new Error(data.errors[0]);
+      if (!data.link) throw new Error(data.errors[0] || 'fail at loading link');
       return data.link;
     })
     .then(payload => dispatch({ type: GET_LINK, payload }))

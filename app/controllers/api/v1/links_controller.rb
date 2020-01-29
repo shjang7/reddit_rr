@@ -33,7 +33,7 @@ class Api::V1::LinksController < ApiController
     else
       render json: {
         status: :fail,
-        message: 'failed delete'
+        errors: ['failed delete']
       }
     end
   end
@@ -45,7 +45,7 @@ class Api::V1::LinksController < ApiController
       }
     else
       render json: {
-        status: 500,
+        status: :fail,
         errors: ['link not found']
       }
     end

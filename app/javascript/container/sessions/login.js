@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import LoginForm from '../../components/users/user_form';
+import LoginForm from '../../components/sessions/login_form';
 import { createSession } from '../../actions';
 
 const Login = ({ history, createSession }) => {

@@ -16,7 +16,7 @@ module Api::V1::SessionsHelper
     if !current_user
       render json: {
         status: :fail,
-        message: 'unauthenticated'
+        errors: ['unauthenticated']
       }
     end
   end
@@ -25,7 +25,7 @@ module Api::V1::SessionsHelper
     if current_user != @user
       render json: {
         status: :fail,
-        message: 'unauthorized'
+        errors: ['unauthorized']
       }
     end
   end

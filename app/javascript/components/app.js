@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import configureStore from '../configure_store';
 import LinksList from '../container/links/links_list';
 import ShowLink from '../container/links/show_link';
-import Login from '../container/users/login';
-import Signup from '../container/users/signup';
+import Signup from '../container/registrations/signup';
+import Login from '../container/sessions/login';
 
 const store = configureStore();
 
