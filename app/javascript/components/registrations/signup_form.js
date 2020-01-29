@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const SignupForm = ({ title, type, handleSubmit }) => {
+const SignupForm = ({ title, submitBtn, handleSubmit }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,13 +34,13 @@ const SignupForm = ({ title, type, handleSubmit }) => {
   }
   return (
     <div>
-      <h1>Sign Up</h1>
+      <h1>{ title }</h1>
       <form onSubmit={ handleSubmitLocal }>
         <input placeholder="username" type="text" name="username" value={ username } onChange={ handleChange } />
         <input placeholder="email" type="text" name="email" value={ email } onChange={ handleChange } />
         <input placeholder="password" type="password" name="password" value={ password } onChange={ handleChange } />
         <input placeholder="password confirmation" type="password" name="password_confirmation" value={ passwordConfirmation } onChange={ handleChange } />
-        <button placeholder="submit" type="submit">Sign Up</button>
+        <button placeholder="submit" type="submit">{ submitBtn }</button>
       </form>
       <div>{ blank ? 'Fill in all data' : null }</div>
     </div>

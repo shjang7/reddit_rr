@@ -5,7 +5,6 @@ import {
 export default (state = '', { type, payload }) => {
   switch(type) {
     case EXCEPTION_ERROR:
-      console.log('EXCEPTION_ERROR');
       return payload.message;
     default:
       return state;

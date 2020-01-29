@@ -21,16 +21,16 @@ export const createComments = (body, link_id) => async (dispatch) => {
   return await axios.post(`/api/v1/comments`, { comment: { body, link_id }})
     .then(({ data }) => {
       if (!data) throw new Error('connection error');
-      if (data.status !== 'created') throw new Error(data.errors[0] || 'failed create');
+      if (data.status !== 'created') throw new Error(data.errors || 'failed create');
       dispatch({ type: CREATE_COMMENT, payload: data.location });
     })
-    .catch(error => dispatch({ type: EXCEPTION_ERRORS, payload: error }));
+    .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
 };
 
 export const destroyComment = (id) => async (dispatch) => {
   return await axios.delete(`/api/v1/comments/${id}`, { id })
     .then(({ data }) => {
-      if (!data || data.status != 'destroyed') throw new Error(data.errors[0] || 'failed delete');
+      if (!data || data.status != 'destroyed') throw new Error(data.error || 'failed delete');
       dispatch({ type: DELETE_COMMENT, payload: id });
     })
     .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));

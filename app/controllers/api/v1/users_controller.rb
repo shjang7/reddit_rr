@@ -31,6 +31,7 @@ class Api::V1::UsersController < ApiController
     @user = User.new(user_params)
     if @user.save
       login!
+      remember!
       render json: {
         status: :created,
         user: @user.as_json(only: %i[id username email])

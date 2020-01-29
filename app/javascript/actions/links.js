@@ -31,7 +31,7 @@ export const destroyLink = ({ id }) => async dispatch => {
   return await axios.delete(`/api/v1/links/${id}`, { id })
     .then(({ data }) => {
       if (!data) throw new Error('connection error');
-      if (data.status !== 'destroyed') throw new Error(data.errors[0]);
+      if (data.status !== 'destroyed') throw new Error(data.error || 'failed delete');
       dispatch({ type: DELETE_LINK, payload: id });
     })
     .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
