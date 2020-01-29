@@ -1,6 +1,7 @@
 module Api::V1::SessionsHelper
   def login!
     session[:user_id] = @user.id
+    current_user
   end
 
   def logged_in?
@@ -11,8 +12,22 @@ module Api::V1::SessionsHelper
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def authorized_user?
-    @user == current_user
+  def authenticate_user!
+    if !current_user
+      render json: {
+        status: :fail,
+        errors: ['unauthenticated']
+      }
+    end
+  end
+
+  def authorized_user!
+    if current_user != @user
+      render json: {
+        status: :fail,
+        errors: ['unauthorized']
+      }
+    end
   end
 
   def logout!

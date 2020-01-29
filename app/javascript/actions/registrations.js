@@ -1,21 +1,20 @@
 import axios from 'axios';
 import {
-  FAIL_REGISTRATION
+  EXCEPTION_ERROR,
+  CREATE_SESSION
 } from '../common/variables';
-import { createSession } from './session';
 
 export const createRegistration = (userData) => {
   return dispatch => {
     return axios.post('api/v1/users', { user: userData })
       .then(({ data }) => {
-        if (!data) throw new Error('no data');
-        if (data.status !== 'created') throw new Error(data.status);
+        if (!data) throw new Error('connection error');
+        if (data.status !== 'created') throw new Error(data.errors[0]);
         return data.user;
       })
-      .then(() => {
-        const logInUser = (({ username, password }) => ({ username, password }))(userData);
-        return dispatch(createSession(logInUser));
+      .then((payload) => {
+        dispatch({ type: CREATE_SESSION, payload });
       })
-      .catch(error => dispatch({ type: FAIL_REGISTRATION, payload: error }));
+      .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
   }
 }

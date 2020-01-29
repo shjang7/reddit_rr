@@ -21,7 +21,7 @@ const Navbar = ({ session, destroySession, readSession, history }) => {
 
   const userLinks = () => (
     <div>
-      <Link to='/' onClick={ handleLogout }>Log Out</Link>
+      <a href="/" onClick={ () => handleLogout() }>Log Out</a>
       <br />
       { 'login with: ' + uname }
       <br />

@@ -26,7 +26,7 @@ class Api::V1::SessionsController < ApiController
     else
       render json: {
         logged_in: false,
-        message: 'no logged in'
+        errors: ['no logged in']
       }
     end
   end

@@ -4,6 +4,7 @@ import rootReducer from './reducers';
 
 const initialState = {
   links: [],
+  comments: [],
   session: {},
   errors: [],
 };

@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Navbar from '../navbar';
 import NewLinks from './new_links';
 import { getLinks, destroyLink } from '../../actions';
+import { timeSince } from '../../common/functions';
 
-const LinksList = ({ links, getLinks, destroyLink, history }) => {
-  const [linkData, setLinkData] = useState(null);
+const LinksList = ({ errors, links, getLinks, destroyLink, history }) => {
+  const [linkData, setLinkData] = useState([]);
 
   useEffect(() => {
     getLinks();
-  }, [getLinks]);
+  }, [getLinks, destroyLink]);
 
   useEffect(() => {
-    setLinkData(links);
+    if(links) setLinkData(links);
   }, [links]);
 
   const handleDelete = (link) => {
@@ -21,12 +23,23 @@ const LinksList = ({ links, getLinks, destroyLink, history }) => {
   }
 
   const linksRender = linkData ? linkData.map((link) => {
-    return <li key={link.id}>{link.title} {link.url} <button type='button' onClick={ () => handleDelete(link) }>delete</button></li>;
+    return (
+      <li key={ link.id }>
+        <Link to={ `/links/${link.id}` }>
+          { link.title }
+        </Link>
+        { timeSince(link.created_at) }
+        <button type='button' onClick={ () => handleDelete(link) }>
+          delete
+        </button>
+      </li>
+    );
   }) : null;
 
   return (
     <React.Fragment>
       <Navbar history={ history }/>
+      <div>{ errors }</div>
       Links List
       <ul>{ linksRender }</ul>
       <NewLinks history={ history } />
@@ -34,4 +47,4 @@ const LinksList = ({ links, getLinks, destroyLink, history }) => {
   );
 }
 
-export default connect(({ links }) => ({ links }), { getLinks, destroyLink })(LinksList);
+export default connect(({ errors, links }) => ({ errors, links }), { getLinks, destroyLink })(LinksList);

@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import LinkForm from '../../components/links/link_form';
 import { createLinks } from '../../actions';
 
-const NewLinks = ({ errors, history, createLinks }) => {
+const NewLinks = ({ history, createLinks }) => {
   const redirect = () => {
     history.push('/');
   }
 
   const handleSubmit = (link) => {
     createLinks(link);
-    console.log('create error', errors);
     redirect();
   }
 
@@ -20,4 +19,4 @@ const NewLinks = ({ errors, history, createLinks }) => {
   )
 }
 
-export default connect(({ errors }) => ({ errors }), { createLinks })(NewLinks);
+export default connect(null, { createLinks })(NewLinks);

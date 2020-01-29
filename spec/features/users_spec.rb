@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature 'Links', type: :feature do
-  scenario 'delete a link and related comments deleted' do
+RSpec.feature 'Users', type: :feature do
+  scenario 'delete a user and related links and comments deleted' do
     user = create(:user)
     link = user.links.build( attributes_for(:link) )
     expect(link).to be_valid()
@@ -12,8 +12,9 @@ RSpec.feature 'Links', type: :feature do
     comment.save!
 
     expect do
-      link.destroy
-    end.to change(Link, :count).by(-1)
+      user.destroy
+    end.to change(User, :count).by(-1)
+    .and change(Link, :count).by(-1)
     .and change(Comment, :count).by(-1)
   end
 end

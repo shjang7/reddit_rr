@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SignupForm from '../../components/users/user_form';
+import SignupForm from '../../components/registrations/signup_form';
 import { createRegistration } from '../../actions';
 
 const Signup = ({ history, createRegistration }) => {

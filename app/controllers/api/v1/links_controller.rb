@@ -1,7 +1,8 @@
 class Api::V1::LinksController < ApiController
-  include Api::V1::SessionsHelper
-  before_action :set_link, only: %i[edit update destroy]
-  # before_action :authenticate_user!, except: [:index]
+  before_action :set_link, only: %i[edit update destroy show]
+  before_action :authenticate_user!, only: %i[create destroy]
+  before_action :find_author, only: [:destroy]
+  before_action :authorized_user!, only: [:destroy]
 
   def index
     @links = Link.all
@@ -19,7 +20,7 @@ class Api::V1::LinksController < ApiController
     else
       render json: {
         status: :unprocessable_entity,
-        errors: @link.errors
+        errors: @link.errors.full_messages
       }
     end
   end
@@ -31,7 +32,21 @@ class Api::V1::LinksController < ApiController
       }
     else
       render json: {
-        head: :no_content
+        status: :fail,
+        errors: ['failed delete']
+      }
+    end
+  end
+
+  def show
+    if @link
+      render json: {
+        link: @link
+      }
+    else
+      render json: {
+        status: :fail,
+        errors: ['link not found']
       }
     end
   end
@@ -44,5 +59,9 @@ class Api::V1::LinksController < ApiController
 
   def set_link
     @link = Link.find(params[:id])
+  end
+
+  def find_author
+    @user = @link.user
   end
 end
