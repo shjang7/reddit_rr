@@ -11,7 +11,7 @@ const Signup = ({ history, createRegistration }) => {
 
   const handleSubmitLocal = async (user) => {
     await createRegistration(user)
-      .then(redirect());
+      .then(() => redirect());
   }
 
   return <SignupForm title="Sign Up" submitBtn="signup" handleSubmit={ handleSubmitLocal } />;

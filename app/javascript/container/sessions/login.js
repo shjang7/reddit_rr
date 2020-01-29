@@ -9,9 +9,9 @@ const Login = ({ history, createSession }) => {
     history.push('/');
   }
 
-  const handleSubmitLocal = async ({ username, password }) => {
-    await createSession({ username, password })
-      .then(redirect());
+  const handleSubmitLocal = ({ username, password }) => {
+    createSession({ username, password })
+      .then(() => redirect());
   }
 
   return <LoginForm handleSubmit={ handleSubmitLocal } />;

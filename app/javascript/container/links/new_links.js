@@ -11,7 +11,7 @@ const NewLinks = ({ history, createLinks }) => {
 
   const handleSubmit = async (link) => {
     await createLinks(link)
-      .then(redirect());
+    redirect();
   }
 
   return (
