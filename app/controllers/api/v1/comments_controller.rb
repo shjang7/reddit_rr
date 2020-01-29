@@ -1,6 +1,7 @@
 class Api::V1::CommentsController < ApiController
-  before_action :authenticate_user!, only: [:create]
-  before_action :authorized_user!, only: [:destroy]
+  before_action :authenticate_user!, only: %i[create destroy]
+  before_action :find_comment, only: [:destroy]
+  before_action :authorized_user?, only: [:destroy]
 
   def index
     @comments = Comment.all
@@ -26,7 +27,6 @@ class Api::V1::CommentsController < ApiController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     if @comment.destroy
       render json: {
         status: :destroyed
@@ -43,5 +43,18 @@ class Api::V1::CommentsController < ApiController
 
   def comment_params
     params.require(:comment).permit(:body, :link_id)
+  end
+
+  def find_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def authorized_user?
+    if current_user && current_user.id != @comment.user_id
+      render json: {
+        status: :fail,
+        message: 'unauthorized'
+      }
+    end
   end
 end

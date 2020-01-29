@@ -11,9 +11,11 @@ import { timeSince } from '../../common/functions';
 const ShowLink = ({ destroyLink, links, history, location, match: { params: { id: linkId } } }) => {
   const [link, setLink] = useState(null);
   useEffect(() => {
+    console.log('update link', links, ', ', linkId, ',');
     const item = links.find(({ id }) => id == linkId);
+    console.log(item);
     if (item) setLink(item);
-  }, [linkId]);
+  }, []);
 
   const handleDelete = (link) => {
     destroyLink(link);

@@ -1,10 +1,17 @@
-import { GET_COMMENTS_SUCCESS } from '../common/variables';
+import {
+  GET_COMMENTS_SUCCESS,
+  CREATE_COMMENT,
+  DELETE_COMMENT
+} from '../common/variables';
 
 export default (state = [], { type, payload }) => {
   switch(type) {
     case GET_COMMENTS_SUCCESS:
-      console.log('get comments', payload);
       return payload;
+    case CREATE_COMMENT:
+      return [...state, payload];
+    case DELETE_COMMENT:
+      return [...state.filter(({ id }) => id !== payload)];
     default:
       return state;
   }
