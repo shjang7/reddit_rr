@@ -21,7 +21,7 @@ module Api::V1::SessionsHelper
     end
   end
 
-  def authorized_user?
+  def authorized_user!
     if current_user != @user
       render json: {
         status: :fail,
@@ -32,6 +32,5 @@ module Api::V1::SessionsHelper
 
   def logout!
     session.clear
-    print current_user
   end
 end
