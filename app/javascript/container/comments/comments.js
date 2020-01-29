@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getComments } from '../../actions';
+import { getComments, createComments, destroyComment } from '../../actions';
 import CommentForm from '../../components/comments/comment_form';
 import { timeSince } from '../../common/functions';
 
-const Comments = ({ comments, getComments, linkId }) => {
-  const [commentsData, setCommentsData] = useState(null);
+const Comments = ({ comments, getComments, createComments, destroyComment, linkId }) => {
+  const [commentsData, setCommentsData] = useState([]);
 
   useEffect(() => {
     getComments(linkId);
@@ -14,12 +14,10 @@ const Comments = ({ comments, getComments, linkId }) => {
 
   useEffect(() => {
     setCommentsData(comments);
-    console.log('set comments', comments)
   }, [comments]);
 
-  const handleDelete = (data) => {
-    console.log('delete');
-    // destroyComment(data);
+  const handleDelete = (id) => {
+    destroyComment(id);
   }
 
   const renderComments = commentsData ? commentsData.map((data) => {
@@ -27,24 +25,25 @@ const Comments = ({ comments, getComments, linkId }) => {
       <li key={ data.id }>
         { data.body }
         { timeSince(data.created_at) }
-        <button type='button' onClick={ () => handleDelete(data) }>
+        { data.user_id }
+        <button type='button' onClick={ () => handleDelete(data.id) }>
           delete
         </button>
       </li>
     );
   }) : null;
 
-  const handleSubmitComment = ({ body }) => {
-    console.log('submit comment', body);
+  const submitComment = ({ body }) => {
+    createComments(body, linkId);
   }
 
   return (
     <React.Fragment>
-      <h1>Comments List</h1>
+      <h3>{ commentsData.length } Comments</h3>
       <ul>{ renderComments }</ul>
-      <CommentForm submitBtn='Add Comment' handleSubmit={ handleSubmitComment } />
+      <CommentForm submitBtn='Add Comment' handleSubmit={ submitComment } />
     </React.Fragment>
   );
 }
 
-export default connect(({ comments }) => ({ comments }), { getComments })(Comments);
+export default connect(({ comments }) => ({ comments }), { getComments, createComments, destroyComment })(Comments);

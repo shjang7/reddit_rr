@@ -18,3 +18,4 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 export const GET_LINK = 'GET_LINK';
 export const GET_USER = 'GET_USER';
+export const CURRENT_USER = 'CURRENT_USER';

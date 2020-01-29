@@ -32,7 +32,7 @@ export const getLinksSuccess = (data) => {
 };
 
 export const createLinks = (linkData) => async dispatch => {
-  return await axios.post('api/v1/links', { link: linkData })
+  return await axios.post('/api/v1/links', { link: linkData })
     .then(({ data }) => {
       if (!data) throw new Error('no link data');
       if (data.status !== 'created') throw new Error(data.errors[0]);
@@ -42,7 +42,7 @@ export const createLinks = (linkData) => async dispatch => {
 }
 
 export const destroyLink = ({ id }) => async dispatch => {
-  return await axios.delete(`api/v1/links/${id}`, { id })
+  return await axios.delete(`/api/v1/links/${id}`, { id })
     .then(({ data }) => {
       if (!data) throw new Error('failed delete');
       if (data.status === 'fail') throw new Error(data.message);
