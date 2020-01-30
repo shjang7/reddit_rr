@@ -5,7 +5,8 @@ export const DESTROY_SESSION = 'DESTROY_SESSION';
 export const READ_SESSION = 'READ_SESSION';
 export const CREATE_LINK = 'CREATE_LINK';
 export const DELETE_LINK = 'DELETE_LINK';
-export const VOTE_LINK = 'VOTE_LINK';
+export const UPVOTE_LINK = 'UPVOTE_LINK';
+export const DOWNVOTE_LINK = 'DOWNVOTE_LINK';
 export const EXCEPTION_ERROR = 'EXCEPTION_ERROR';
 
 export const GET_COMMENTS_REQUEST = 'GET_COMMENTS_REQUEST';

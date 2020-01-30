@@ -11,20 +11,26 @@ import { timeSince } from '../../common/functions';
 const ShowLink = (props) => {
   const { history, location, match: { params: { id: linkId } }, errors, links, destroyLink, readLink, upvoteLink, downvoteLink } = props;
   const [link, setLink] = useState(null);
+  const [upvote, setUpvote] = useState(null);
+  const [downvote, setDownvote] = useState(null);
+  const [voteweight, setVoteWeight] = useState(null);
   useEffect(() => {
     readLink(linkId);
   }, []);
 
   useEffect(() => {
     setLink(links.link);
+    setUpvote(links.link.votes.up);
+    setDownvote(links.link.votes.down);
+    setVoteWeight(links.link.votes.weight);
   }, [links.link]);
 
   const redirect = () => {
     history.push('/');
   }
 
-  const handleDelete = async (link) => {
-    await destroyLink(link)
+  const handleDelete = async () => {
+    await destroyLink(linkId)
     redirect();
   }
 
@@ -38,10 +44,10 @@ const ShowLink = (props) => {
 
   const renderLink = link ? (
       <div>
-        { link.title }
-        { timeSince(link.created_at) }
+        { link.link.title }
+        { timeSince(link.link.created_at) }
         { link.url }
-        <button type='button' onClick={ () => handleDelete(link) }>delete</button>
+        <button type='button' onClick={ () => handleDelete() }>delete</button>
       </div>
     )
     : null;
@@ -53,9 +59,10 @@ const ShowLink = (props) => {
       <div>{ errors }</div>
       <h1>Show Link</h1>
       <div>{ renderLink }</div>
+      <div>{ links.link.author }</div>
       <button type='button' onClick={ () => handleUpvote() }>upvote</button>
       <button type='button' onClick={ () => handleDownvote() }>downvote</button>
-      <div>{ links.vote.up_count }{ links.vote.down_count }</div>
+      <div>{ upvote } { downvote } { voteweight }</div>
       <Comments linkId={ linkId } />
     </React.Fragment>
   );
