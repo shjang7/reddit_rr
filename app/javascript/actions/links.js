@@ -3,6 +3,7 @@ import {
   GET_LINKS_REQUEST,
   GET_LINKS_SUCCESS,
   CREATE_LINK,
+  READ_LINK,
   DELETE_LINK,
   VOTE_LINK,
   EXCEPTION_ERROR
@@ -15,6 +16,17 @@ export const getLinks = () => async (dispatch) => {
       if (!data || !data.links) throw new Error('connection error');
       dispatch({ type: GET_LINKS_SUCCESS, payload: data.links });
     })
+    .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
+};
+
+export const readLink = (id) => async (dispatch) => {
+  return await axios.get(`/api/v1/links/${id}`, { id })
+    .then(({ data }) => {
+      if (!data) throw new Error('no link data');
+      if (!data.link) throw new Error(data.errors || 'fail at loading link');
+      return data.link;
+    })
+    .then(payload => dispatch({ type: READ_LINK, payload }))
     .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
 };
 

@@ -9,15 +9,15 @@ import { destroyLink, readLink, upvoteLink, downvoteLink } from '../../actions';
 import { timeSince } from '../../common/functions';
 
 const ShowLink = (props) => {
-  const { history, location, match: { params: { id: linkId } }, errors, show, destroyLink, readLink, upvoteLink, downvoteLink } = props;
+  const { history, location, match: { params: { id: linkId } }, errors, links, destroyLink, readLink, upvoteLink, downvoteLink } = props;
   const [link, setLink] = useState(null);
   useEffect(() => {
     readLink(linkId);
   }, []);
 
   useEffect(() => {
-    setLink(show.link);
-  }, [show]);
+    setLink(links.link);
+  }, [links.link]);
 
   const redirect = () => {
     history.push('/');
@@ -29,12 +29,10 @@ const ShowLink = (props) => {
   }
 
   const handleUpvote = () => {
-    console.log('handleUpvote');
     upvoteLink(linkId);
   }
 
   const handleDownvote = () => {
-    console.log('handleDownvote');
     downvoteLink(linkId);
   }
 
@@ -57,10 +55,10 @@ const ShowLink = (props) => {
       <div>{ renderLink }</div>
       <button type='button' onClick={ () => handleUpvote() }>upvote</button>
       <button type='button' onClick={ () => handleDownvote() }>downvote</button>
-      <div>{ show.vote.up_count }{ show.vote.down_count }</div>
+      <div>{ links.vote.up_count }{ links.vote.down_count }</div>
       <Comments linkId={ linkId } />
     </React.Fragment>
   );
 }
 
-export default connect(({ errors, show }) => ({ errors, show }), { destroyLink, readLink, upvoteLink, downvoteLink })(ShowLink);
+export default connect(({ errors, links }) => ({ errors, links }), { destroyLink, readLink, upvoteLink, downvoteLink })(ShowLink);
