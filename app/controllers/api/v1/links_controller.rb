@@ -42,11 +42,7 @@ class Api::V1::LinksController < ApiController
     if @link
       render json: {
         link: @link,
-        votes: {
-          up: @link.get_upvotes.size,
-          down: @link.get_downvotes.size,
-          weight: @link.weighted_total
-        },
+        votes: votes_info,
         author: @link.user.username
       }
     else
@@ -60,11 +56,7 @@ class Api::V1::LinksController < ApiController
   def upvote
     if @link.upvote_by current_user
       render json: {
-        votes: {
-          up: @link.get_upvotes.size,
-          down: @link.get_downvotes.size,
-          weight: @link.weighted_total,
-        },
+        votes: votes_info,
       }
     else
       render json: {
@@ -76,11 +68,7 @@ class Api::V1::LinksController < ApiController
   def downvote
     if @link.downvote_by current_user
       render json: {
-        votes: {
-          up: @link.get_upvotes.size,
-          down: @link.get_downvotes.size,
-          weight: @link.weighted_total,
-        },
+        votes: votes_info,
       }
     else
       render json: {
@@ -101,5 +89,13 @@ class Api::V1::LinksController < ApiController
 
   def find_author
     @user = @link.user
+  end
+
+  def votes_info
+    {
+      up: @link.get_upvotes.size,
+      down: @link.get_downvotes.size,
+      weight: @link.weighted_total,
+    }
   end
 end
