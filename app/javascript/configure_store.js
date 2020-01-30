@@ -3,11 +3,10 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 const initialState = {
-  links: [],
+  links: { links: [], link: {}, vote: {} },
   comments: [],
   session: {},
-  errors: [],
-  show: { vote: {}, link: {} }
+  errors: []
 };
 
 export default function configureStore() {
