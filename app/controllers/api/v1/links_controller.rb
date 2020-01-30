@@ -1,5 +1,5 @@
 class Api::V1::LinksController < ApiController
-  before_action :set_link, only: %i[edit update destroy show]
+  before_action :set_link, except: %i[index create]
   before_action :authenticate_user!, only: %i[create destroy]
   before_action :find_author, only: [:destroy]
   before_action :authorized_user!, only: [:destroy]
@@ -47,6 +47,30 @@ class Api::V1::LinksController < ApiController
       render json: {
         status: :fail,
         errors: ['link not found']
+      }
+    end
+  end
+
+  def upvoted
+    if @link.upvote_by current_user
+      render json: {
+        status: :success
+      }
+    else
+      render json: {
+        status: :fail
+      }
+    end
+  end
+
+  def downvoted
+    if @link.downvote_by current_user
+      render json: {
+        status: :success
+      }
+    else
+      render json: {
+        status: :fail
       }
     end
   end
