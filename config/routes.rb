@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       resources :links, only: %i[create destroy index show] do
         resources :comments, only: %i[index]
         member do
-          put 'like', to: 'links#upvote'
-          put 'dislike', to: 'links#downvote'
+          put 'upvote', to: 'links#upvote'
+          put 'downvote', to: 'links#downvote'
         end
       end
       resources :users, only: %i[create show index]

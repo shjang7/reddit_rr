@@ -1,6 +1,6 @@
 class Api::V1::LinksController < ApiController
   before_action :set_link, except: %i[index create]
-  before_action :authenticate_user!, only: %i[create destroy]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :find_author, only: [:destroy]
   before_action :authorized_user!, only: [:destroy]
 
@@ -51,26 +51,32 @@ class Api::V1::LinksController < ApiController
     end
   end
 
-  def upvoted
+  def upvote
     if @link.upvote_by current_user
       render json: {
-        status: :success
+        status: :success,
+        weight: @link.weighted_total,
+        up_count: @link.get_upvotes.size,
+        down_count: @link.get_downvotes.size
       }
     else
       render json: {
-        status: :fail
+        status: :fail,
       }
     end
   end
 
-  def downvoted
+  def downvote
     if @link.downvote_by current_user
       render json: {
-        status: :success
+        status: :success,
+        weight: @link.weighted_total,
+        up_count: @link.get_upvotes.size,
+        down_count: @link.get_downvotes.size
       }
     else
       render json: {
-        status: :fail
+        status: :fail,
       }
     end
   end
