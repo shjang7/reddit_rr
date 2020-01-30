@@ -4,26 +4,25 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { destroySession, readSession } from '../actions';
 
-const Navbar = ({ session, destroySession, readSession, history }) => {
-  const [uname, setUname] = useState(null);
+const Navbar = ({ session, destroySession, readSession }) => {
+  const [uname, setUname] = useState({username: undefined});
   useEffect(() => {
-    setUname(session.username);
+    readSession();
+  }, []);
+
+  useEffect(() => {
+    setUname(session);
   }, [session]);
 
-  const handleLogout = () => {
-    destroySession(session);
-    redirect();
-  }
-
-  const redirect = () => {
-    history.push('/');
+  const handleLogout = async () => {
+    await destroySession(session);
   }
 
   const userLinks = () => (
     <div>
-      <a href="/" onClick={ () => handleLogout() }>Log Out</a>
+      <button type="button" onClick={ () => handleLogout() }>Log Out</button>
       <br />
-      { 'login with: ' + uname }
+      { uname ? 'login with: ' + uname.username : null }
       <br />
       <hr />
     </div>
@@ -41,7 +40,7 @@ const Navbar = ({ session, destroySession, readSession, history }) => {
 
   return (
     <>
-      { uname ? userLinks() : guestLinks() }
+      { uname.username ? userLinks() : guestLinks() }
     </>
   );
 };

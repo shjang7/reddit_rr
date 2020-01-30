@@ -3,11 +3,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :comments, only: %i[create destroy index]
-      resources :links, only: %i[show] do
+      resources :comments, only: %i[create destroy]
+      resources :links, only: %i[create destroy index show] do
         resources :comments, only: %i[index]
+        member do
+          post 'upvote', to: 'links#upvote'
+          post 'downvote', to: 'links#downvote'
+        end
       end
-      resources :links, only: %i[create index destroy]
       resources :users, only: %i[create show index]
     end
   end

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token, raise: false
-  include Api::V1::SessionsHelper
+  include ApplicationHelper
 end

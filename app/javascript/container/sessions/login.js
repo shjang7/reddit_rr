@@ -10,11 +10,11 @@ const Login = ({ history, createSession }) => {
   }
 
   const handleSubmitLocal = ({ username, password }) => {
-    createSession({ username, password });
-    redirect();
+    createSession({ username, password })
+      .then(() => redirect());
   }
 
-  return <LoginForm title="Log In" type="login" handleSubmit={ handleSubmitLocal } />;
+  return <LoginForm handleSubmit={ handleSubmitLocal } />;
 }
 
 Login.propTypes = {

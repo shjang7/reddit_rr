@@ -34,6 +34,8 @@ const Comments = ({ comments, getComments, createComments, destroyComment, linkI
   }) : null;
 
   const submitComment = ({ body }) => {
+    if (!body || !linkId) return false;
+
     createComments(body, linkId);
   }
 

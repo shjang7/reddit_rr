@@ -9,12 +9,12 @@ const Signup = ({ history, createRegistration }) => {
     history.push('/');
   }
 
-  const handleSubmitLocal = (user) => {
-    createRegistration(user);
-    redirect();
+  const handleSubmitLocal = async (user) => {
+    await createRegistration(user)
+      .then(() => redirect());
   }
 
-  return <SignupForm title="Sign Up" type="signup" handleSubmit={ handleSubmitLocal } />;
+  return <SignupForm title="Sign Up" submitBtn="signup" handleSubmit={ handleSubmitLocal } />;
 }
 
 Signup.propTypes = {

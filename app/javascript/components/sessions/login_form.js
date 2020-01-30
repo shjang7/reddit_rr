@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const LoginForm = ({ title, type, handleSubmit }) => {
+const LoginForm = ({ handleSubmit }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,11 +33,11 @@ const LoginForm = ({ title, type, handleSubmit }) => {
   }
   return (
     <div>
-      <h1>{ title }</h1>
+      <h1>Log In</h1>
       <form onSubmit={ handleSubmitLocal }>
         <input placeholder="username" type="text" name="username" value={ username } onChange={ handleChange } />
         <input placeholder="password" type="password" name="password" value={ password } onChange={ handleChange } />
-        <button placeholder="submit" type="submit">Log In</button>
+        <button placeholder="submit" type="submit">log in</button>
         <div>or <Link to='/signup'>sign up</Link></div>
       </form>
       <div>{ blank ? 'Fill in all data' : null }</div>

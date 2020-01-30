@@ -7,13 +7,10 @@ import {
 export default (state = {}, { type, payload }) => {
   switch(type) {
     case CREATE_SESSION:
-      console.log('create session');
       return payload;
     case DESTROY_SESSION:
-      console.log('destroy session');
       return {};
     case READ_SESSION:
-      console.log('read session', payload);
       return payload;
     default:
       return state;

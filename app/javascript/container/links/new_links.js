@@ -9,8 +9,8 @@ const NewLinks = ({ history, createLinks }) => {
     history.push('/');
   }
 
-  const handleSubmit = (link) => {
-    createLinks(link);
+  const handleSubmit = async (link) => {
+    await createLinks(link)
     redirect();
   }
 
