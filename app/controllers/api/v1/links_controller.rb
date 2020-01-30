@@ -41,7 +41,13 @@ class Api::V1::LinksController < ApiController
   def show
     if @link
       render json: {
-        link: @link
+        link: @link,
+        votes: {
+          up: @link.get_upvotes.size,
+          down: @link.get_downvotes.size,
+          weight: @link.weighted_total
+        },
+        author: @link.user.username
       }
     else
       render json: {
@@ -54,10 +60,11 @@ class Api::V1::LinksController < ApiController
   def upvote
     if @link.upvote_by current_user
       render json: {
-        status: :success,
-        weight: @link.weighted_total,
-        up_count: @link.get_upvotes.size,
-        down_count: @link.get_downvotes.size
+        votes: {
+          up: @link.get_upvotes.size,
+          down: @link.get_downvotes.size,
+          weight: @link.weighted_total,
+        },
       }
     else
       render json: {
@@ -69,10 +76,11 @@ class Api::V1::LinksController < ApiController
   def downvote
     if @link.downvote_by current_user
       render json: {
-        status: :success,
-        weight: @link.weighted_total,
-        up_count: @link.get_upvotes.size,
-        down_count: @link.get_downvotes.size
+        votes: {
+          up: @link.get_upvotes.size,
+          down: @link.get_downvotes.size,
+          weight: @link.weighted_total,
+        },
       }
     else
       render json: {

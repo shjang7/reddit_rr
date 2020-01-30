@@ -18,8 +18,8 @@ const LinksList = ({ errors, links, getLinks, destroyLink, history }) => {
     setLinkData(links.links);
   }, [links.links]);
 
-  const handleDelete = (link) => {
-    destroyLink(link);
+  const handleDelete = (linkId) => {
+    destroyLink(linkId);
   }
 
   const linksRender = linkData ? linkData.map((link) => {
@@ -29,7 +29,7 @@ const LinksList = ({ errors, links, getLinks, destroyLink, history }) => {
           { link.title }
         </Link>
         { timeSince(link.created_at) }
-        <button type='button' onClick={ () => handleDelete(link) }>
+        <button type='button' onClick={ () => handleDelete(link.id) }>
           delete
         </button>
       </li>
