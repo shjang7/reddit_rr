@@ -20,7 +20,9 @@ const CommentForm = ({ submitBtn, handleSubmit }) => {
       setBlank(true);
       return;
     }
-    handleSubmit({ body });
+    if (!handleSubmit({ body })) {
+      setBlank(true);
+    }
   }
 
   return (
