@@ -30,7 +30,7 @@ export const createComments = (body, link_id) => async (dispatch) => {
 export const destroyComment = (id) => async (dispatch) => {
   return await axios.delete(`/api/v1/comments/${id}`, { id })
     .then(({ data }) => {
-      if (!data || data.status != 'destroyed') throw new Error(data.error || 'failed delete');
+      if (!data || data.status != 'destroyed') throw new Error(data.errors || 'failed delete');
       dispatch({ type: DELETE_COMMENT, payload: id });
     })
     .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
