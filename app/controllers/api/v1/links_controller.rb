@@ -6,6 +6,13 @@ class Api::V1::LinksController < ApiController
 
   def index
     @links = Link.all
+    @links = @links.map do |link|
+      @link = link
+      temp = @link.as_json
+      temp['author'] = @link.user.username
+      temp['votes'] = votes_info
+      temp
+    end
     render json: { links: @links }
   end
 
