@@ -44,7 +44,7 @@ const LinksList = ({ errors, links, getLinks, destroyLink, upvoteLink, downvoteL
     <React.Fragment>
       <Navbar history={ history }/>
       <div>{ errors }</div>
-      <h5>Links List</h5>
+      <h1>Links List</h1>
       <ul>{ linksRender }</ul>
       <NewLinks history={ history } />
     </React.Fragment>
