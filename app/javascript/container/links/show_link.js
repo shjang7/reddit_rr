@@ -10,9 +10,15 @@ import ALink from '../../components/links/a_link';
 
 const ShowLink = (props) => {
   const { history, location, match: { params: { id: linkId } }, errors, links, destroyLink, readLink, upvoteLink, downvoteLink } = props;
+  const [link, setLink] = useState(null);
+
   useEffect(() => {
     readLink(linkId);
   }, []);
+
+  useEffect(() => {
+    setLink(links.link);
+  }, [links.link]);
 
   const redirect = () => {
     history.push('/');
@@ -31,13 +37,17 @@ const ShowLink = (props) => {
     downvoteLink(linkId);
   }
 
+  const renderLink = (link && link.constructor === Object && Object.entries(link).length !== 0) ? (
+    <ALink data={link} handleUpvote={handleUpvote} handleDownvote={handleDownvote} handleDelete={handleDelete} />
+  ) : null;
+
   return (
     <React.Fragment>
       <Navbar history={ history }/>
       <Link to='/'>main</Link>
       <div>{ errors }</div>
       <h1>Show Link</h1>
-      <ALink data={links.link} handleUpvote={handleUpvote} handleDownvote={handleDownvote} handleDelete={handleDelete} />
+      { renderLink }
       <Comments linkId={ linkId } />
     </React.Fragment>
   );
