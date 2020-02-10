@@ -18,11 +18,21 @@ export default (state = [], { type, payload }) => {
     case READ_LINK:
       return { ...state, link: payload };
     case UPVOTE_LINK:
-      console.log('upvote', payload);
-      return { ...state, link: { ...state.link, ...payload }};
+      return {
+        ...state,
+        links: state.links.map((link) => {
+          return link.id !== payload.id ? link : {...link, votes: payload.votes }
+        }),
+        link: { ...state.link, votes: payload.votes }
+      };
     case DOWNVOTE_LINK:
-    console.log('upvote', payload);
-      return { ...state, link: { ...state.link, ...payload }};
+      return {
+        ...state,
+        links: state.links.map((link) => {
+          return link.id !== payload.id ? link : {...link, votes: payload.votes }
+        }),
+        link: { ...state.link, votes: payload.votes }
+      };
     default:
       return state;
   }

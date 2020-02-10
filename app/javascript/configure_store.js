@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 const initialState = {
-  links: { links: [], link: { author: null, link: {}, votes: { up: 0, down: 0, weight: 0 }} },
+  links: { links: [], link: {} },
   comments: [],
   session: {},
   errors: []
