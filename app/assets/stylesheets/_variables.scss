@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+$color-base: #92a4ad;
+$color-primary: white;
+$color-secondary: pink;
+
+$color-white: lighten($color-base, 100%);
+$color-gray: darken($color-base, 25%);
+$color-gray-border: darken($color-base, 50%);
+$color-gray-bg: darken($color-base, 79%);
+
+$typographic-font-family: 'Montserrat', Helvetica, sans-serif;
+
+$typographic-root-font-size: 100;
+$typographic-base-font-size: 16px;
+$typographic-small-font-size: 14px;
+
+$typographic-base-line-height: 1.625;
+
+$typographic-base-font-color: $color-base;
+$typographic-link-p-font-color: $color-primary;
+$typographic-link-s-font-color: $color-secondary;
