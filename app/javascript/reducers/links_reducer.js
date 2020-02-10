@@ -3,7 +3,8 @@ import {
   CREATE_LINK,
   DELETE_LINK,
   READ_LINK,
-  VOTE_LINK
+  UPVOTE_LINK,
+  DOWNVOTE_LINK,
 } from '../common/variables';
 
 export default (state = [], { type, payload }) => {
@@ -16,8 +17,22 @@ export default (state = [], { type, payload }) => {
       return { ...state, links: [...state.links.filter(({id}) => id !== payload)] };
     case READ_LINK:
       return { ...state, link: payload };
-    case VOTE_LINK:
-      return { ...state, vote: payload };
+    case UPVOTE_LINK:
+      return {
+        ...state,
+        links: state.links.map((link) => {
+          return link.id !== payload.id ? link : {...link, votes: payload.votes }
+        }),
+        link: { ...state.link, votes: payload.votes }
+      };
+    case DOWNVOTE_LINK:
+      return {
+        ...state,
+        links: state.links.map((link) => {
+          return link.id !== payload.id ? link : {...link, votes: payload.votes }
+        }),
+        link: { ...state.link, votes: payload.votes }
+      };
     default:
       return state;
   }

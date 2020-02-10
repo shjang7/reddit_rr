@@ -21,11 +21,13 @@ RSpec.describe Api::V1::LinksController, type: :controller do
     it 'votes up' do
       post :upvote, params: { id: link.id }
       expect(parsed_result['status']).to eq('fail')
+      expect(parsed_result['errors']).to eq(['unauthenticated'])
     end
 
     it 'votes down' do
       post :downvote, params: { id: link.id }
       expect(parsed_result['status']).to eq('fail')
+      expect(parsed_result['errors']).to eq(['unauthenticated'])
     end
   end
 
@@ -50,18 +52,16 @@ RSpec.describe Api::V1::LinksController, type: :controller do
 
     it 'votes up' do
       post :upvote, params: { id: link.id }
-      expect(parsed_result['status']).to eq('success')
-      expect(parsed_result['weight']).to eq(1)
-      expect(parsed_result['up_count']).to eq(1)
-      expect(parsed_result['down_count']).to eq(0)
+      expect(parsed_result['votes']['up']).to eq(1)
+      expect(parsed_result['votes']['down']).to eq(0)
+      expect(parsed_result['votes']['weight']).to eq(1)
     end
 
     it 'votes down' do
       post :downvote, params: { id: link.id }
-      expect(parsed_result['status']).to eq('success')
-      expect(parsed_result['weight']).to eq(1)
-      expect(parsed_result['up_count']).to eq(0)
-      expect(parsed_result['down_count']).to eq(1)
+      expect(parsed_result['votes']['up']).to eq(0)
+      expect(parsed_result['votes']['down']).to eq(1)
+      expect(parsed_result['votes']['weight']).to eq(1)
     end
   end
 end

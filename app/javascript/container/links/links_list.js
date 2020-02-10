@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Navbar from '../navbar';
 import NewLinks from './new_links';
-import { getLinks, destroyLink } from '../../actions';
+import { getLinks, destroyLink, upvoteLink, downvoteLink } from '../../actions';
 import { timeSince } from '../../common/functions';
+import ALink from '../../components/links/a_link';
 
-const LinksList = ({ errors, links, getLinks, destroyLink, history }) => {
+const LinksList = ({ errors, links, getLinks, destroyLink, upvoteLink, downvoteLink, history }) => {
   const [linkData, setLinkData] = useState([]);
 
   useEffect(() => {
@@ -18,20 +19,23 @@ const LinksList = ({ errors, links, getLinks, destroyLink, history }) => {
     setLinkData(links.links);
   }, [links.links]);
 
-  const handleDelete = (link) => {
-    destroyLink(link);
+  const handleDelete = (id) => {
+    destroyLink(id);
   }
 
-  const linksRender = linkData ? linkData.map((link) => {
+  const handleUpvote = (id) => {
+    upvoteLink(id);
+  }
+
+  const handleDownvote = (id) => {
+    downvoteLink(id);
+  }
+
+  const linksRender = linkData ? linkData.map((data) => {
+    const { id } = data;
     return (
-      <li key={ link.id }>
-        <Link to={ `/links/${link.id}` }>
-          { link.title }
-        </Link>
-        { timeSince(link.created_at) }
-        <button type='button' onClick={ () => handleDelete(link) }>
-          delete
-        </button>
+      <li key={ id }>
+        <ALink data={data} handleUpvote={handleUpvote} handleDownvote={handleDownvote} handleDelete={handleDelete} titleTo={ `/links/${id}` } />
       </li>
     );
   }) : null;
@@ -40,11 +44,11 @@ const LinksList = ({ errors, links, getLinks, destroyLink, history }) => {
     <React.Fragment>
       <Navbar history={ history }/>
       <div>{ errors }</div>
-      Links List
+      <h5>Links List</h5>
       <ul>{ linksRender }</ul>
       <NewLinks history={ history } />
     </React.Fragment>
   );
 }
 
-export default connect(({ errors, links }) => ({ errors, links }), { getLinks, destroyLink })(LinksList);
+export default connect(({ errors, links }) => ({ errors, links }), { getLinks, destroyLink, upvoteLink, downvoteLink })(LinksList);

@@ -6,11 +6,12 @@ import Navbar from '../navbar';
 import NewLinks from './new_links';
 import Comments from '../comments/comments';
 import { destroyLink, readLink, upvoteLink, downvoteLink } from '../../actions';
-import { timeSince } from '../../common/functions';
+import ALink from '../../components/links/a_link';
 
 const ShowLink = (props) => {
   const { history, location, match: { params: { id: linkId } }, errors, links, destroyLink, readLink, upvoteLink, downvoteLink } = props;
   const [link, setLink] = useState(null);
+
   useEffect(() => {
     readLink(linkId);
   }, []);
@@ -23,8 +24,8 @@ const ShowLink = (props) => {
     history.push('/');
   }
 
-  const handleDelete = async (link) => {
-    await destroyLink(link)
+  const handleDelete = async () => {
+    await destroyLink(linkId)
     redirect();
   }
 
@@ -36,15 +37,9 @@ const ShowLink = (props) => {
     downvoteLink(linkId);
   }
 
-  const renderLink = link ? (
-      <div>
-        { link.title }
-        { timeSince(link.created_at) }
-        { link.url }
-        <button type='button' onClick={ () => handleDelete(link) }>delete</button>
-      </div>
-    )
-    : null;
+  const renderLink = (link && link.constructor === Object && Object.entries(link).length !== 0) ? (
+    <ALink data={link} handleUpvote={handleUpvote} handleDownvote={handleDownvote} handleDelete={handleDelete} />
+  ) : null;
 
   return (
     <React.Fragment>
@@ -52,10 +47,7 @@ const ShowLink = (props) => {
       <Link to='/'>main</Link>
       <div>{ errors }</div>
       <h1>Show Link</h1>
-      <div>{ renderLink }</div>
-      <button type='button' onClick={ () => handleUpvote() }>upvote</button>
-      <button type='button' onClick={ () => handleDownvote() }>downvote</button>
-      <div>{ links.vote.up_count }{ links.vote.down_count }</div>
+      { renderLink }
       <Comments linkId={ linkId } />
     </React.Fragment>
   );
