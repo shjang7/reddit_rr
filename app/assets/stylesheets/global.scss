@@ -26,3 +26,8 @@ html, button, input, select, textarea {
 a {
   color: $color-primary;
 }
+
+.btn-base {
+  background-color: $color-base;
+  border: 1px solid $color-bg;
+}
