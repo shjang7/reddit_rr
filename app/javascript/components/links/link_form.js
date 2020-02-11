@@ -23,6 +23,8 @@ const LinkForm = ({ headTitle, submitBtn, handleSubmit }) => {
       return;
     }
     handleSubmit({ title, url });
+    setTitle('');
+    setUrl('');
   }
 
   return (
