@@ -24,7 +24,10 @@ html, body, button, input, select, textarea {
 }
 
 a {
-  color: $color-primary;
+  &,
+  &:hover {
+    color: $color-primary;
+  }
 }
 
 .btn-base {
@@ -34,9 +37,16 @@ a {
   border-radius: 0;
 }
 
+a:not([href]).btn-primary {
+  &,
+  &:hover {
+    color: white;
+  }
+}
+
 a:not([href]).btn-base {
   color: $color-gray;
   &:hover {
-    color: $color-bootstrap;
+    color: $color-orient;
   }
 }

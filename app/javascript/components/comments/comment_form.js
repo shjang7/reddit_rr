@@ -32,7 +32,9 @@ const CommentForm = ({ submitBtn, handleSubmit }) => {
           <textarea placeholder="write a comment" type="text" name="body" value={ body } onChange={ handleChange } />
         </div>
         <div>
-          <button type="submit">{ submitBtn }</button>
+          <button className="btn btn-primary" type="submit">
+            { submitBtn }
+          </button>
         </div>
       </form>
       <div>{ blank ? 'Fill in comment body' : '' }</div>

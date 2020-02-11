@@ -38,8 +38,14 @@ const ShowLink = (props) => {
   }
 
   const renderLink = (link && link.constructor === Object && Object.entries(link).length !== 0) ? (
-    <ALink data={link} handleUpvote={handleUpvote} handleDownvote={handleDownvote} handleDelete={handleDelete} />
+    <ALink data={link} handleUpvote={handleUpvote} handleDownvote={handleDownvote} />
   ) : null;
+
+  const renderDelete = (
+    <button type='button' className="btn btn-base btn-sm" onClick={ () => handleDelete() }>
+      delete
+    </button>
+  );
 
   return (
     <React.Fragment>
@@ -48,6 +54,7 @@ const ShowLink = (props) => {
       <div>{ errors }</div>
       <h1>Show Link</h1>
       { renderLink }
+      { renderDelete }
       <Comments linkId={ linkId } />
     </React.Fragment>
   );

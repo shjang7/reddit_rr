@@ -20,10 +20,10 @@ const Navbar = ({ session, destroySession, readSession }) => {
 
   const userLinks = () => (
     <div>
-      <button type="button" onClick={ () => handleLogout() }>Log Out</button>
-      <br />
       { uname ? 'login with: ' + uname.username : null }
-      <br />
+      <a type='button' className="btn btn-base btn-sm" onClick={ () => handleLogout() }>
+        Log Out
+      </a>
       <hr />
     </div>
   );

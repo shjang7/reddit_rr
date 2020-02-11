@@ -15,7 +15,7 @@ const NewLinks = ({ history, createLinks }) => {
   }
 
   return (
-    <LinkForm headTitle='New Link' type='Create' handleSubmit={ handleSubmit } />
+    <LinkForm headTitle='New Link' submitBtn='Create' handleSubmit={ handleSubmit } />
   )
 }
 

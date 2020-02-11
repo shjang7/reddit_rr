@@ -8,7 +8,7 @@ import { getLinks, destroyLink, upvoteLink, downvoteLink } from '../../actions';
 import { timeSince } from '../../common/functions';
 import ALink from '../../components/links/a_link';
 
-const LinksList = ({ errors, links, getLinks, destroyLink, upvoteLink, downvoteLink, history }) => {
+const LinksList = ({ errors, links, getLinks, upvoteLink, downvoteLink, history }) => {
   const [linkData, setLinkData] = useState([]);
 
   useEffect(() => {
@@ -18,10 +18,6 @@ const LinksList = ({ errors, links, getLinks, destroyLink, upvoteLink, downvoteL
   useEffect(() => {
     setLinkData(links.links);
   }, [links.links]);
-
-  const handleDelete = (id) => {
-    destroyLink(id);
-  }
 
   const handleUpvote = (id) => {
     upvoteLink(id);
@@ -35,7 +31,7 @@ const LinksList = ({ errors, links, getLinks, destroyLink, upvoteLink, downvoteL
     const { id } = data;
     return (
       <li key={ id }>
-        <ALink data={data} handleUpvote={handleUpvote} handleDownvote={handleDownvote} handleDelete={handleDelete} titleTo={ `/links/${id}` } />
+        <ALink data={data} handleUpvote={handleUpvote} handleDownvote={handleDownvote} titleTo={ `/links/${id}` } />
       </li>
     );
   }) : null;
@@ -51,4 +47,4 @@ const LinksList = ({ errors, links, getLinks, destroyLink, upvoteLink, downvoteL
   );
 }
 
-export default connect(({ errors, links }) => ({ errors, links }), { getLinks, destroyLink, upvoteLink, downvoteLink })(LinksList);
+export default connect(({ errors, links }) => ({ errors, links }), { getLinks, upvoteLink, downvoteLink })(LinksList);

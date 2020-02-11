@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getComments, createComments, destroyComment } from '../../actions';
 import CommentForm from '../../components/comments/comment_form';
+import Comment from '../../components/comments/comment';
 import { timeSince } from '../../common/functions';
 
 const Comments = ({ comments, getComments, createComments, destroyComment, linkId }) => {
@@ -23,12 +24,7 @@ const Comments = ({ comments, getComments, createComments, destroyComment, linkI
   const renderComments = commentsData ? commentsData.map((data) => {
     return (
       <li key={ data.id }>
-        { data.body }
-        | { timeSince(data.created_at) }
-        | user id: { data.user_id }
-        <button type='button' onClick={ () => handleDelete(data.id) }>
-          delete
-        </button>
+        <Comment data={data} handleDelete={handleDelete} />
       </li>
     );
   }) : null;
@@ -42,7 +38,7 @@ const Comments = ({ comments, getComments, createComments, destroyComment, linkI
   return (
     <React.Fragment>
       <h3>{ commentsData.length } Comments</h3>
-      <ul>{ renderComments }</ul>
+      <ul className='comments'>{ renderComments }</ul>
       <CommentForm submitBtn='Add Comment' handleSubmit={ submitComment } />
     </React.Fragment>
   );

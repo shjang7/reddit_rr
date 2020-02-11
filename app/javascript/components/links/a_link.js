@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { timeSince } from '../../common/functions';
 import { FaChevronUp, FaChevronDown } from 'react-icons/lib/fa';
 
-const ALink = ({ data, handleUpvote, handleDownvote, handleDelete, titleTo }) => {
+const ALink = ({ data, handleUpvote, handleDownvote, titleTo }) => {
   const { author, created_at, id, title, updated_at, url, user_id, votes} = data;
 
   const renderTitle = titleTo ? (
@@ -12,10 +12,6 @@ const ALink = ({ data, handleUpvote, handleDownvote, handleDelete, titleTo }) =>
       { title }
     </Link>
   ) : title;
-
-  const handleDeleteLocal = () => {
-    handleDelete(id);
-  }
 
   const handleUpvoteLocal = () => {
     handleUpvote(id);
@@ -29,32 +25,24 @@ const ALink = ({ data, handleUpvote, handleDownvote, handleDelete, titleTo }) =>
     <div>
       <div>
         { renderTitle }
-
-        <button type='button' onClick={ () => handleDeleteLocal() }>
-          delete
-        </button>
       </div>
       <div>
         Submitted about { timeSince(created_at) } by { author }
       </div>
       <div className='buttons'>
-        <a type='button' className="btn btn-base btn-sm" rel="nofollow" href={ url }>
+        <a type='button' className="btn btn-primary btn-sm" rel="nofollow" href={ url }>
           <span>Visit Link</span>
         </a>
-        <a type='button' className="btn btn-base btn-sm vote" rel="nofollow" onClick={ () => handleUpvoteLocal() }>
+        <a type='button' className="btn btn-primary btn-sm vote" onClick={ () => handleUpvoteLocal() }>
           <FaChevronUp />
           <span>upvote</span>
           { votes.up }
         </a>
-        <a type='button' className="btn btn-base btn-sm vote" rel="nofollow" onClick={ () => handleDownvoteLocal() }>
+        <a type='button' className="btn btn-primary btn-sm vote" onClick={ () => handleDownvoteLocal() }>
           <FaChevronDown />
           <span>downvote</span>
           { votes.down }
         </a>
-        <span className="btn btn-base btn-sm vote">
-          <span>total</span>
-          { votes.weight }
-        </span>
       </div>
     </div>
   )
