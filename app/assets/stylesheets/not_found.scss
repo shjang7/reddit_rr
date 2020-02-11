@@ -1,3 +1,4 @@
+@import 'variables';
 @import url('https://fonts.googleapis.com/css?family=Catamaran:400,800');
 .not_found__error-container {
   text-align: center;
@@ -135,7 +136,7 @@
     background-color: #92a4ad;
     padding: 10px 15px;
     border-radius: 0;
-    color: #606c88;
+    color: $color-bg;
     display: inline-block;
     margin-right: 5px;
     margin-bottom: 5px;
