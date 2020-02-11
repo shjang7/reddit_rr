@@ -29,12 +29,14 @@ const ALink = ({ data, handleUpvote, handleDownvote, handleDelete, titleTo }) =>
     <div>
       <div>
         { renderTitle }
-        { timeSince(created_at) }
+
         <button type='button' onClick={ () => handleDeleteLocal() }>
           delete
         </button>
       </div>
-      <div>{ author }</div>
+      <div>
+        Submitted about { timeSince(created_at) } by { author }
+      </div>
       <div className='buttons'>
         <a type='button' className="btn btn-base btn-sm" rel="nofollow" href={ url }>
           <span>Visit Link</span>
@@ -49,7 +51,7 @@ const ALink = ({ data, handleUpvote, handleDownvote, handleDelete, titleTo }) =>
           <span>downvote</span>
           { votes.down }
         </a>
-        <span className="btn-sm vote">
+        <span className="btn btn-base btn-sm vote">
           <span>total</span>
           { votes.weight }
         </span>

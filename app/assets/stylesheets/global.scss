@@ -18,7 +18,7 @@ body {
   background: linear-gradient(to bottom, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-html, button, input, select, textarea {
+html, body, button, input, select, textarea {
   font-family: $typographic-font-family;
   color: $color-base;
 }
@@ -30,4 +30,13 @@ a {
 .btn-base {
   background-color: $color-base;
   border: 1px solid $color-bg;
+  color: $color-gray;
+  border-radius: 0;
+}
+
+a:not([href]).btn-base {
+  color: $color-gray;
+  &:hover {
+    color: $color-bootstrap;
+  }
 }
