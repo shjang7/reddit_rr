@@ -1,6 +1,9 @@
 {
   "name": "reddit_rr",
   "private": true,
+  "scripts": {
+    "start:dev": "./bin/webpack-dev-server"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.8.3",
     "@rails/actioncable": "^6.0.0",
