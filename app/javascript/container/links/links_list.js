@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Navigation from '../navigation';
 import NewLinks from './new_links';
 import { getLinks, destroyLink, upvoteLink, downvoteLink } from '../../actions';
 import { timeSince } from '../../common/functions';
@@ -38,7 +37,6 @@ const LinksList = ({ errors, links, getLinks, upvoteLink, downvoteLink, history 
 
   return (
     <React.Fragment>
-      <Navigation history={ history }/>
       <div>{ errors }</div>
       <h1>Links List</h1>
       <ul>{ linksRender }</ul>

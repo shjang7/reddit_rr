@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Navigation from '../navigation';
 import NewLinks from './new_links';
 import Comments from '../comments/comments';
 import { destroyLink, readLink, upvoteLink, downvoteLink } from '../../actions';
@@ -49,8 +48,6 @@ const ShowLink = (props) => {
 
   return (
     <React.Fragment>
-      <Navigation history={ history }/>
-      <Link to='/' className='d-inline-block'>main</Link>
       <div>{ errors }</div>
       <h1>Show Link</h1>
       { renderLink }
