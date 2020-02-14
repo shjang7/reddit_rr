@@ -29,3 +29,17 @@
 .navbar + * {
   padding-top: 56px;
 }
+
+.vote {
+  span {
+    margin: 0 .3rem;
+  }
+}
+
+.lead {
+  font: 300 21px/1.4 Georgia, serif;
+  margin-bottom: 20px;
+}
+
+.error_message {
+}
