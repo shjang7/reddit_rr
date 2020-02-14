@@ -50,7 +50,7 @@ const ShowLink = (props) => {
   return (
     <React.Fragment>
       <Navigation history={ history }/>
-      <Link to='/'>main</Link>
+      <Link to='/' className='d-inline-block'>main</Link>
       <div>{ errors }</div>
       <h1>Show Link</h1>
       { renderLink }

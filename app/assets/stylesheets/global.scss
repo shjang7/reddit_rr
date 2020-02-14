@@ -1,5 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'variables';
+@import 'navbar';
 
 * {
   -webkit-box-sizing: border-box;
@@ -23,31 +24,11 @@ html, body, button, input, select, textarea {
   color: $color-base;
 }
 
-a {
+a:not(.nav-link) {
   &,
   &:hover {
     color: $color-primary;
   }
-}
-
-.nav-item {
-  color: $color-white;
-  vertical-align: middle;
-  a,
-  span {
-    height: 56px;
-    display: flex;
-    align-items: center;
-    padding: 0 .3rem;
-    &:hover {
-      background-color: $color-gray;
-      text-decoration: none;
-    }
-  }
-}
-
-.navbar {
-  height: 56px;
 }
 
 .btn-base {
