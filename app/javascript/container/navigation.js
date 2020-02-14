@@ -22,22 +22,22 @@ const Navigation = ({ session, destroySession, readSession }) => {
   const userLinks = () => (
     <>
       { uname ? (
-        <Nav.Link href="#" className="nav-item" disabled>login with: {uname.username}</Nav.Link>
+        <Nav.Link href="#" disabled>login with: {uname.username}</Nav.Link>
       ) : null }
-      <Nav.Link href="/links/new" className="nav-item">Write Link</Nav.Link>
-      <Nav.Link href="#" className="nav-item" onClick={ () => handleLogout() }>Log Out</Nav.Link>
+      <Nav.Link href="/links/new">Write Link</Nav.Link>
+      <Nav.Link href="#" onClick={ () => handleLogout() }>Log Out</Nav.Link>
     </>
   );
 
   const guestLinks = () => (
     <>
-      <Nav.Link href="/login" className="nav-item">Log In</Nav.Link>
-      <Nav.Link href="/signup" className="nav-item">Sign Up</Nav.Link>
+      <Nav.Link href="/login">Log In</Nav.Link>
+      <Nav.Link href="/signup">Sign Up</Nav.Link>
     </>
   );
 
   return (
-    <Navbar bg="dark" expand="lg" className="fixed-top">
+    <Navbar bg="dark" expand="lg" className="fixed-top navbar-dark">
       <Navbar.Brand href="/">Reddit</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
