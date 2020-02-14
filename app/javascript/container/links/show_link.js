@@ -8,7 +8,7 @@ import { destroyLink, readLink, upvoteLink, downvoteLink } from '../../actions';
 import ALink from '../../components/links/a_link';
 
 const ShowLink = (props) => {
-  const { history, location, match: { params: { id: linkId } }, errors, links, destroyLink, readLink, upvoteLink, downvoteLink } = props;
+  const { history, location, match: { params: { id: linkId } }, links, destroyLink, readLink, upvoteLink, downvoteLink } = props;
   const [link, setLink] = useState(null);
 
   useEffect(() => {
@@ -48,7 +48,6 @@ const ShowLink = (props) => {
 
   return (
     <React.Fragment>
-      <div>{ errors }</div>
       <h1>Show Link</h1>
       { renderLink }
       { renderDelete }
@@ -57,4 +56,4 @@ const ShowLink = (props) => {
   );
 }
 
-export default connect(({ errors, links }) => ({ errors, links }), { destroyLink, readLink, upvoteLink, downvoteLink })(ShowLink);
+export default connect(({ links }) => ({ links }), { destroyLink, readLink, upvoteLink, downvoteLink })(ShowLink);

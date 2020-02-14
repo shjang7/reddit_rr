@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useLayoutEffect } from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { destroySession, readSession } from '../actions';
+import { destroySession, readSession } from '../../actions';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 const Navigation = ({ session, destroySession, readSession }) => {
