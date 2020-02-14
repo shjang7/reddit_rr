@@ -6,7 +6,7 @@ import CommentForm from '../../components/comments/comment_form';
 import Comment from '../../components/comments/comment';
 import { timeSince } from '../../common/functions';
 
-const Comments = ({ comments, getComments, createComments, destroyComment, linkId }) => {
+const Comments = ({ comments, getComments, createComments, destroyComment, session, linkId }) => {
   const [commentsData, setCommentsData] = useState([]);
 
   useEffect(() => {
@@ -23,8 +23,8 @@ const Comments = ({ comments, getComments, createComments, destroyComment, linkI
 
   const renderComments = commentsData ? commentsData.map((data) => {
     return (
-      <li key={ data.id }>
-        <Comment data={data} handleDelete={handleDelete} />
+      <li key={ data.id } className="clearfix list-style-none">
+        <Comment data={data} handleDelete={handleDelete} currentUser={session.username} />
       </li>
     );
   }) : null;
@@ -44,4 +44,4 @@ const Comments = ({ comments, getComments, createComments, destroyComment, linkI
   );
 }
 
-export default connect(({ comments }) => ({ comments }), { getComments, createComments, destroyComment })(Comments);
+export default connect(({ comments, session }) => ({ comments, session }), { getComments, createComments, destroyComment })(Comments);
