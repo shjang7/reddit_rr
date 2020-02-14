@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import Navigation from '../container/navigation';
 import configureStore from '../configure_store';
 import LinksList from '../container/links/links_list';
 import ShowLink from '../container/links/show_link';
@@ -16,6 +17,7 @@ const store = configureStore();
 const App = (props) => {
   return (
     <Provider store={ store }>
+      <Navigation history={ history }/>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={ props => <LinksList {...props} /> } />
