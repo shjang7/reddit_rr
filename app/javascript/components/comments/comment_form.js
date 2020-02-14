@@ -42,4 +42,9 @@ const CommentForm = ({ submitBtn, handleSubmit }) => {
   )
 }
 
+CommentForm.propTypes = {
+  submitBtn: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+};
+
 export default CommentForm;
