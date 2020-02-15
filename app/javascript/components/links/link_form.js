@@ -31,7 +31,7 @@ const LinkForm = ({ headTitle, submitBtn, handleSubmit, link }) => {
     <div className="col-md-6 offset-md-3 new_link">
       <h1 className="h-title">{ headTitle }</h1>
       <form onSubmit={ handleSubmitLocal }>
-        <input placeholder="title" type="text" name="title" value={ title } onChange={ handleChange } className="form-control" />
+        <textarea placeholder="title" type="text" name="title" value={ title } onChange={ handleChange } className="form-control" />
         <input placeholder="url" type="text" name="url" value={ url } onChange={ handleChange } className="form-control" />
         <button className="btn btn-primary form-control" type="submit">
           { submitBtn }
