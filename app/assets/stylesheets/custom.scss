@@ -43,3 +43,14 @@
 
 .error_message {
 }
+
+.signup,
+.login {
+  .h-title {
+    text-align: center;
+  }
+  input,
+  button {
+    margin-top: .6rem;
+  }
+}
