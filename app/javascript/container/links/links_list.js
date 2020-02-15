@@ -6,7 +6,7 @@ import { getLinks, destroyLink, upvoteLink, downvoteLink } from '../../actions';
 import { timeSince } from '../../common/functions';
 import ALink from '../../components/links/a_link';
 
-const LinksList = ({ links, getLinks, upvoteLink, downvoteLink, history }) => {
+const LinksList = ({ links, getLinks, destroyLink, upvoteLink, downvoteLink, history }) => {
   const [linkData, setLinkData] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,16 @@ const LinksList = ({ links, getLinks, upvoteLink, downvoteLink, history }) => {
     downvoteLink(id);
   }
 
-  const linksRender = linkData ? linkData.map((data) => (
+  const sortByVotes = (data) => (data.sort((a, b) => {
+    const { up: a_up, down: a_down } = a.votes;
+    const { up: b_up, down: b_down } = b.votes;
+    if (a_up - a_down - (b_up - b_down) === 0) {
+      return a_up < b_up;
+    }
+    return a_up - a_down < b_up - b_down;
+  }));
+
+  const linksRender = linkData ? sortByVotes(linkData).map((data) => (
     <ALink data={data} handleUpvote={handleUpvote} handleDownvote={handleDownvote} key={ data.id } titleRedirect />
   )) : null;
 
@@ -45,4 +54,4 @@ LinksList.propTypes = {
   history: PropTypes.object
 }
 
-export default connect(({ links }) => ({ links }), { getLinks, upvoteLink, downvoteLink })(LinksList);
+export default connect(({ links }) => ({ links }), { getLinks, destroyLink, upvoteLink, downvoteLink })(LinksList);

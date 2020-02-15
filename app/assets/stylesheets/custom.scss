@@ -62,6 +62,7 @@ li.link {
   padding: 1rem;
   margin: 1rem 0;
   .h-title {
+    color: $color-primary;
     a:hover {
       text-decoration: dotted underline;
     }

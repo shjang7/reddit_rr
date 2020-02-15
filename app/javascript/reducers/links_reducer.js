@@ -15,25 +15,25 @@ export default (state = [], { type, payload }) => {
     case CREATE_LINK:
       return { ...state, links: [...state.links, payload] };
     case UPDATE_LINK:
-      return { ...state, links: state.links.map((link) => link.id !== payload.id ? link : payload) };
+      return { ...state, links: [...state.links.filter(({id}) => id !== payload.id), payload] };
     case DELETE_LINK:
       return { ...state, links: [...state.links.filter(({id}) => id !== payload)] };
     case READ_LINK:
       return { ...state, link: payload };
     case UPVOTE_LINK:
-      return {
-        ...state,
-        links: state.links.map((link) => {
-          return link.id !== payload.id ? link : {...link, votes: payload.votes }
-        }),
+      return { ...state, links:
+        [
+          ...state.links.filter(({id}) => id !== payload.id),
+          { ...state.links.find(({id}) => id === payload.id), votes: payload.votes }
+        ],
         link: { ...state.link, votes: payload.votes }
       };
     case DOWNVOTE_LINK:
-      return {
-        ...state,
-        links: state.links.map((link) => {
-          return link.id !== payload.id ? link : {...link, votes: payload.votes }
-        }),
+      return { ...state, links:
+        [
+          ...state.links.filter(({id}) => id !== payload.id),
+          { ...state.links.find(({id}) => id === payload.id), votes: payload.votes }
+        ],
         link: { ...state.link, votes: payload.votes }
       };
     default:
