@@ -25,21 +25,11 @@ const LinksList = ({ links, getLinks, upvoteLink, downvoteLink, history }) => {
     downvoteLink(id);
   }
 
-  const linksRender = linkData ? linkData.map((data) => {
-    const { id } = data;
-    return (
-      <li key={ id } className="link">
-        <ALink data={data} handleUpvote={handleUpvote} handleDownvote={handleDownvote} titleRedirect={ `/links/${id}` } />
-      </li>
-    );
-  }) : null;
+  const linksRender = linkData ? linkData.map((data) => (
+    <ALink data={data} handleUpvote={handleUpvote} handleDownvote={handleDownvote} key={ data.id } titleRedirect />
+  )) : null;
 
-  return (
-    <div className="links">
-      <h1>Links List</h1>
-      <ul>{ linksRender }</ul>
-    </div>
-  );
+  return <ul className="links">{ linksRender }</ul>;
 }
 
 LinksList.defaultProps = { history: '/'};
