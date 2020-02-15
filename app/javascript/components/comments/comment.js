@@ -28,6 +28,8 @@ const Comment = ({ data, handleDelete, currentUser }) => {
   )
 }
 
+Comment.defaultProps = { currentUser: '' };
+
 Comment.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.number.isRequired,

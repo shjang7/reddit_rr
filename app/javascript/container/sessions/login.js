@@ -17,6 +17,8 @@ const Login = ({ createSession, history }) => {
   return <LoginForm handleSubmit={ handleSubmitLocal } />;
 }
 
+Login.defaultProps = { history: '/'};
+
 Login.propTypes = {
   createSession: PropTypes.func.isRequired,
   history: PropTypes.object

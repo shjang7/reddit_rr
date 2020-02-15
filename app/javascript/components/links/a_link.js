@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { timeSince } from '../../common/functions';
 import { FaChevronUp, FaChevronDown } from 'react-icons/lib/fa';
 
-const ALink = ({ data, handleUpvote, handleDownvote, titleTo }) => {
+const ALink = ({ data, handleUpvote, handleDownvote, titleRedirect }) => {
   const { id, url, title, created_at, updated_at, user_id, author, votes} = data;
 
-  const renderTitle = titleTo ? (
-    <Link to={titleTo}>
+  const renderTitle = titleRedirect ? (
+    <Link to={titleRedirect}>
       { title }
     </Link>
   ) : title;
@@ -48,6 +48,8 @@ const ALink = ({ data, handleUpvote, handleDownvote, titleTo }) => {
   )
 }
 
+ALink.defaultProps = { titleRedirect: '' };
+
 ALink.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -61,7 +63,7 @@ ALink.propTypes = {
   }),
   handleUpvote: PropTypes.func.isRequired,
   handleDownvote: PropTypes.func.isRequired,
-  titleTo: PropTypes.string,
+  titleRedirect: PropTypes.string,
 };
 
 

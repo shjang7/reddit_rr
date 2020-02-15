@@ -19,6 +19,8 @@ const NewLinks = ({ createLinks, history }) => {
   )
 }
 
+NewLinks.defaultProps = { history: '/'};
+
 NewLinks.propTypes = {
   createLinks: PropTypes.func.isRequired,
   history: PropTypes.object

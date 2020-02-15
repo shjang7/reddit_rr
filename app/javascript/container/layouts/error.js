@@ -12,6 +12,8 @@ const Error = ({ errors }) => {
   return <div className="error_message">{ msg }</div>;
 };
 
+Error.defaultProps = { errors: '' };
+
 Error.propTypes = {
   errors: PropTypes.string
 }

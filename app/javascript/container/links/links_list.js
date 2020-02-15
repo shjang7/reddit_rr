@@ -29,7 +29,7 @@ const LinksList = ({ links, getLinks, upvoteLink, downvoteLink, history }) => {
     const { id } = data;
     return (
       <li key={ id } className="link">
-        <ALink data={data} handleUpvote={handleUpvote} handleDownvote={handleDownvote} titleTo={ `/links/${id}` } />
+        <ALink data={data} handleUpvote={handleUpvote} handleDownvote={handleDownvote} titleRedirect={ `/links/${id}` } />
       </li>
     );
   }) : null;
@@ -41,6 +41,8 @@ const LinksList = ({ links, getLinks, upvoteLink, downvoteLink, history }) => {
     </div>
   );
 }
+
+LinksList.defaultProps = { history: '/'};
 
 LinksList.propTypes = {
   links: PropTypes.shape({

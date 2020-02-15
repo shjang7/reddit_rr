@@ -17,6 +17,8 @@ const Signup = ({ createRegistration, history }) => {
   return <SignupForm headTitle="Sign Up" submitBtn="signup" handleSubmit={ handleSubmitLocal } />;
 }
 
+Signup.defaultProps = { history: '/'};
+
 Signup.propTypes = {
   createRegistration: PropTypes.func.isRequired,
   history: PropTypes.object
