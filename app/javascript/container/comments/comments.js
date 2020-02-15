@@ -38,6 +38,8 @@ const Comments = ({ comments, getComments, createComments, destroyComment, sessi
   );
 }
 
+Comments.defaultProps = { session: { username: '' }};
+
 Comments.propTypes = {
   comments: PropTypes.array.isRequired,
   getComments: PropTypes.func.isRequired,

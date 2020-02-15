@@ -56,6 +56,8 @@ const ShowLink = (props) => {
   );
 }
 
+ShowLink.defaultProps = { history: '/'};
+
 ShowLink.propTypes = {
   links: PropTypes.shape({
     links: PropTypes.array.isRequired,
@@ -70,7 +72,9 @@ ShowLink.propTypes = {
       id: PropTypes.string.isRequired,
     })
   }),
-  location: PropTypes.object,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }),
   history: PropTypes.object
 }
 

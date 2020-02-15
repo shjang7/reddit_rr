@@ -11,14 +11,14 @@ import Login from '../../container/sessions/login';
 import NewLinks from '../../container/links/new_links';
 import Navigation from '../../container/layouts/navigation';
 import Error from '../../container/layouts/error';
-import NotFound from '../not_found';
+import NotFound from './not_found';
 
 const store = configureStore();
 
 const App = (props) => {
   return (
     <Provider store={ store }>
-      <Navigation history={ history }/>
+      <Navigation />
       <div id="main_content" className="container">
         <Error />
         <BrowserRouter>

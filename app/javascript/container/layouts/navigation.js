@@ -49,6 +49,8 @@ const Navigation = ({ session, destroySession, readSession }) => {
   );
 };
 
+Navigation.defaultProps = { session: { username: '' }};
+
 Navigation.propTypes = {
   session: PropTypes.shape({
     username: PropTypes.string,
