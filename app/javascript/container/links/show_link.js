@@ -8,7 +8,8 @@ import { destroyLink, readLink, upvoteLink, downvoteLink } from '../../actions';
 import ALink from '../../components/links/a_link';
 
 const ShowLink = (props) => {
-  const { match: { params: { id: linkId }}, links, destroyLink, readLink, upvoteLink, downvoteLink, history, location } = props;
+  const { match: { params: { id: linkId }}, links, session: { username },
+  destroyLink, readLink, upvoteLink, downvoteLink, history, location } = props;
   const [link, setLink] = useState(null);
 
   useEffect(() => {
@@ -50,21 +51,25 @@ const ShowLink = (props) => {
     </button>
   );
 
+  const renderButtons = (link && link.constructor === Object && Object.entries(link).length !== 0 && username === link.author) ? (
+    <div className='buttons'>
+      { renderEdit }
+      { renderDelete }
+    </div>
+  ) : null;
+
   return (
     <React.Fragment>
       { renderLink }
       <div className="col-md-9 mx-auto">
-        <div className='buttons'>
-          { renderEdit }
-          { renderDelete }
-        </div>
+        { renderButtons }
         <Comments linkId={ linkId } />
       </div>
     </React.Fragment>
   );
 }
 
-ShowLink.defaultProps = { history: '/'};
+ShowLink.defaultProps = { session: { username: '' }, history: '/'};
 
 ShowLink.propTypes = {
   links: PropTypes.shape({
@@ -75,6 +80,9 @@ ShowLink.propTypes = {
   readLink: PropTypes.func.isRequired,
   upvoteLink: PropTypes.func.isRequired,
   downvoteLink: PropTypes.func.isRequired,
+  session: PropTypes.shape({
+    username: PropTypes.string,
+  }),
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -86,4 +94,4 @@ ShowLink.propTypes = {
   history: PropTypes.object
 }
 
-export default connect(({ links }) => ({ links }), { destroyLink, readLink, upvoteLink, downvoteLink })(ShowLink);
+export default connect(({ links, session }) => ({ links, session }), { destroyLink, readLink, upvoteLink, downvoteLink })(ShowLink);

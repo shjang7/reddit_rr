@@ -16,9 +16,13 @@
   align-items: center;
   padding: 0 .3rem;
   &:hover {
-    background-color: $color-gray;
+    background-color: $color-gray-darker;
     text-decoration: none;
   }
+}
+
+.navbar-dark .navbar-nav .nav-link.disabled {
+  color: $color-gray-lighter;
 }
 
 .collapsing,
@@ -58,7 +62,7 @@
 
 li.link {
   list-style: none;
-  border-bottom: 1px solid $color-gray-lighter;
+  border-bottom: 1px solid $color-gray;
   padding: 1rem;
   margin: 1rem 0;
   .h-title {
@@ -77,6 +81,14 @@ li.link {
 }
 
 .comment {
-  border-bottom: 1px dotted $color-gray-lighter;
+  border-bottom: 1px dotted $color-gray;
   padding: 1rem 0;
+}
+
+.sample-account {
+  border: 1px solid $color-gray;
+  padding: .3rem 1.25rem .3rem 1.25rem;
+  border-radius: .3rem;
+  display: inline-block;
+  margin: 0.3rem 0;
 }

@@ -1,20 +1,39 @@
-<h1 align="center">Welcome to Reddit 👋</h1>
+<h1 align="center">Welcome to Reddit_rr 👋</h1>
 
-This project is a Reddit style app with Ruby on Rails, React and Redux.
+This project is a Reddit style app built by Ruby on Rails, React and Redux.<br />
+The main feature is including link post, voting, comment, user sign-in.
 
 ##### Entity Relationship diagram
 ![](./docs/e-r-diagram.png)
+
+##### Back-end
+![](./docs/link_list_backend.png)
+##### Front-end
+![](./docs/login.png)
+
+![](./docs/link_index.png)
+
+![](./docs/link_new.png)
+
+![](./docs/link_show.png)
+
+![](./docs/link_edit.png)
 
 ## Built With
 
 - Ruby 2.6.3
 - Rails 6.0
-- React 16.12
-- Redux 4.0
 - PostgreSQL 10.10
 - Sass 3.7
+- Rspec 3.9
+- [Acts as votable](https://github.com/ryanto/acts_as_votable/)
+- [Faker](https://github.com/faker-ruby/faker)
+- Webpacker 4.0
+- React 16.12
+- Redux 4.0
 
-### ✨ [Live Demo](https://rails-reddit-rr-suh.herokuapp.com/)
+## Demo
+not available
 
 ## Getting started
 
@@ -36,7 +55,7 @@ $ cd reddit_rr
 $ rails db:create
 ```
 
-> Install the needed gems:
+> Install dependencies:
 
 ```
 $ bundle install
@@ -49,7 +68,7 @@ $ yarn install
 $ rails db:migrate
 ```
 
-> Test code
+> Test rails code
 
 ```
 $ rspec --format documentation
@@ -67,7 +86,7 @@ $ rails db:seed
 $ rails server
 ```
 
-> Go to `http://localhost:3000` using your browser.
+> Go to `http://localhost:3001` using your browser.
 
 ## Author
 
@@ -75,6 +94,7 @@ $ rails server
 
 - Github: [@shjang7](https://github.com/shjang7)
 - Linkedin: [@shjang](https://www.linkedin.com/in/shjang/)
+- Twitter: [@shjang12](https://twitter.com/shjang12)
 
 ## 🤝 Contributing
 

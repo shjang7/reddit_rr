@@ -31,6 +31,16 @@ const LoginForm = ({ handleSubmit }) => {
       setBlank(false);
     }
   }
+
+  const renderSampleAccount = (
+    <div className="sample-account">
+      Sample Account : <br />
+
+      username: user-0 ~ user-9 <br />
+      password: foobar <br />
+    </div>
+  )
+
   return (
     <div className="col-md-6 offset-md-3 login">
       <h1 className="h-title">Log In</h1>
@@ -39,6 +49,7 @@ const LoginForm = ({ handleSubmit }) => {
         <input placeholder="password" type="password" name="password" value={ password } onChange={ handleChange } className="form-control" />
         <button className="btn btn-primary form-control" type="submit">log in</button>
         <div>or <Link to='/signup'>sign up</Link></div>
+        {renderSampleAccount}
       </form>
       <div>{ blank ? 'Fill in all data' : null }</div>
     </div>

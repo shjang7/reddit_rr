@@ -6,9 +6,9 @@ $color-bg: #606c88;
 $color-orient: #212529;
 
 $color-white: lighten(#ddd, 100%);
-$color-gray-lighter: darken(#ddd, 25%);
-$color-gray: darken(#ddd, 50%);
-$color-gray-darker: darken(#ddd, 79%);
+$color-gray-lighter: #ddd;
+$color-gray: darken(#ddd, 25%);
+$color-gray-darker: darken(#ddd, 50%);
 
 $typographic-font-family: 'Montserrat', Helvetica, sans-serif;
 
