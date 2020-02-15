@@ -38,7 +38,7 @@ a:not([href]).btn-primary {
 }
 
 a.btn-base {
-  color: $color-gray;
+  color: $color-gray-darker;
   &:hover {
     color: $color-orient;
   }
@@ -53,7 +53,7 @@ ul.list-style-none {
 
 .btn-base {
   background-color: $color-base;
-  color: $color-gray;
+  color: $color-gray-darker;
   border-radius: 0;
 }
 
