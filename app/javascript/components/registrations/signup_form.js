@@ -33,14 +33,14 @@ const SignupForm = ({ headTitle, submitBtn, handleSubmit }) => {
     }
   }
   return (
-    <div>
-      <h1>{ headTitle }</h1>
+    <div className="col-md-6 offset-md-3 signup">
+      <h1 className="h-title">{ headTitle }</h1>
       <form onSubmit={ handleSubmitLocal }>
-        <input placeholder="username" type="text" name="username" value={ username } onChange={ handleChange } />
-        <input placeholder="email" type="text" name="email" value={ email } onChange={ handleChange } />
-        <input placeholder="password" type="password" name="password" value={ password } onChange={ handleChange } />
-        <input placeholder="password confirmation" type="password" name="password_confirmation" value={ passwordConfirmation } onChange={ handleChange } />
-        <button placeholder="submit" type="submit">{ submitBtn }</button>
+        <input placeholder="username" type="text" name="username" value={ username } onChange={ handleChange } className="form-control" />
+        <input placeholder="email" type="text" name="email" value={ email } onChange={ handleChange } className="form-control" />
+        <input placeholder="password" type="password" name="password" value={ password } onChange={ handleChange } className="form-control" />
+        <input placeholder="password confirmation" type="password" name="password_confirmation" value={ passwordConfirmation } onChange={ handleChange } className="form-control" />
+        <button className="btn btn-primary form-control" type="submit">{ submitBtn }</button>
       </form>
       <div>{ blank ? 'Fill in all data' : null }</div>
     </div>

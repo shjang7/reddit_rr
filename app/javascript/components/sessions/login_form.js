@@ -32,12 +32,12 @@ const LoginForm = ({ handleSubmit }) => {
     }
   }
   return (
-    <div>
-      <h1>Log In</h1>
+    <div className="col-md-6 offset-md-3 login">
+      <h1 className="h-title">Log In</h1>
       <form onSubmit={ handleSubmitLocal }>
-        <input placeholder="username" type="text" name="username" value={ username } onChange={ handleChange } />
-        <input placeholder="password" type="password" name="password" value={ password } onChange={ handleChange } />
-        <button placeholder="submit" type="submit">log in</button>
+        <input placeholder="username" type="text" name="username" value={ username } onChange={ handleChange } className="form-control" />
+        <input placeholder="password" type="password" name="password" value={ password } onChange={ handleChange } className="form-control" />
+        <button className="btn btn-primary form-control" type="submit">log in</button>
         <div>or <Link to='/signup'>sign up</Link></div>
       </form>
       <div>{ blank ? 'Fill in all data' : null }</div>
