@@ -6,13 +6,13 @@ import { destroySession, readSession } from '../../actions';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 const Navigation = ({ session, destroySession, readSession }) => {
-  const [uname, setUname] = useState({username: undefined});
+  const [uname, setUname] = useState('');
   useEffect(() => {
     readSession();
   }, []);
 
   useEffect(() => {
-    setUname(session);
+    setUname(session.username);
   }, [session]);
 
   const handleLogout = async () => {
@@ -22,7 +22,7 @@ const Navigation = ({ session, destroySession, readSession }) => {
   const userLinks = () => (
     <>
       { uname ? (
-        <Nav.Link href="#" disabled>login with: {uname.username}</Nav.Link>
+        <Nav.Link href="#" disabled>login with: {uname}</Nav.Link>
       ) : null }
       <Nav.Link href="/links/new">Write Link</Nav.Link>
       <Nav.Link href="#" onClick={ () => handleLogout() }>Log Out</Nav.Link>
@@ -42,11 +42,19 @@ const Navigation = ({ session, destroySession, readSession }) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          { uname.username ? userLinks() : guestLinks() }
+          { uname ? userLinks() : guestLinks() }
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
 };
+
+Navigation.propTypes = {
+  session: PropTypes.shape({
+    username: PropTypes.string,
+  }),
+  destroySession: PropTypes.func.isRequired,
+  readSession: PropTypes.func.isRequired,
+}
 
 export default connect(({ session }) => ({ session }), { destroySession, readSession })(Navigation);

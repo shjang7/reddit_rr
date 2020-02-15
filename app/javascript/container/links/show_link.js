@@ -8,7 +8,7 @@ import { destroyLink, readLink, upvoteLink, downvoteLink } from '../../actions';
 import ALink from '../../components/links/a_link';
 
 const ShowLink = (props) => {
-  const { history, location, match: { params: { id: linkId } }, links, destroyLink, readLink, upvoteLink, downvoteLink } = props;
+  const { match: { params: { id: linkId }}, links, destroyLink, readLink, upvoteLink, downvoteLink, history, location } = props;
   const [link, setLink] = useState(null);
 
   useEffect(() => {
@@ -54,6 +54,24 @@ const ShowLink = (props) => {
       <Comments linkId={ linkId } />
     </React.Fragment>
   );
+}
+
+ShowLink.propTypes = {
+  links: PropTypes.shape({
+    links: PropTypes.array.isRequired,
+    link: PropTypes.object.isRequired,
+  }),
+  destroyLink: PropTypes.func.isRequired,
+  readLink: PropTypes.func.isRequired,
+  upvoteLink: PropTypes.func.isRequired,
+  downvoteLink: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    })
+  }),
+  location: PropTypes.object,
+  history: PropTypes.object
 }
 
 export default connect(({ links }) => ({ links }), { destroyLink, readLink, upvoteLink, downvoteLink })(ShowLink);
