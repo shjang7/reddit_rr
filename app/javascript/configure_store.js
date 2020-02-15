@@ -6,7 +6,7 @@ const initialState = {
   links: { links: [], link: {} },
   comments: [],
   session: {},
-  errors: []
+  errors: ''
 };
 
 export default function configureStore() {

@@ -12,4 +12,8 @@ const Error = ({ errors }) => {
   return <div className="error_message">{ msg }</div>;
 };
 
+Error.propTypes = {
+  errors: PropTypes.string
+}
+
 export default connect(({ errors }) => ({ errors }), null)(Error);

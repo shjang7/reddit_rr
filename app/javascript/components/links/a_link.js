@@ -61,7 +61,7 @@ ALink.propTypes = {
   }),
   handleUpvote: PropTypes.func.isRequired,
   handleDownvote: PropTypes.func.isRequired,
-  titleTo: PropTypes.string.isRequired,
+  titleTo: PropTypes.string,
 };
 
 

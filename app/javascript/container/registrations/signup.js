@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import SignupForm from '../../components/registrations/signup_form';
 import { createRegistration } from '../../actions';
 
-const Signup = ({ history, createRegistration }) => {
+const Signup = ({ createRegistration, history }) => {
   const redirect = () => {
     history.push('/');
   }
@@ -18,7 +18,8 @@ const Signup = ({ history, createRegistration }) => {
 }
 
 Signup.propTypes = {
-  createRegistration: PropTypes.func.isRequired
+  createRegistration: PropTypes.func.isRequired,
+  history: PropTypes.object
 }
 
 export default connect(null, { createRegistration })(Signup);

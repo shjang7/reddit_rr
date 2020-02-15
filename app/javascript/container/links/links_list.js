@@ -42,4 +42,15 @@ const LinksList = ({ links, getLinks, upvoteLink, downvoteLink, history }) => {
   );
 }
 
+LinksList.propTypes = {
+  links: PropTypes.shape({
+    links: PropTypes.array.isRequired,
+    link: PropTypes.object.isRequired,
+  }),
+  getLinks: PropTypes.func.isRequired,
+  upvoteLink: PropTypes.func.isRequired,
+  downvoteLink: PropTypes.func.isRequired,
+  history: PropTypes.object
+}
+
 export default connect(({ links }) => ({ links }), { getLinks, upvoteLink, downvoteLink })(LinksList);

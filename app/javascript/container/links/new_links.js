@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LinkForm from '../../components/links/link_form';
 import { createLinks } from '../../actions';
 
-const NewLinks = ({ history, createLinks }) => {
+const NewLinks = ({ createLinks, history }) => {
   const redirect = () => {
     history.push('/');
   }
@@ -17,6 +17,11 @@ const NewLinks = ({ history, createLinks }) => {
   return (
     <LinkForm headTitle='New Link' submitBtn='Create' handleSubmit={ handleSubmit } />
   )
+}
+
+NewLinks.propTypes = {
+  createLinks: PropTypes.func.isRequired,
+  history: PropTypes.object
 }
 
 export default connect(null, { createLinks })(NewLinks);

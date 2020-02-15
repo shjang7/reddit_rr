@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import LoginForm from '../../components/sessions/login_form';
 import { createSession } from '../../actions';
 
-const Login = ({ history, createSession }) => {
+const Login = ({ createSession, history }) => {
   const redirect = () => {
     history.push('/');
   }
@@ -18,8 +18,8 @@ const Login = ({ history, createSession }) => {
 }
 
 Login.propTypes = {
-  createSession: PropTypes.func.isRequired
+  createSession: PropTypes.func.isRequired,
+  history: PropTypes.object
 }
-
 
 export default connect(null, { createSession })(Login);

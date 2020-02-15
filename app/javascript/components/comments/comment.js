@@ -29,19 +29,17 @@ const Comment = ({ data, handleDelete, currentUser }) => {
 }
 
 Comment.propTypes = {
-  data: PropTypes.objectOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      link_id: PropTypes.number.isRequired,
-      body: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
-      user_id: PropTypes.number.isRequired,
-      author: PropTypes.string.isRequired,
-    })
-  ),
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    link_id: PropTypes.number.isRequired,
+    body: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    updated_at: PropTypes.string.isRequired,
+    user_id: PropTypes.number.isRequired,
+    author: PropTypes.string.isRequired,
+  }),
   handleDelete: PropTypes.func.isRequired,
-  currentUser: PropTypes.string.isRequired,
+  currentUser: PropTypes.string,
 };
 
 export default Comment;
