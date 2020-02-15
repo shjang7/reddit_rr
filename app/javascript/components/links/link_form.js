@@ -42,4 +42,10 @@ const LinkForm = ({ headTitle, submitBtn, handleSubmit }) => {
   )
 }
 
+LinkForm.propTypes = {
+  headTitle: PropTypes.string.isRequired,
+  submitBtn: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+}
+
 export default LinkForm;

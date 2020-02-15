@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { timeSince } from '../../common/functions';
 import { FaChevronUp, FaChevronDown } from 'react-icons/lib/fa';
 
 const ALink = ({ data, handleUpvote, handleDownvote, titleTo }) => {
-  const { author, created_at, id, title, updated_at, url, user_id, votes} = data;
+  const { id, url, title, created_at, updated_at, user_id, author, votes} = data;
 
   const renderTitle = titleTo ? (
     <Link to={titleTo}>
@@ -47,6 +47,22 @@ const ALink = ({ data, handleUpvote, handleDownvote, titleTo }) => {
     </div>
   )
 }
+
+ALink.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    updated_at: PropTypes.string.isRequired,
+    user_id: PropTypes.number.isRequired,
+    author: PropTypes.string.isRequired,
+    votes: PropTypes.object.isRequired,
+  }),
+  handleUpvote: PropTypes.func.isRequired,
+  handleDownvote: PropTypes.func.isRequired,
+  titleTo: PropTypes.string.isRequired,
+};
 
 
 export default ALink;
