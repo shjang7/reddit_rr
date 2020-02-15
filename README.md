@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Reddit 👋</h1>
+<h1 align="center">Welcome to Reddit_rr 👋</h1>
 
 This project is a Reddit style app built by Ruby on Rails, React and Redux.<br />
 The main feature is including link post, voting, comment, user sign-in.
@@ -6,11 +6,18 @@ The main feature is including link post, voting, comment, user sign-in.
 ##### Entity Relationship diagram
 ![](./docs/e-r-diagram.png)
 
+##### Back-end
+![](./docs/link_list_backend.png)
+##### Front-end
 ![](./docs/login.png)
-![](./docs/link_new.png)
-![](./docs/link_show.png)
-![](./docs/link_edit.png)
+
 ![](./docs/link_index.png)
+
+![](./docs/link_new.png)
+
+![](./docs/link_show.png)
+
+![](./docs/link_edit.png)
 
 ## Built With
 
