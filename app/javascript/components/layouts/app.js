@@ -9,6 +9,7 @@ import ShowLink from '../../container/links/show_link';
 import Signup from '../../container/registrations/signup';
 import Login from '../../container/sessions/login';
 import NewLinks from '../../container/links/new_links';
+import EditLinks from '../../container/links/edit_links';
 import Navigation from '../../container/layouts/navigation';
 import Error from '../../container/layouts/error';
 import NotFound from './not_found';
@@ -25,6 +26,7 @@ const App = (props) => {
           <Switch>
             <Route exact path="/" render={ props => <LinksList {...props} /> } />
             <Route exact path="/links/new" render={ props => <NewLinks {...props} /> } />
+            <Route exact path="/links/edit/:id" render={ props => <EditLinks {...props} /> } />
             <Route exact path="/links/:id" render={ props => <ShowLink {...props} /> } />
             <Route exact path="/login" render={ props => <Login {...props} /> } />
             <Route exact path="/signup" render={ props => <Signup {...props} /> } />

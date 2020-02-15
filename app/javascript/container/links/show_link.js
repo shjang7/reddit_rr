@@ -40,6 +40,10 @@ const ShowLink = (props) => {
     <ALink data={link} handleUpvote={handleUpvote} handleDownvote={handleDownvote} />
   ) : null;
 
+  const renderEdit = (
+    <Link to={`/links/edit/${linkId}`} className="btn btn-base btn-sm">edit</Link>
+  )
+
   const renderDelete = (
     <button type='button' className="btn btn-base btn-sm" onClick={ () => handleDelete() }>
       delete
@@ -51,6 +55,7 @@ const ShowLink = (props) => {
       { renderLink }
       <div className="col-md-9 mx-auto">
         <div className='buttons'>
+          { renderEdit }
           { renderDelete }
         </div>
         <Comments linkId={ linkId } />

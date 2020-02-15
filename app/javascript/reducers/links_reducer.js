@@ -1,6 +1,7 @@
 import {
   GET_LINKS_SUCCESS,
   CREATE_LINK,
+  UPDATE_LINK,
   DELETE_LINK,
   READ_LINK,
   UPVOTE_LINK,
@@ -13,6 +14,8 @@ export default (state = [], { type, payload }) => {
       return { ...state, links: payload };
     case CREATE_LINK:
       return { ...state, links: [...state.links, payload] };
+    case UPDATE_LINK:
+      return { ...state, links: state.links.map((link) => link.id !== payload.id ? link : payload) };
     case DELETE_LINK:
       return { ...state, links: [...state.links.filter(({id}) => id !== payload)] };
     case READ_LINK:
