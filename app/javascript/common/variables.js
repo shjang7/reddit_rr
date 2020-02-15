@@ -4,6 +4,7 @@ export const CREATE_SESSION = 'CREATE_SESSION';
 export const DESTROY_SESSION = 'DESTROY_SESSION';
 export const READ_SESSION = 'READ_SESSION';
 export const CREATE_LINK = 'CREATE_LINK';
+export const UPDATE_LINK = 'UPDATE_LINK';
 export const DELETE_LINK = 'DELETE_LINK';
 export const UPVOTE_LINK = 'UPVOTE_LINK';
 export const DOWNVOTE_LINK = 'DOWNVOTE_LINK';
