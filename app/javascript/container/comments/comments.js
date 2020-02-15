@@ -6,7 +6,7 @@ import CommentForm from '../../components/comments/comment_form';
 import Comment from '../../components/comments/comment';
 import { timeSince } from '../../common/functions';
 
-const Comments = ({ comments, getComments, createComments, destroyComment, session, linkId }) => {
+const Comments = ({ comments, getComments, createComments, destroyComment, session: { username }, linkId }) => {
   useEffect(() => {
     getComments(linkId);
   }, []);
@@ -16,7 +16,7 @@ const Comments = ({ comments, getComments, createComments, destroyComment, sessi
   }
 
   const renderComments = comments.map((data) => (
-    <Comment data={data} key={ data.id } handleDelete={handleDelete} currentUser={session.username} />
+    <Comment data={data} key={ data.id } handleDelete={handleDelete} currentUser={username} />
   ));
 
   const submitComment = ({ body }) => {

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const LinkForm = ({ headTitle, submitBtn, handleSubmit, link }) => {
-  const [title, setTitle] = useState(link ? link.title : '');
-  const [url, setUrl] = useState(link ? link.url : '');
+  const [title, setTitle] = useState(link.title);
+  const [url, setUrl] = useState(link.url);
   const [blank, setBlank] = useState(false);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const LinkForm = ({ headTitle, submitBtn, handleSubmit, link }) => {
   )
 }
 
-LinkForm.defaultProps = { link: null };
+LinkForm.defaultProps = { link: { title: '', url: '' } };
 
 LinkForm.propTypes = {
   headTitle: PropTypes.string.isRequired,
