@@ -8,7 +8,7 @@ const ALink = ({ data, handleUpvote, handleDownvote, titleRedirect }) => {
   const { id, url, title, created_at, updated_at, user_id, author, votes} = data;
 
   const renderTitle = titleRedirect ? (
-    <Link to={titleRedirect}>
+    <Link to={`/links/${id}`}>
       { title }
     </Link>
   ) : title;
@@ -22,13 +22,9 @@ const ALink = ({ data, handleUpvote, handleDownvote, titleRedirect }) => {
   }
 
   return (
-    <div>
-      <div>
-        { renderTitle }
-      </div>
-      <div>
-        Submitted about { timeSince(created_at) } by { author }
-      </div>
+    <li className="link col-md-9 mx-auto">
+      <h2>{ renderTitle }</h2>
+      <div>Submitted about { timeSince(created_at) } by { author }</div>
       <div className='buttons'>
         <a type='button' className="btn btn-primary btn-sm" rel="nofollow" href={ url }>
           <span>Visit Link</span>
@@ -44,11 +40,11 @@ const ALink = ({ data, handleUpvote, handleDownvote, titleRedirect }) => {
           { votes.down }
         </a>
       </div>
-    </div>
+    </li>
   )
 }
 
-ALink.defaultProps = { titleRedirect: '' };
+ALink.defaultProps = { titleRedirect: false };
 
 ALink.propTypes = {
   data: PropTypes.shape({
@@ -63,7 +59,7 @@ ALink.propTypes = {
   }),
   handleUpvote: PropTypes.func.isRequired,
   handleDownvote: PropTypes.func.isRequired,
-  titleRedirect: PropTypes.string,
+  titleRedirect: PropTypes.bool,
 };
 
 

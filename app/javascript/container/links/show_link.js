@@ -48,10 +48,13 @@ const ShowLink = (props) => {
 
   return (
     <React.Fragment>
-      <h1>Show Link</h1>
       { renderLink }
-      { renderDelete }
-      <Comments linkId={ linkId } />
+      <div className="col-md-9 mx-auto">
+        <div className='buttons'>
+          { renderDelete }
+        </div>
+        <Comments linkId={ linkId } />
+      </div>
     </React.Fragment>
   );
 }
