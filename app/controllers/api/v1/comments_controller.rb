@@ -62,7 +62,7 @@ class Api::V1::CommentsController < ApiController
   end
 
   def comments_map
-    Comment.all.map do |comment|
+    @comments.map do |comment|
       @comment = comment
       comment_info
     end
