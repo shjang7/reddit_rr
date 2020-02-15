@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Navbar from '../navbar';
-import NewLinks from './new_links';
 import { getLinks, destroyLink, upvoteLink, downvoteLink } from '../../actions';
 import { timeSince } from '../../common/functions';
 import ALink from '../../components/links/a_link';
 
-const LinksList = ({ errors, links, getLinks, destroyLink, upvoteLink, downvoteLink, history }) => {
+const LinksList = ({ links, getLinks, upvoteLink, downvoteLink, history }) => {
   const [linkData, setLinkData] = useState([]);
 
   useEffect(() => {
@@ -19,10 +17,6 @@ const LinksList = ({ errors, links, getLinks, destroyLink, upvoteLink, downvoteL
     setLinkData(links.links);
   }, [links.links]);
 
-  const handleDelete = (id) => {
-    destroyLink(id);
-  }
-
   const handleUpvote = (id) => {
     upvoteLink(id);
   }
@@ -31,24 +25,24 @@ const LinksList = ({ errors, links, getLinks, destroyLink, upvoteLink, downvoteL
     downvoteLink(id);
   }
 
-  const linksRender = linkData ? linkData.map((data) => {
-    const { id } = data;
-    return (
-      <li key={ id }>
-        <ALink data={data} handleUpvote={handleUpvote} handleDownvote={handleDownvote} handleDelete={handleDelete} titleTo={ `/links/${id}` } />
-      </li>
-    );
-  }) : null;
+  const linksRender = linkData ? linkData.map((data) => (
+    <ALink data={data} handleUpvote={handleUpvote} handleDownvote={handleDownvote} key={ data.id } titleRedirect />
+  )) : null;
 
-  return (
-    <React.Fragment>
-      <Navbar history={ history }/>
-      <div>{ errors }</div>
-      <h5>Links List</h5>
-      <ul>{ linksRender }</ul>
-      <NewLinks history={ history } />
-    </React.Fragment>
-  );
+  return <ul className="links">{ linksRender }</ul>;
 }
 
-export default connect(({ errors, links }) => ({ errors, links }), { getLinks, destroyLink, upvoteLink, downvoteLink })(LinksList);
+LinksList.defaultProps = { history: '/'};
+
+LinksList.propTypes = {
+  links: PropTypes.shape({
+    links: PropTypes.array.isRequired,
+    link: PropTypes.object.isRequired,
+  }),
+  getLinks: PropTypes.func.isRequired,
+  upvoteLink: PropTypes.func.isRequired,
+  downvoteLink: PropTypes.func.isRequired,
+  history: PropTypes.object
+}
+
+export default connect(({ links }) => ({ links }), { getLinks, upvoteLink, downvoteLink })(LinksList);

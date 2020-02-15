@@ -52,16 +52,16 @@ RSpec.describe Api::V1::LinksController, type: :controller do
 
     it 'votes up' do
       post :upvote, params: { id: link.id }
-      expect(parsed_result['votes']['up']).to eq(1)
-      expect(parsed_result['votes']['down']).to eq(0)
-      expect(parsed_result['votes']['weight']).to eq(1)
+      expect(parsed_result['location']['up']).to eq(1)
+      expect(parsed_result['location']['down']).to eq(0)
+      expect(parsed_result['location']['weight']).to eq(1)
     end
 
     it 'votes down' do
       post :downvote, params: { id: link.id }
-      expect(parsed_result['votes']['up']).to eq(0)
-      expect(parsed_result['votes']['down']).to eq(1)
-      expect(parsed_result['votes']['weight']).to eq(1)
+      expect(parsed_result['location']['up']).to eq(0)
+      expect(parsed_result['location']['down']).to eq(1)
+      expect(parsed_result['location']['weight']).to eq(1)
     end
   end
 end

@@ -7,7 +7,7 @@ class Api::V1::CommentsController < ApiController
   def index
     @link = Link.find(params[:link_id])
     @comments = @link.comments
-    render json: { comments: @comments }
+    render json: { comments: comments_map }
   end
 
   def create
@@ -18,7 +18,7 @@ class Api::V1::CommentsController < ApiController
     if @comment.save
       render json: {
         status: :created,
-        location: @comment
+        location: comment_info
       }
     else
       render json: {
@@ -53,5 +53,18 @@ class Api::V1::CommentsController < ApiController
 
   def find_author
     @user = @comment.user
+  end
+
+  def comment_info
+    temp = @comment.as_json
+    temp['author'] = @comment.user.username
+    return temp
+  end
+
+  def comments_map
+    @comments.map do |comment|
+      @comment = comment
+      comment_info
+    end
   end
 end

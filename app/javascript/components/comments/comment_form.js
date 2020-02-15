@@ -26,18 +26,19 @@ const CommentForm = ({ submitBtn, handleSubmit }) => {
   }
 
   return (
-    <div>
+    <>
       <form onSubmit={ handleSubmitLocal }>
-        <div>
-          <textarea placeholder="write a comment" type="text" name="body" value={ body } onChange={ handleChange } />
-        </div>
-        <div>
-          <button type="submit">{ submitBtn }</button>
-        </div>
+        <textarea placeholder="write a comment" type="text" name="body" value={ body } onChange={ handleChange } className="form-control" />
+        <button className="btn btn-primary form-control" type="submit">{ submitBtn }</button>
       </form>
       <div>{ blank ? 'Fill in comment body' : '' }</div>
-    </div>
+    </>
   )
 }
+
+CommentForm.propTypes = {
+  submitBtn: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 export default CommentForm;

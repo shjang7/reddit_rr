@@ -7,9 +7,9 @@ import {
   EXCEPTION_ERROR
 } from '../common/variables';
 
-export const getComments = (linkId) => async (dispatch) => {
+export const getComments = (link_id) => async (dispatch) => {
   dispatch({ type: GET_COMMENTS_REQUEST });
-  return await axios.get(`/api/v1/links/${linkId}/comments`)
+  return await axios.get(`/api/v1/links/${link_id}/comments`)
     .then(({ data }) => {
       if (!data || !data.comments) throw new Error('connection error');
       dispatch({ type: GET_COMMENTS_SUCCESS, payload: data.comments });

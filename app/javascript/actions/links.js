@@ -24,7 +24,6 @@ export const getLinks = () => async (dispatch) => {
 export const readLink = (id) => async (dispatch) => {
   return await axios.get(`/api/v1/links/${id}`, { id })
     .then(({ data }) => {
-      console.log('read link', data);
       if (!data) throw new Error('no link data');
       if (!data.location) throw new Error(data.errors || 'fail at loading link');
       return data.location;

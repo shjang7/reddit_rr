@@ -10,6 +10,7 @@ class Api::V1::LinksController < ApiController
 
   def create
     @link = current_user.links.build(link_params)
+    connect_https
 
     if @link.save
       render json: {
@@ -108,5 +109,10 @@ class Api::V1::LinksController < ApiController
       @link = link
       link_info
     end
+  end
+
+  def connect_https
+    temp = @link.url
+    @link.url = 'https://' + temp unless temp.include?('https://') || temp.include?('http://')
   end
 end

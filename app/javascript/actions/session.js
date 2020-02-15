@@ -30,7 +30,7 @@ export const readSession = () => async (dispatch) => {
     .then(({ data }) => {
       if (!data) throw new Error('Wrong info');
       if (data.logged_in) dispatch({ type: READ_SESSION, payload: data.user });
-      else dispatch({ type: READ_SESSION, payload: '' })
+      else dispatch({ type: READ_SESSION, payload: {} })
     })
     .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
 };
