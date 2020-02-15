@@ -45,7 +45,8 @@
 }
 
 .signup,
-.login {
+.login,
+.new_link {
   .h-title {
     text-align: center;
   }
@@ -57,6 +58,24 @@
 
 li.link {
   list-style: none;
-  border-bottom: 1px solid #e9e9e9;
-  padding: 2rem 1rem;
+  border-bottom: 1px solid $color-gray-lighter;
+  padding: 1rem;
+  margin: 1rem 0;
+  .h-title {
+    a:hover {
+      text-decoration: dotted underline;
+    }
+  }
+  .buttons {
+    margin: 1rem 0;
+  }
+}
+
+.comments {
+  margin: 2rem 0;
+}
+
+.comment {
+  border-bottom: 1px dotted $color-gray-lighter;
+  padding: 1rem 0;
 }

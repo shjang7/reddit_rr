@@ -15,13 +15,9 @@ const Comments = ({ comments, getComments, createComments, destroyComment, sessi
     destroyComment(id);
   }
 
-  const renderComments = comments ? comments.map((data) => {
-    return (
-      <li key={ data.id } className="clearfix list-style-none">
-        <Comment data={data} handleDelete={handleDelete} currentUser={session.username} />
-      </li>
-    );
-  }) : null;
+  const renderComments = comments.map((data) => (
+    <Comment data={data} key={ data.id } handleDelete={handleDelete} currentUser={session.username} />
+  ));
 
   const submitComment = ({ body }) => {
     if (!body || !linkId) return false;
@@ -30,11 +26,11 @@ const Comments = ({ comments, getComments, createComments, destroyComment, sessi
   }
 
   return (
-    <React.Fragment>
+    <div className="comments">
       <h3>{ comments.length } Comments</h3>
-      <ul className='comments'>{ renderComments }</ul>
+      <ul className="list-style-none">{ renderComments }</ul>
       <CommentForm submitBtn='Add Comment' handleSubmit={ submitComment } />
-    </React.Fragment>
+    </div>
   );
 }
 

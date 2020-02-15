@@ -23,7 +23,7 @@ const ALink = ({ data, handleUpvote, handleDownvote, titleRedirect }) => {
 
   return (
     <li className="link col-md-9 mx-auto">
-      <h2>{ renderTitle }</h2>
+      <h2 className="h-title">{ renderTitle }</h2>
       <div>Submitted about { timeSince(created_at) } by { author }</div>
       <div className='buttons'>
         <a type='button' className="btn btn-primary btn-sm" rel="nofollow" href={ url }>

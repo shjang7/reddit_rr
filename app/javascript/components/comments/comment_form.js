@@ -26,19 +26,13 @@ const CommentForm = ({ submitBtn, handleSubmit }) => {
   }
 
   return (
-    <div>
+    <>
       <form onSubmit={ handleSubmitLocal }>
-        <div>
-          <textarea placeholder="write a comment" type="text" name="body" value={ body } onChange={ handleChange } />
-        </div>
-        <div>
-          <button className="btn btn-primary" type="submit">
-            { submitBtn }
-          </button>
-        </div>
+        <textarea placeholder="write a comment" type="text" name="body" value={ body } onChange={ handleChange } className="form-control" />
+        <button className="btn btn-primary form-control" type="submit">{ submitBtn }</button>
       </form>
       <div>{ blank ? 'Fill in comment body' : '' }</div>
-    </div>
+    </>
   )
 }
 

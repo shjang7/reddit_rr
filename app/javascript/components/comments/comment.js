@@ -12,7 +12,7 @@ const Comment = ({ data, handleDelete, currentUser }) => {
   ) : null;
 
   return (
-    <>
+    <li className="clearfix comment">
       <div className="float-left">
         <div className="lead">{ body }</div>
         <div>
@@ -24,7 +24,7 @@ const Comment = ({ data, handleDelete, currentUser }) => {
       <div className="float-right btn-group">
         {renderDelete}
       </div>
-    </>
+    </li>
   )
 }
 
