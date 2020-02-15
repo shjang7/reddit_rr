@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to Reddit 👋</h1>
 
-This project is a Reddit style app with Ruby on Rails, React and Redux.
+This project is a Reddit style app built by Ruby on Rails, React and Redux.
 
 ##### Entity Relationship diagram
 ![](./docs/e-r-diagram.png)
@@ -14,7 +14,7 @@ This project is a Reddit style app with Ruby on Rails, React and Redux.
 - PostgreSQL 10.10
 - Sass 3.7
 
-### ✨ [Live Demo](https://rails-reddit-rr-suh.herokuapp.com/)
+##### no demo version
 
 ## Getting started
 
@@ -36,7 +36,7 @@ $ cd reddit_rr
 $ rails db:create
 ```
 
-> Install the needed gems:
+> Install dependencies:
 
 ```
 $ bundle install
@@ -49,7 +49,7 @@ $ yarn install
 $ rails db:migrate
 ```
 
-> Test code
+> Test rails code
 
 ```
 $ rspec --format documentation
@@ -75,6 +75,7 @@ $ rails server
 
 - Github: [@shjang7](https://github.com/shjang7)
 - Linkedin: [@shjang](https://www.linkedin.com/in/shjang/)
+- Twitter: [@shjang12](https://twitter.com/shjang12)
 
 ## 🤝 Contributing
 

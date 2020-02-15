@@ -11,9 +11,7 @@ class Api::V1::CommentsController < ApiController
   end
 
   def create
-    @link = Link.find(comment_params[:link_id])
-    @comment = @link.comments.new(comment_params)
-    @comment.user = current_user
+    @comment = current_user.comments.new(comment_params)
 
     if @comment.save
       render json: {
