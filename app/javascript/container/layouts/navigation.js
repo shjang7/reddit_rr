@@ -38,7 +38,7 @@ const Navigation = ({ session, destroySession, readSession }) => {
 
   return (
     <Navbar bg="dark" expand="lg" className="fixed-top navbar-dark">
-      <Navbar.Brand href="/">Reddit</Navbar.Brand>
+      <Navbar.Brand href="/">Reddit rr</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
