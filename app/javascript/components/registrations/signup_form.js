@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const SignupForm = ({ title, submitBtn, handleSubmit }) => {
+const SignupForm = ({ headTitle, submitBtn, handleSubmit }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,7 +34,7 @@ const SignupForm = ({ title, submitBtn, handleSubmit }) => {
   }
   return (
     <div>
-      <h1>{ title }</h1>
+      <h1>{ headTitle }</h1>
       <form onSubmit={ handleSubmitLocal }>
         <input placeholder="username" type="text" name="username" value={ username } onChange={ handleChange } />
         <input placeholder="email" type="text" name="email" value={ email } onChange={ handleChange } />
@@ -45,6 +45,12 @@ const SignupForm = ({ title, submitBtn, handleSubmit }) => {
       <div>{ blank ? 'Fill in all data' : null }</div>
     </div>
   );
+}
+
+SignupForm.propTypes = {
+  headTitle: PropTypes.string.isRequired,
+  submitBtn: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 }
 
 export default SignupForm;

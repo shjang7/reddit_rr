@@ -14,7 +14,7 @@ const Signup = ({ history, createRegistration }) => {
       .then(() => redirect());
   }
 
-  return <SignupForm title="Sign Up" submitBtn="signup" handleSubmit={ handleSubmitLocal } />;
+  return <SignupForm headTitle="Sign Up" submitBtn="signup" handleSubmit={ handleSubmitLocal } />;
 }
 
 Signup.propTypes = {
