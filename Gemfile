@@ -14,6 +14,7 @@ gem 'react-rails', '~> 2.6', '>= 2.6.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 gem 'acts_as_votable', '~> 0.12.1'
+gem 'faker', '~> 2.10', '>= 2.10.1'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.9'
