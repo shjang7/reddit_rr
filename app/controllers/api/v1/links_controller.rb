@@ -1,8 +1,8 @@
 class Api::V1::LinksController < ApiController
   before_action :set_link, except: %i[index create]
   before_action :authenticate_user!, except: %i[index show]
-  before_action :find_author, only: [:destroy]
-  before_action :authorized_user!, only: [:destroy]
+  before_action :find_author, only: [:destroy, :update]
+  before_action :authorized_user!, only: [:destroy, :update]
 
   def index
     render json: { location: links_map }
@@ -16,6 +16,21 @@ class Api::V1::LinksController < ApiController
       render json: {
         status: :created,
         location: link_info,
+      }
+    else
+      render json: {
+        status: :unprocessable_entity,
+        errors: @link.errors.full_messages,
+      }
+    end
+  end
+
+  def update
+    if @link.update(link_params)
+      connect_https; @link.save
+      render json: {
+        status: :updated,
+        location: link_info
       }
     else
       render json: {

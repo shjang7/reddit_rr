@@ -4,6 +4,7 @@ import {
   GET_LINKS_SUCCESS,
   CREATE_LINK,
   READ_LINK,
+  UPDATE_LINK,
   DELETE_LINK,
   UPVOTE_LINK,
   DOWNVOTE_LINK,
@@ -32,14 +33,26 @@ export const readLink = (id) => async (dispatch) => {
     .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
 };
 
-export const createLinks = (linkData) => async (dispatch) => {
-  return await axios.post('/api/v1/links', { link: linkData })
+export const createLinks = (link) => async (dispatch) => {
+  return await axios.post('/api/v1/links', { link })
     .then(({ data }) => {
       if (!data) throw new Error('connection error');
       if (data.status !== 'created') throw new Error(data.errors || 'failed create');
       return data.location;
     })
     .then(payload => dispatch({ type: CREATE_LINK, payload }))
+    .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
+};
+
+export const updateLinks = (id, link) => async (dispatch) => {
+  console.log('updateLinks', id, link);
+  return await axios.put(`/api/v1/links/${id}`, { id, link })
+    .then(({ data }) => {
+      if (!data) throw new Error('connection error');
+      if (data.status !== 'updated') throw new Error(data.errors || 'failed update');
+      return data.location;
+    })
+    .then(payload => dispatch({ type: UPDATE_LINK, payload }))
     .catch(error => dispatch({ type: EXCEPTION_ERROR, payload: error }));
 };
 
