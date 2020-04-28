@@ -1,11 +1,15 @@
 class LinksController < ApiController
+  before_action :current_user!, except: %i[index show]
+  before_action :authorized_user!, only: %i[update destroy]
   before_action :set_link, except: %i[index create]
-  before_action :authenticate_user!, except: %i[index show]
-  before_action :find_author, only: [:destroy, :update]
-  before_action :authorized_user!, only: [:destroy, :update]
+
+  def show
+    render json: @link, include: { get_upvotes: { only: :voter_id }, get_downvotes: { only: :voter_id } }, status: 200
+  end
 
   def index
-    render json: { location: links_map }
+    @links = Link.all
+    render json: @links.as_json
   end
 
   def create
@@ -13,80 +17,42 @@ class LinksController < ApiController
     connect_https
 
     if @link.save
-      render json: {
-        status: :created,
-        location: link_info,
-      }
+      render json: @link, status: 200
     else
-      render json: {
-        status: :unprocessable_entity,
-        errors: @link.errors.full_messages,
-      }
+      render json: { error: @link.errors.full_messages }, status: 500
     end
   end
 
   def update
     if @link.update(link_params)
       connect_https; @link.save
-      render json: {
-        status: :updated,
-        location: link_info
-      }
+      render json: @link, status: 200
     else
-      render json: {
-        status: :unprocessable_entity,
-        errors: @link.errors.full_messages,
-      }
+      render json: { error: @link.errors.full_messages }, status: 500
     end
   end
 
   def destroy
     if @link.destroy
-      render json: {
-        status: :destroyed,
-      }
+      render json: {}, status: :destroyed
     else
-      render json: {
-        status: :fail,
-        errors: ['failed delete'],
-      }
-    end
-  end
-
-  def show
-    if @link
-      render json: {
-        location: link_info,
-      }
-    else
-      render json: {
-        status: :fail,
-        errors: ['link not found'],
-      }
+      render json: { error: 'failed delete' }, status: 500
     end
   end
 
   def upvote
     if @link.upvote_by current_user
-      render json: {
-        location: votes_info,
-      }
+      render json: @link, include: votes_info, status: 200
     else
-      render json: {
-        status: :fail,
-      }
+      render json: { error: 'failed upvote' }, status: 500
     end
   end
 
   def downvote
     if @link.downvote_by current_user
-      render json: {
-        location: votes_info,
-      }
+      render json: @link, include: votes_info, status: 200
     else
-      render json: {
-        status: :fail,
-      }
+      render json: { error: 'failed downvote' }, status: 500
     end
   end
 
@@ -97,37 +63,31 @@ class LinksController < ApiController
   end
 
   def set_link
-    @link = Link.find(params[:id])
+    @link = Link.find_by(id: params[:id])
+    unless @link
+      render json: { error: 'no link info' }, status: 500
+    end
   end
 
-  def find_author
-    @user = @link.user
-  end
-
-  def votes_info
-    {
-      up: @link.get_upvotes.size,
-      down: @link.get_downvotes.size,
-      weight: @link.weighted_total,
-    }
-  end
-
-  def link_info
-    temp = @link.as_json
-    temp['author'] = @link.user.username
-    temp['votes'] = votes_info
-    return temp
-  end
-
-  def links_map
-    Link.all.map do |link|
-      @link = link
-      link_info
+  def authorized_user!
+    if @user.id != @link.user_id
+      render json: { error: 'unauthorized' }, status: 500
     end
   end
 
   def connect_https
     temp = @link.url
     @link.url = 'https://' + temp unless temp.include?('https://') || temp.include?('http://')
+  end
+
+  def votes_info
+    {
+      get_upvotes: {
+        only: :voter_id
+      },
+      get_downvotes: {
+        only: :voter_id
+      }
+    }
   end
 end
