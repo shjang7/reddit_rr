@@ -1,17 +1,13 @@
 class LoginController < ApiController
+  skip_before_action :authenticate_request
+
   def login
-    @user = User.find_by(username: login_params[:username])
+    command = AuthenticateUser.call(params[:username], params[:password])
 
-    if @user&.authenticate(login_params[:password])
-      render json: @user.as_json(only: :id), status: 200
+    if command.success?
+      render json: { token: command.result }
     else
-      render json: { errors: ['no such user'] }, status: 500
+      render json: { error: command.errors }, status: :unauthorized
     end
-  end
-
-  private
-
-  def login_params
-    params.require(:login).permit(:username, :password)
   end
 end

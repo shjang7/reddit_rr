@@ -21,6 +21,7 @@ Bundler.require(*Rails.groups)
 
 module RedditRr
   class Application < Rails::Application
+    config.autoload_paths << Rails.root.join('lib')
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 

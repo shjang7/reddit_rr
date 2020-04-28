@@ -9,9 +9,8 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: :create
-  post '/profiles', to: 'profiles#index'
-  post '/profiles/:id', to: 'profiles#show'
-  post '/me', to: 'profiles#me'
+  resources :profiles, only: %i[index show]
+  get '/me', to: 'profiles#me'
   post '/login', to: 'login#login'
 
   get '*page', to: 'static#index', constraints: ->(req) do
