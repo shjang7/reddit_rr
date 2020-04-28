@@ -34,7 +34,7 @@ class LinksController < ApiController
 
   def destroy
     if @link.destroy
-      render json: {}, status: :destroyed
+      render json: {}, status: 200
     else
       render json: { error: 'failed delete' }, status: 500
     end

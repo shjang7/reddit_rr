@@ -1,68 +1,44 @@
 class CommentsController < ApiController
-  before_action :authenticate_user!, only: %i[create destroy]
-  before_action :find_comment, only: [:destroy]
-  before_action :find_author, only: [:destroy]
-  before_action :authorized_user!, only: [:destroy]
+  before_action :current_user!, except: :index
+  before_action :find_comment, only: :destroy
+  before_action :authorized_user!, only: :destroy
 
   def index
     @link = Link.find(params[:link_id])
-    @comments = @link.comments
-    render json: { comments: comments_map }
+    render json: @link.comments, status: 200
   end
 
   def create
     @comment = current_user.comments.new(comment_params)
-
+    @comment.link_id = params[:link_id]
     if @comment.save
-      render json: {
-        status: :created,
-        location: comment_info
-      }
+      render json: @comment, status: 200
     else
-      render json: {
-        status: :unprocessable_entity,
-        errors: @comment.errors.full_messages
-      }
+      render json: { error: @comment.errors.full_messages }, status: 500
     end
   end
 
   def destroy
     if @comment.destroy
-      render json: {
-        status: :destroyed
-      }
+      render json: {}, status: 200
     else
-      render json: {
-        status: :fail,
-        errors: ['failed delete']
-      }
+      render json: { error: 'failed delete' }, status: 500
     end
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :link_id)
+    params.require(:comment).permit(:body)
   end
 
   def find_comment
     @comment = Comment.find(params[:id])
   end
 
-  def find_author
-    @user = @comment.user
-  end
-
-  def comment_info
-    temp = @comment.as_json
-    temp['author'] = @comment.user.username
-    return temp
-  end
-
-  def comments_map
-    @comments.map do |comment|
-      @comment = comment
-      comment_info
+  def authorized_user!
+    if @user.id != @comment.user_id
+      render json: { error: 'unauthorized' }, status: 500
     end
   end
 end
