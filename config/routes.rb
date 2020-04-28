@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   end
   resources :users, only: %i[create show index]
   post '/login', to: 'api/v1/sessions#create'
-  delete '/logout', to: 'api/v1/sessions#destroy'
 
   get '*page', to: 'static#index', constraints: ->(req) do
     !req.xhr? && req.format.html?
