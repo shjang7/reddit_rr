@@ -1,4 +1,4 @@
-class Api::V1::LinksController < ApiController
+class LinksController < ApiController
   before_action :set_link, except: %i[index create]
   before_action :authenticate_user!, except: %i[index show]
   before_action :find_author, only: [:destroy, :update]

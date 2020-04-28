@@ -1,4 +1,4 @@
-class Api::V1::CommentsController < ApiController
+class CommentsController < ApiController
   before_action :authenticate_user!, only: %i[create destroy]
   before_action :find_comment, only: [:destroy]
   before_action :find_author, only: [:destroy]
