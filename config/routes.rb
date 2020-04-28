@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: %i[create show index]
-  post '/login', to: 'api/v1/sessions#create'
+  post '/login', to: 'login#login'
 
   get '*page', to: 'static#index', constraints: ->(req) do
     !req.xhr? && req.format.html?
