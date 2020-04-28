@@ -32,6 +32,9 @@ module RedditRr
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    config.consider_all_requests_local = false
+    config.exceptions_app = self.routes
+
     config.middleware.insert_before 0, Rack::Cors do
 			allow do
 				origins 'http://localhost:3001'

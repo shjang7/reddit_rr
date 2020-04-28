@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   end
 
   root 'static#index'
+
+  match '*unmatched', to: 'errors#not_found', via: :all
 end
