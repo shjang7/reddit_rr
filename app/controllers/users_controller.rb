@@ -4,7 +4,7 @@ class UsersController < ApiController
     if @user.save
       render json: @user.as_json(only: :id), status: 200
     else
-      render json: { error: @user.errors.full_messages }, status: 500
+      render json: { errors: @user.errors.full_messages }, status: 500
     end
   end
 

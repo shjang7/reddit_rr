@@ -14,7 +14,7 @@ class CommentsController < ApiController
     if @comment.save
       render json: @comment, status: 200
     else
-      render json: { error: @comment.errors.full_messages }, status: 500
+      render json: { errors: @comment.errors.full_messages }, status: 500
     end
   end
 
@@ -22,7 +22,7 @@ class CommentsController < ApiController
     if @comment.destroy
       render json: {}, status: 200
     else
-      render json: { error: 'failed delete' }, status: 500
+      render json: { errors: ['failed delete'] }, status: 500
     end
   end
 
@@ -38,7 +38,7 @@ class CommentsController < ApiController
 
   def authorized_user!
     if @user.id != @comment.user_id
-      render json: { error: 'unauthorized' }, status: 500
+      render json: { errors: ['unauthorized'] }, status: 500
     end
   end
 end

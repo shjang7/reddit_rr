@@ -10,7 +10,7 @@ class ApiController < ApplicationController
   def current_user!
     @user ||= User.find_by(id: params[:user][:id].to_i)
     unless @user
-      render json: { error: 'no user info' }, status: 500
+      render json: { errors: ['no user info'] }, status: 500
     end
   end
 

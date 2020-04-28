@@ -7,7 +7,7 @@ class ProfilesController < ApiController
     if @users
       render json: user_info, status: 200
     else
-      render json: { error: 'no users found' }, status: 500
+      render json: { errors: ['no users found'] }, status: 500
     end
   end
 
@@ -24,7 +24,7 @@ class ProfilesController < ApiController
   def find_user
     @user = User.find_by(id: params[:id])
     unless @user
-      render json: { error: 'user not found' }, status: 500
+      render json: { errors: ['user not found'] }, status: 500
     end
   end
 

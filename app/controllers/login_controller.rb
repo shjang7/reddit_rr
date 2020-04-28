@@ -5,7 +5,7 @@ class LoginController < ApiController
     if @user&.authenticate(login_params[:password])
       render json: @user.as_json(only: :id), status: 200
     else
-      render json: { error: 'no such user' }, status: 500
+      render json: { errors: ['no such user'] }, status: 500
     end
   end
 

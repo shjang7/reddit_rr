@@ -19,7 +19,7 @@ class LinksController < ApiController
     if @link.save
       render json: @link, status: 200
     else
-      render json: { error: @link.errors.full_messages }, status: 500
+      render json: { errors: @link.errors.full_messages }, status: 500
     end
   end
 
@@ -28,7 +28,7 @@ class LinksController < ApiController
       connect_https; @link.save
       render json: @link, status: 200
     else
-      render json: { error: @link.errors.full_messages }, status: 500
+      render json: { errors: @link.errors.full_messages }, status: 500
     end
   end
 
@@ -36,7 +36,7 @@ class LinksController < ApiController
     if @link.destroy
       render json: {}, status: 200
     else
-      render json: { error: 'failed delete' }, status: 500
+      render json: { errors: ['failed delete'] }, status: 500
     end
   end
 
@@ -44,7 +44,7 @@ class LinksController < ApiController
     if @link.upvote_by current_user
       render json: @link, include: votes_info, status: 200
     else
-      render json: { error: 'failed upvote' }, status: 500
+      render json: { errors: ['failed upvote'] }, status: 500
     end
   end
 
@@ -52,7 +52,7 @@ class LinksController < ApiController
     if @link.downvote_by current_user
       render json: @link, include: votes_info, status: 200
     else
-      render json: { error: 'failed downvote' }, status: 500
+      render json: { errors: ['failed downvote'] }, status: 500
     end
   end
 
@@ -65,13 +65,13 @@ class LinksController < ApiController
   def set_link
     @link = Link.find_by(id: params[:id])
     unless @link
-      render json: { error: 'no link info' }, status: 500
+      render json: { errors: ['no link info'] }, status: 500
     end
   end
 
   def authorized_user!
     if @user.id != @link.user_id
-      render json: { error: 'unauthorized' }, status: 500
+      render json: { errors: ['unauthorized'] }, status: 500
     end
   end
 
