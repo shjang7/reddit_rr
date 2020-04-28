@@ -1,6 +1,5 @@
 class LinksController < ApiController
-  before_action :current_user!, except: %i[index show]
-  before_action :authorized_user!, only: %i[update destroy]
+  # before_action :authorized_user!, only: %i[update destroy]
   before_action :set_link, except: %i[index create]
 
   def show
@@ -69,11 +68,11 @@ class LinksController < ApiController
     end
   end
 
-  def authorized_user!
-    if @user.id != @link.user_id
-      render json: { errors: ['unauthorized'] }, status: 500
-    end
-  end
+  # def authorized_user!
+  #   if @user.id != @link.user_id
+  #     render json: { errors: ['unauthorized'] }, status: 500
+  #   end
+  # end
 
   def connect_https
     temp = @link.url
