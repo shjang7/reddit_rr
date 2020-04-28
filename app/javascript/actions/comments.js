@@ -9,7 +9,7 @@ import {
 
 export const getComments = (link_id) => async (dispatch) => {
   dispatch({ type: GET_COMMENTS_REQUEST });
-  return await axios.get(`/api/v1/links/${link_id}/comments`)
+  return await axios.get(`/links/${link_id}/comments`)
     .then(({ data }) => {
       if (!data || !data.comments) throw new Error('connection error');
       dispatch({ type: GET_COMMENTS_SUCCESS, payload: data.comments });
@@ -18,7 +18,7 @@ export const getComments = (link_id) => async (dispatch) => {
 };
 
 export const createComments = (body, link_id) => async (dispatch) => {
-  return await axios.post(`/api/v1/comments`, { comment: { body, link_id }})
+  return await axios.post(`/comments`, { comment: { body, link_id }})
     .then(({ data }) => {
       if (!data) throw new Error('connection error');
       if (data.status !== 'created') throw new Error(data.errors || 'failed create');
@@ -28,7 +28,7 @@ export const createComments = (body, link_id) => async (dispatch) => {
 };
 
 export const destroyComment = (id) => async (dispatch) => {
-  return await axios.delete(`/api/v1/comments/${id}`, { id })
+  return await axios.delete(`/comments/${id}`, { id })
     .then(({ data }) => {
       if (!data || data.status != 'destroyed') throw new Error(data.errors || 'failed delete');
       dispatch({ type: DELETE_COMMENT, payload: id });

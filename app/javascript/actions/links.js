@@ -13,7 +13,7 @@ import {
 
 export const getLinks = () => async (dispatch) => {
   dispatch({ type: GET_LINKS_REQUEST });
-  return await axios.get(`/api/v1/links`)
+  return await axios.get(`/links`)
     .then(({ data }) => {
       if (!data || !data.location) throw new Error('connection error');
       return data.location;
@@ -23,7 +23,7 @@ export const getLinks = () => async (dispatch) => {
 };
 
 export const readLink = (id) => async (dispatch) => {
-  return await axios.get(`/api/v1/links/${id}`, { id })
+  return await axios.get(`/links/${id}`, { id })
     .then(({ data }) => {
       if (!data) throw new Error('no link data');
       if (!data.location) throw new Error(data.errors || 'fail at loading link');
@@ -34,7 +34,7 @@ export const readLink = (id) => async (dispatch) => {
 };
 
 export const createLinks = (link) => async (dispatch) => {
-  return await axios.post('/api/v1/links', { link })
+  return await axios.post('/links', { link })
     .then(({ data }) => {
       if (!data) throw new Error('connection error');
       if (data.status !== 'created') throw new Error(data.errors || 'failed create');
@@ -46,7 +46,7 @@ export const createLinks = (link) => async (dispatch) => {
 
 export const updateLinks = (id, link) => async (dispatch) => {
   console.log('updateLinks', id, link);
-  return await axios.put(`/api/v1/links/${id}`, { id, link })
+  return await axios.put(`/links/${id}`, { id, link })
     .then(({ data }) => {
       if (!data) throw new Error('connection error');
       if (data.status !== 'updated') throw new Error(data.errors || 'failed update');
@@ -57,7 +57,7 @@ export const updateLinks = (id, link) => async (dispatch) => {
 };
 
 export const destroyLink = (id) => async (dispatch) => {
-  return await axios.delete(`/api/v1/links/${id}`, { id })
+  return await axios.delete(`/links/${id}`, { id })
     .then(({ data }) => {
       if (!data) throw new Error('connection error');
       if (data.status !== 'destroyed') throw new Error(data.errors || 'failed delete');
@@ -68,7 +68,7 @@ export const destroyLink = (id) => async (dispatch) => {
 };
 
 export const upvoteLink = (id) => async (dispatch) => {
-  return await axios.post(`/api/v1/links/${id}/upvote`)
+  return await axios.post(`/links/${id}/upvote`)
   .then(({ data }) => {
     if (!data) throw new Error('connection error');
     if (!data.location) throw new Error(data.errors || 'Vote fail');
@@ -79,7 +79,7 @@ export const upvoteLink = (id) => async (dispatch) => {
 };
 
 export const downvoteLink = (id) => async (dispatch) => {
-  return await axios.post(`/api/v1/links/${id}/downvote`)
+  return await axios.post(`/links/${id}/downvote`)
     .then(({ data }) => {
       if (!data) throw new Error('connection error');
       if (!data.location) throw new Error(data.errors || 'Vote fail');

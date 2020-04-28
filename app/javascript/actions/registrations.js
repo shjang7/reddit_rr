@@ -5,7 +5,7 @@ import {
 } from '../common/variables';
 
 export const createRegistration = (userData) => async (dispatch) => {
-  return await axios.post('/api/v1/users', { user: userData })
+  return await axios.post('/users', { user: userData })
     .then(({ data }) => {
       if (!data) throw new Error('connection error');
       if (data.status !== 'created') throw new Error(data.errors);
