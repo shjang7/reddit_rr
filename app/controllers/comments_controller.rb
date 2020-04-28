@@ -1,5 +1,5 @@
 class CommentsController < ApiController
-  before_action :current_user!, except: :index
+  skip_before_action :authenticate_request, only: :index
   before_action :find_comment, only: :destroy
   before_action :authorized_user!, only: :destroy
 
@@ -37,7 +37,7 @@ class CommentsController < ApiController
   end
 
   def authorized_user!
-    if @user.id != @comment.user_id
+    if current_user.id != @comment.user_id
       render json: { errors: ['unauthorized'] }, status: 500
     end
   end
