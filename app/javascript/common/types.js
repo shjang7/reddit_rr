@@ -16,3 +16,11 @@ export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 export const READ_LINK = 'READ_LINK';
+
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';
+
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';

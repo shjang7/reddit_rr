@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import links from './links_reducer.js';
-import comments from './comments_reducer.js';
-import session from './session_reducer.js';
-import errors from './errors_reducer.js';
+import auth from './auth';
+import alert from './alert';
+import link from './link';
+import comment from './comment';
+import error from './error';
 
 export default combineReducers({
-  links,
-  comments,
-  session,
-  errors
+  auth,
+  alert
+  link,
+  comment,
+  error,
 });
