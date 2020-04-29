@@ -24,35 +24,45 @@ const PostItem = ({
   showActions,
 }) => (
   <div className="post border border-success rounded my-3">
-    <div className="votings">
-      <a type="button" onClick={() => upVote(id)}>
-        <i className="fas fa-long-arrow-alt-up" />{' '}
-        <span>{likes.length || ''}</span>
-      </a>
-      <a type="button" onClick={() => downVote(id)}>
-        <i className="fas fa-long-arrow-alt-down" />{' '}
-        <span>{dislikes.length || ''}</span>
-      </a>
-    </div>
+    {showActions && (
+      <div className="votings">
+        <a type="button" onClick={() => upVote(id)}>
+          <i className="fas fa-long-arrow-alt-up" />{' '}
+          <span>{likes.length || ''}</span>
+        </a>
+        <a type="button" onClick={() => downVote(id)}>
+          <i className="fas fa-long-arrow-alt-down" />{' '}
+          <span>{dislikes.length || ''}</span>
+        </a>
+      </div>
+    )}
     <div className="p-3">
-      <h4>{authorName}</h4>
+      <div>{authorName}</div>
 
       <p className="text-white my-1">{title}</p>
+      <a href={url}>
+        <p className="text-warning my-1">{url}</p>
+      </a>
       <p className="text-white post-date">
         Posted on <Moment format="YYYY/MM/DD">{created_at}</Moment>
       </p>
     </div>
-    <div className="control-buttons">
-      {!auth.loading && auth.user && authorId === auth.user.id && (
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={() => deletePost(id)}
-        >
-          <i className="fas fa-times" />
-        </button>
-      )}
-    </div>
+    {showActions && (
+      <div className="control-buttons">
+        <Link to={`/posts/${id}`} className="btn btn-dark">
+          Discussion {}
+        </Link>
+        {!auth.loading && auth.user && authorId === auth.user.id && (
+          <button
+            type="button"
+            className="btn btn-dark"
+            onClick={() => deletePost(id)}
+          >
+            <i className="fas fa-times" />
+          </button>
+        )}
+      </div>
+    )}
   </div>
 )
 
@@ -76,8 +86,3 @@ export default connect(
   mapStateToProps,
   { upVote, downVote, deletePost },
 )(PostItem)
-
-// <Link to={`/posts/${id}`} className="btn btn-primary">
-//   Discussion{' '}
-//   {}
-// </Link>

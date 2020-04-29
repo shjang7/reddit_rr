@@ -23,7 +23,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  background: #0f9b0f; /* fallback for old browsers */
+  background: $color-bg; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
     var(--dark-color),
@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
     margin-right: 1rem;
-    background: #0f9b0f; /* fallback for old browsers */
+    background: $color-bg; /* fallback for old browsers */
     a {
       padding: 1.5rem 1rem;
       width: 3.5rem;
@@ -51,12 +51,12 @@
       background: #000000; /* fallback for old browsers */
       background: -webkit-linear-gradient(
         to right,
-        #0f9b0f,
+        $color-green,
         var(--dark-color)
       ); /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(
         to right,
-        #0f9b0f,
+        $color-green,
         var(--dark-color)
       ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
