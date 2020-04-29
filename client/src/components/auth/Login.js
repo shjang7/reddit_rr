@@ -34,6 +34,7 @@ const Login = props => {
             maxLength="50"
             value={username}
             onChange={onChange}
+            className="form-control"
             required
           />
         </div>
@@ -45,11 +46,14 @@ const Login = props => {
             minLength="4"
             value={password}
             onChange={onChange}
+            className="form-control"
             required
           />
         </div>
 
-        <button type="submit" className="btn btn-primary" value="Login" />
+        <button type="submit" className="btn btn-primary form-control">
+          Login
+        </button>
       </form>
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>

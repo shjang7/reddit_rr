@@ -1,9 +1,27 @@
 @import 'variables';
 
+ul {
+  list-style: none;
+}
+
 .navbar {
   min-height: 56px;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar a {
+  color: #fff;
+  padding: 0.45rem;
+  margin: 0 0.25rem;
+}
+
+.navbar a:hover {
+  color: var(--primary-color);
 }
 
 .navbar-nav .nav-link {

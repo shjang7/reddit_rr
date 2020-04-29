@@ -39,56 +39,62 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <i className="fas fa-user"></i> Create Your Account
       </p>
       <form className="form" onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="username"
-          minLength="4"
-          maxLength="50"
-          value={username}
-          onChange={onChange}
-          className="form-control"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          maxLength="255"
-          value={email}
-          onChange={onChange}
-          className="form-control"
-          required
-        />
-        <small className="form-text">
-          This site uses Gravatar so if you want a profile image, use a Gravatar
-          email
-        </small>
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          minLength="4"
-          value={password}
-          onChange={onChange}
-          className="form-control"
-          required
-        />
-        <input
-          type="password"
-          name="password2"
-          placeholder="Confirm password"
-          minLength="4"
-          value={password2}
-          onChange={onChange}
-          className="form-control"
-          required
-        />
-        <button
-          type="submit"
-          className="btn btn-primary form-control"
-          value="Register"
-        />
+        <div className="form-group">
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            minLength="4"
+            maxLength="50"
+            value={username}
+            onChange={onChange}
+            className="form-control"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            maxLength="255"
+            value={email}
+            onChange={onChange}
+            className="form-control"
+            required
+          />
+          <small className="form-text">
+            This site uses Gravatar so if you want a profile image, use a
+            Gravatar email
+          </small>
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            minLength="4"
+            value={password}
+            onChange={onChange}
+            className="form-control"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
+            name="password2"
+            placeholder="Confirm password"
+            minLength="4"
+            value={password2}
+            onChange={onChange}
+            className="form-control"
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-primary form-control">
+          Register
+        </button>
       </form>
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
