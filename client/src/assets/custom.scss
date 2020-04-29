@@ -1,57 +1,5 @@
 @import 'variables';
 
-ul {
-  list-style: none;
-}
-
-.navbar {
-  min-height: 56px;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.navbar ul {
-  display: flex;
-}
-
-.navbar a {
-  color: #fff;
-  padding: 0.45rem;
-  margin: 0 0.25rem;
-}
-
-.navbar a:hover {
-  color: var(--primary-color);
-}
-
-.navbar-nav .nav-link {
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
-  color: $color-white;
-  vertical-align: middle;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  padding: 0 0.3rem;
-  &:hover {
-    background-color: $color-gray-darker;
-    text-decoration: none;
-  }
-}
-
-.navbar-dark .navbar-nav .nav-link.disabled {
-  color: $color-gray-lighter;
-}
-
-.collapsing,
-.show {
-  display: flex;
-}
-
-.navbar + * {
-  padding-top: 56px;
-}
-
 .vote {
   span {
     margin: 0 0.3rem;
@@ -61,9 +9,6 @@ ul {
 .lead {
   font: 300 21px/1.4 Georgia, serif;
   margin-bottom: 20px;
-}
-
-.error_message {
 }
 
 .signup,

@@ -22,6 +22,10 @@ html, body, button, input, select, textarea {
   color: $color-base;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
 a:not(.nav-link) {
   &,
   &:hover {
@@ -43,13 +47,6 @@ a.btn-base {
   }
 }
 
-ul.list-style-none {
-  padding-left: 0;
-  li {
-    list-style: none;
-  }
-}
-
 .btn-base {
   background-color: $color-base;
   color: $color-gray-darker;
@@ -58,4 +55,58 @@ ul.list-style-none {
 
 .btn {
   border: 1px solid $color-bg;
+}
+
+.btn-light,
+.bg-light,
+.badge-light,
+.alert-light {
+  background: var(--light-color);
+  color: #333;
+}
+
+.btn-dark,
+.bg-dark,
+.badge-dark,
+.alert-dark {
+  background: var(--dark-color);
+  color: #fff;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+}
+
+.collapsing,
+.show {
+  display: flex;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: .7rem 2rem;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  border-bottom: 1px solid var(--primary-color);
+  opacity: .9;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar a {
+  color: #fff;
+  padding: 0.45rem;
+  margin: 0 0.25rem;
+}
+
+.navbar a:hover {
+  color: var(--primary-color);
 }

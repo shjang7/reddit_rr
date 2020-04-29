@@ -1,9 +1,11 @@
 import {
   REGISTER_SUCCESS,
-  REGISTER_FAILURE,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE,
   USER_LOADED,
+  REGISTER_FAILURE,
+  LOGIN_FAILURE,
+  AUTH_ERROR,
+  LOGOUT,
 } from '../common/types';
 
 const initialState = {
@@ -34,8 +36,8 @@ export default (state = initialState, { type, payload }) => {
       };
     case REGISTER_FAILURE:
     case LOGIN_FAILURE:
-      // case AUTH_ERROR:
-      // case LOGOUT:
+    case AUTH_ERROR:
+    case LOGOUT:
       // case ACCOUNT_DELETED:
       localStorage.removeItem('token');
       return {
