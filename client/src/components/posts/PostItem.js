@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import { connect } from 'react-redux'
-import { upVote, downVote } from '../../actions/post'
+import { upVote, downVote, deletePost } from '../../actions/post'
 
 const PostItem = ({
   upVote,
   downVote,
+  deletePost,
   auth,
   post: {
     id,
@@ -25,10 +26,11 @@ const PostItem = ({
   <div className="post border border-success rounded my-3">
     <div className="votings">
       <a type="button" onClick={() => upVote(id)}>
-        <i class="fas fa-long-arrow-alt-up" /> <span>{likes.length || ''}</span>
+        <i className="fas fa-long-arrow-alt-up" />{' '}
+        <span>{likes.length || ''}</span>
       </a>
       <a type="button" onClick={() => downVote(id)}>
-        <i class="fas fa-long-arrow-alt-down" />{' '}
+        <i className="fas fa-long-arrow-alt-down" />{' '}
         <span>{dislikes.length || ''}</span>
       </a>
     </div>
@@ -42,7 +44,11 @@ const PostItem = ({
     </div>
     <div className="control-buttons">
       {!auth.loading && auth.user && authorId === auth.user.id && (
-        <button type="button" className="btn btn-secondary">
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => deletePost(id)}
+        >
           <i className="fas fa-times" />
         </button>
       )}
@@ -57,6 +63,9 @@ PostItem.defaultProps = {
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  upVote: PropTypes.func.isRequired,
+  downVote: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -65,7 +74,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { upVote, downVote },
+  { upVote, downVote, deletePost },
 )(PostItem)
 
 // <Link to={`/posts/${id}`} className="btn btn-primary">

@@ -1,7 +1,7 @@
 class LinksController < ApiController
   skip_before_action :authenticate_request, only: %i[index show]
-  before_action :authorized_user!, only: %i[update destroy]
   before_action :set_link, except: %i[index create]
+  before_action :authorized_user!, only: %i[update destroy]
 
   def show
     render json: @link, include: links_info, status: 200

@@ -1,4 +1,9 @@
-import { GET_POSTS, POST_ERROR, UPDATE_LIKES } from '../common/types'
+import {
+  GET_POSTS,
+  POST_ERROR,
+  UPDATE_LIKES,
+  DELETE_POST,
+} from '../common/types'
 
 const initialState = {
   posts: [],
@@ -21,6 +26,12 @@ export default (state = initialState, { type, payload }) => {
         posts: state.posts
           .map(post => (post.id === payload.id ? payload : post))
           .sort((a, b) => a.get_upvotes.length > b.get_upvotes.length),
+        loading: false,
+      }
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(post => post.id !== payload),
         loading: false,
       }
     case POST_ERROR:

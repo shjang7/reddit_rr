@@ -3,7 +3,7 @@ import React from 'react'
 const Spinner = () => {
   return (
     <>
-      <h4 class="loading">Loading....</h4>
+      <h4 className="loading">Loading....</h4>
     </>
   )
 }
