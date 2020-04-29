@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import { connect } from 'react-redux'
+import { upVote, downVote } from '../../actions/post'
 
 const PostItem = ({
+  upVote,
+  downVote,
   auth,
   post: {
     id,
@@ -21,12 +24,12 @@ const PostItem = ({
 }) => (
   <div className="post border border-success rounded my-3">
     <div className="votings">
-      <a>
-        <i class="fas fa-long-arrow-alt-up" />{' '}
-        <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+      <a type="button" onClick={() => upVote(id)}>
+        <i class="fas fa-long-arrow-alt-up" /> <span>{likes.length || ''}</span>
       </a>
-      <a>
+      <a type="button" onClick={() => downVote(id)}>
         <i class="fas fa-long-arrow-alt-down" />{' '}
+        <span>{dislikes.length || ''}</span>
       </a>
     </div>
     <div className="p-3">
@@ -62,7 +65,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {},
+  { upVote, downVote },
 )(PostItem)
 
 // <Link to={`/posts/${id}`} className="btn btn-primary">

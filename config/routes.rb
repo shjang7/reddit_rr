@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :links, only: %i[create destroy index show update] do
     resources :comments, only: %i[create destroy index]
     member do
-      post 'upvote', to: 'links#upvote'
-      post 'downvote', to: 'links#downvote'
+      get 'upvote', to: 'links#upvote'
+      get 'downvote', to: 'links#downvote'
     end
   end
   # resources :users, only: :create

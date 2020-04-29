@@ -42,7 +42,7 @@ class LinksController < ApiController
 
   def upvote
     if @link.upvote_by current_user
-      render json: @link, include: votes_info, status: 200
+      render json: @link, include: links_info, status: 200
     else
       render json: { errors: ['failed upvote'] }, status: 500
     end
@@ -50,7 +50,7 @@ class LinksController < ApiController
 
   def downvote
     if @link.downvote_by current_user
-      render json: @link, include: votes_info, status: 200
+      render json: @link, include: links_info, status: 200
     else
       render json: { errors: ['failed downvote'] }, status: 500
     end
@@ -78,17 +78,6 @@ class LinksController < ApiController
   def connect_https
     temp = @link.url
     @link.url = 'https://' + temp unless temp.include?('https://') || temp.include?('http://')
-  end
-
-  def votes_info
-    {
-      get_upvotes: {
-        only: :voter_id
-      },
-      get_downvotes: {
-        only: :voter_id
-      }
-    }
   end
 
   def links_info
