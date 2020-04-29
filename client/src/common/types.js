@@ -1,12 +1,5 @@
-export const GET_LINKS_REQUEST = 'GET_LINKS_REQUEST';
-export const GET_LINKS_SUCCESS = 'GET_LINKS_SUCCESS';
-export const CREATE_LINK = 'CREATE_LINK';
-export const UPDATE_LINK = 'UPDATE_LINK';
-export const DELETE_LINK = 'DELETE_LINK';
 export const UPVOTE_LINK = 'UPVOTE_LINK';
-export const READ_LINK = 'READ_LINK';
 export const DOWNVOTE_LINK = 'DOWNVOTE_LINK';
-export const EXCEPTION_ERROR = 'EXCEPTION_ERROR';
 
 export const GET_COMMENTS_REQUEST = 'GET_COMMENTS_REQUEST';
 export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
@@ -29,3 +22,6 @@ export const LOGOUT = 'LOGOUT';
 
 export const GET_POSTS = 'GET_POSTS';
 export const POST_ERROR = 'POST_ERROR';
+
+export const GET_PROFILE = 'GET_PROFILE';
+export const PROFILE_ERROR = 'PROFILE_ERROR';

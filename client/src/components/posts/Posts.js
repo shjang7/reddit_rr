@@ -20,7 +20,7 @@ const Posts = ({ getPosts, post: { posts, loading }}) => {
         Welcome to the community
       </p>
       {/* PostForm ? */}
-      {posts.map(post => (
+      {posts && posts.map(post => (
         <PostItem key={post.id} post={post} />
       ))}
     </>
