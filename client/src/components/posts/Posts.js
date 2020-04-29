@@ -25,9 +25,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     </>
   )
 }
-// <div className="posts">
-//   {posts.map(post => console.log(post))}
-// </div>
+
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,

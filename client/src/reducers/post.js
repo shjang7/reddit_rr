@@ -5,6 +5,8 @@ import {
   UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
 } from '../common/types'
 
 const initialState = {
@@ -40,6 +42,23 @@ export default (state = initialState, { type, payload }) => {
         posts: state.posts
           .map(post => (post.id === payload.id ? payload : post))
           .sort((a, b) => a.get_upvotes.length > b.get_upvotes.length),
+        loading: false,
+      }
+    case ADD_COMMENT:
+      return {
+        ...state,
+        post: { ...state.post, comments: [payload, ...state.post.comments] },
+        loading: false,
+      }
+    case REMOVE_COMMENT:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post.comments.filter(
+            comment => comment.id !== payload,
+          ),
+        },
         loading: false,
       }
     case DELETE_POST:

@@ -5,14 +5,14 @@ class CommentsController < ApiController
 
   def index
     @link = Link.find(params[:link_id])
-    render json: @link.comments, status: 200
+    render json: @link.comments, include: associated_infos, status: 200
   end
 
   def create
     @comment = current_user.comments.new(comment_params)
     @comment.link_id = params[:link_id]
     if @comment.save
-      render json: @comment, status: 200
+      render json: @comment, include: associated_infos, status: 200
     else
       render json: { errors: @comment.errors.full_messages }, status: 500
     end
@@ -40,5 +40,9 @@ class CommentsController < ApiController
     if current_user.id != @comment.user_id
       render json: { errors: ['unauthorized'] }, status: 500
     end
+  end
+
+  def associated_infos
+    { user: { only: :username }}
   end
 end

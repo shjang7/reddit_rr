@@ -20,6 +20,7 @@ const PostItem = ({
     user: { username: authorName },
     get_upvotes: likes,
     get_downvotes: dislikes,
+    comments,
   },
   showActions,
 }) => (
@@ -50,7 +51,10 @@ const PostItem = ({
     {showActions && (
       <div className="control-buttons">
         <Link to={`/posts/${id}`} className="btn btn-dark">
-          Discussion {}
+          Discussion{' '}
+          {comments.length > 0 && (
+            <span className="comment-count">{comments.length}</span>
+          )}
         </Link>
         {!auth.loading && auth.user && authorId === auth.user.id && (
           <button
