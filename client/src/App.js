@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
+import setAuthToken from './common/setAuthToken';
 // import PrivateRoute from './components/routing/PrivateRoute';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
@@ -19,7 +20,15 @@ import NotFound from './components/layouts/not_found';
 
 import './assets/application.scss';
 
+if (localStorage.toekn) {
+  setAuthToken(localStorage.token);
+}
+
 const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>
@@ -40,22 +49,8 @@ const App = () => {
   );
 };
 
-// return (
-//   <Provider store={ store }>
-//     <div id="main_content" className="container">
-//       <Router>
-//         <>
-//           <Navigation />
-//           <Switch>
 //             <Route exact path="/" render={ props => <LinksList {...props} /> } />
 //             <Route exact path="/links/new" render={ props => <NewLinks {...props} /> } />
 //             <Route exact path="/links/edit/:id" render={ props => <EditLinks {...props} /> } />
 //             <Route exact path="/links/:id" render={ props => <ShowLink {...props} /> } />
-//             <Route exact path="/login" render={ props => <Login {...props} /> } />
-//           </Switch>
-//         </>
-//       </Router>
-//     </div>
-//   </Provider>
-// );
 export default App;
