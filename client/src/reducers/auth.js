@@ -1,8 +1,8 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
-  AUTH_SUCCESS,
-  AUTH_FAILURE,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
   USER_LOADED,
 } from '../common/types';
 
@@ -23,7 +23,7 @@ export default (state = initialState, { type, payload }) => {
         user: payload,
       };
     case REGISTER_SUCCESS:
-    case AUTH_SUCCESS:
+    case LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token);
       return {
         ...state,
@@ -33,7 +33,7 @@ export default (state = initialState, { type, payload }) => {
         user: payload,
       };
     case REGISTER_FAILURE:
-    case AUTH_FAILURE:
+    case LOGIN_FAILURE:
       // case AUTH_ERROR:
       // case LOGOUT:
       // case ACCOUNT_DELETED:
