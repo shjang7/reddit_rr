@@ -1,5 +1,4 @@
 export * from './alert';
-export * from './comment';
-export * from './link';
 export * from './auth';
-export * from './session';
+export * from './post';
+export * from './comment';

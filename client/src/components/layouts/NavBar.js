@@ -8,12 +8,20 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <a onClick={logout} href="#!">Logout</a>
+        <Link to="/posts">Posts</Link>
+      </li>
+      <li>
+        <a onClick={logout} href="#!">
+          Logout
+        </a>
       </li>
     </ul>
-  )
+  );
   const guestLinks = (
     <ul>
+      <li>
+        <Link to="/posts">Posts</Link>
+      </li>
       <li>
         <Link to="/register">Register</Link>
       </li>
@@ -21,7 +29,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link to="/login">Login</Link>
       </li>
     </ul>
-  )
+  );
   return (
     <nav className="navbar bg-dark">
       <h1>
@@ -29,7 +37,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <i className="fab fa-gg-circle" /> Reddit RR
         </Link>
       </h1>
-      { !loading && (<>{ isAuthenticated ? authLinks : guestLinks }</>) }
+      {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}
     </nav>
   );
 };
@@ -43,4 +51,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout })(NavBar);
+export default connect(
+  mapStateToProps,
+  { logout },
+)(NavBar);

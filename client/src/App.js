@@ -10,6 +10,7 @@ import Login from './components/auth/Login';
 import NavBar from './components/layouts/NavBar';
 import Alert from './components/layouts/Alert';
 import Dashboard from './components/dashboard/Dashboard';
+import Posts from './components/posts/Posts';
 import NotFound from './components/layouts/not_found';
 // import LinksList from './container/links/links_list';
 // import Navigation from './container/layouts/navigation';
@@ -39,6 +40,7 @@ const App = () => {
             <Switch>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/posts" component={Posts} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <Route component={NotFound} />
             </Switch>
