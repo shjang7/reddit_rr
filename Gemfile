@@ -13,10 +13,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
-gem 'react-rails', '~> 2.6', '>= 2.6.1'
-gem 'sass-rails', '>= 6'
 gem 'simple_command', '~> 0.1.0'
-gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.9'

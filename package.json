@@ -2,7 +2,6 @@
   "name": "reddit_rr",
   "private": true,
   "scripts": {
-    "start:dev": "./bin/webpack-dev-server",
     "server": "rails s",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
