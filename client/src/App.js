@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navigation from './container/layouts/navigation';
-import configureStore from './configure_store';
+import store from './store';
 import LinksList from './container/links/links_list';
 import ShowLink from './container/links/show_link';
 import { Provider } from 'react-redux';
@@ -13,7 +13,7 @@ import Error from './container/layouts/error';
 import NotFound from './components/layouts/not_found';
 import { loadUser } from './actions/auth';
 
-const store = configureStore();
+import './assets/application.scss';
 
 const App = () => {
   const element = <h1>Hello, world</h1>;
