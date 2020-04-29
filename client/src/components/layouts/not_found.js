@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-const NotFound = (props) => {
+const NotFound = () => {
   return (
     <div class="not_found">
       <h1 class="not_found__title">404 Error</h1>
