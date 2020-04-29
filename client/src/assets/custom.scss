@@ -7,14 +7,14 @@
 }
 
 .navbar-nav .nav-link {
-  padding-left: .3rem;
-  padding-right: .3rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
   color: $color-white;
   vertical-align: middle;
   height: 56px;
   display: flex;
   align-items: center;
-  padding: 0 .3rem;
+  padding: 0 0.3rem;
   &:hover {
     background-color: $color-gray-darker;
     text-decoration: none;
@@ -36,7 +36,7 @@
 
 .vote {
   span {
-    margin: 0 .3rem;
+    margin: 0 0.3rem;
   }
 }
 
@@ -56,7 +56,7 @@
   }
   input,
   button {
-    margin-top: .6rem;
+    margin-top: 0.6rem;
   }
 }
 
@@ -87,8 +87,8 @@ li.link {
 
 .sample-account {
   border: 1px solid $color-gray;
-  padding: .3rem 1.25rem .3rem 1.25rem;
-  border-radius: .3rem;
+  padding: 0.3rem 1.25rem 0.3rem 1.25rem;
+  border-radius: 0.3rem;
   display: inline-block;
   margin: 0.3rem 0;
 }

@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import store from './store';
 import { Provider } from 'react-redux';
 import { loadUser } from './actions/auth';
-import NotFound from './components/layouts/not_found';
+// import PrivateRoute from './components/routing/PrivateRoute';
 import Register from './components/auth/Register';
+import NavBar from './components/layouts/NavBar';
+import Dashboard from './components/dashboard/Dashboard';
+import NotFound from './components/layouts/not_found';
 // import LinksList from './container/links/links_list';
 // import Navigation from './container/layouts/navigation';
 // import ShowLink from './container/links/show_link';
@@ -17,13 +20,14 @@ import './assets/application.scss';
 
 const App = () => {
   return (
-    <Provider store={ store }>
+    <Provider store={store}>
       <Router>
         <>
+          <NavBar />
           <section id="main_content" className="container">
             <Switch>
               <Route exact path="/register" component={Register} />
-              <Route exact path="/register" component={Register} />
+              <Route exact path="/dashboard" component={Dashboard} />
               <Route component={NotFound} />
             </Switch>
           </section>
@@ -31,8 +35,7 @@ const App = () => {
       </Router>
     </Provider>
   );
-}
-
+};
 
 // return (
 //   <Provider store={ store }>
