@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import store from './store';
 import { Provider } from 'react-redux';
+import store from './store';
 import { loadUser } from './actions/auth';
 // import PrivateRoute from './components/routing/PrivateRoute';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import NavBar from './components/layouts/NavBar';
+import Alert from './components/layouts/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import NotFound from './components/layouts/not_found';
 // import LinksList from './container/links/links_list';
@@ -15,7 +16,6 @@ import NotFound from './components/layouts/not_found';
 // import Login from './container/sessions/login';
 // import NewLinks from './container/links/new_links';
 // import EditLinks from './container/links/edit_links';
-// import Error from './container/layouts/error';
 
 import './assets/application.scss';
 
@@ -25,7 +25,8 @@ const App = () => {
       <Router>
         <>
           <NavBar />
-          <section id="main_content" className="container">
+          <section className="container">
+            <Alert />
             <Switch>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
