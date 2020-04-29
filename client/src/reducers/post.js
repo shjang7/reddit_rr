@@ -3,6 +3,7 @@ import {
   POST_ERROR,
   UPDATE_LIKES,
   DELETE_POST,
+  ADD_POST,
 } from '../common/types'
 
 const initialState = {
@@ -18,6 +19,12 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         posts: payload,
+        loading: false,
+      }
+    case ADD_POST:
+      return {
+        ...state,
+        posts: [payload, ...state.posts],
         loading: false,
       }
     case UPDATE_LIKES:

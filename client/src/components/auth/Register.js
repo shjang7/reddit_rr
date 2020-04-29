@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { register } from '../../actions/auth';
-import { setAlert } from '../../actions/alert';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { register } from '../../actions/auth'
+import { setAlert } from '../../actions/alert'
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -11,25 +11,24 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     email: '',
     password: '',
     password2: '',
-  });
+  })
 
-  const { username, email, password, password2 } = formData;
+  const { username, email, password, password2 } = formData
 
   const onChange = ({ target: { name, value } }) =>
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value })
 
   const onSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     if (password !== password2) {
-      setAlert('Passwords do not match', 'danger');
+      setAlert('Passwords do not match', 'danger')
     } else {
-      console.log('Success!');
-      register({ username, email, password });
+      register({ username, email, password })
     }
-  };
+  }
 
   if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/dashboard" />
   }
 
   return (
@@ -100,20 +99,20 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </>
-  );
-};
+  )
+}
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
-};
+}
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-});
+})
 
 export default connect(
   mapStateToProps,
   { setAlert, register },
-)(Register);
+)(Register)

@@ -17,7 +17,7 @@ class LinksController < ApiController
     connect_https
 
     if @link.save
-      render json: @link, status: 200
+      render json: @link, include: links_info, status: 200
     else
       render json: { errors: @link.errors.full_messages }, status: 500
     end
@@ -26,7 +26,7 @@ class LinksController < ApiController
   def update
     if @link.update(link_params)
       connect_https; @link.save
-      render json: @link, status: 200
+      render json: @link, include: links_info, status: 200
     else
       render json: { errors: @link.errors.full_messages }, status: 500
     end

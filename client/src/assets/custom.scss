@@ -11,6 +11,12 @@
   margin-bottom: 20px;
 }
 
+.post-form {
+  input[type='text'] {
+    background-color: $color-base;
+  }
+}
+
 .post {
   position: relative;
   display: flex;
