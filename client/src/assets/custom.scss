@@ -1,12 +1,5 @@
 @import 'variables';
 
-#spinner {
-  margin: auto;
-  width: 15px;
-  height: 15px;
-  background-image: url('http://i.imgur.com/Rclk1Sf.png');
-}
-
 .vote {
   span {
     margin: 0 0.3rem;
@@ -61,4 +54,9 @@ li.link {
   border-radius: 0.3rem;
   display: inline-block;
   margin: 0.3rem 0;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 20%;
 }

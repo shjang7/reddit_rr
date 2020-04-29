@@ -4,12 +4,12 @@ class LinksController < ApiController
   before_action :set_link, except: %i[index create]
 
   def show
-    render json: @link, include: { get_upvotes: { only: :voter_id }, get_downvotes: { only: :voter_id } }, status: 200
+    render json: @link, include: votes_info, status: 200
   end
 
   def index
     @links = Link.all
-    render json: @links.as_json
+    render json: @links, include: votes_info, status: 200
   end
 
   def create
