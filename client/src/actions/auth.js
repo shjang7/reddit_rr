@@ -9,17 +9,17 @@ import {
 } from '../common/types';
 
 // Register User
-export const register = ({ username, email, password }) => async (dispatch) => {
+export const register = ({ username, email, password }) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
 
-  const body = JSON.stringify({ user: { username, email, password }});
+  const body = JSON.stringify({ user: { username, email, password } });
 
   try {
-    const res = await axios.post('/users', body, config);
+    const res = await axios.post('/signup', body, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -27,6 +27,7 @@ export const register = ({ username, email, password }) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (err) {
+    console.error(err);
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));

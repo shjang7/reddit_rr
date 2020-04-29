@@ -10,25 +10,26 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     username: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
   });
 
   const { username, email, password, password2 } = formData;
 
-  const onChange = ({ target: { name, value }}) =>
+  const onChange = ({ target: { name, value } }) =>
     setFormData({ ...formData, [name]: value });
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
+      console.log('Success!');
       register({ username, email, password });
     }
-  }
+  };
 
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />
+    return <Redirect to="/dashboard" />;
   }
 
   return (
@@ -37,31 +38,73 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
       <p className="lead">
         <i className="fas fa-user"></i> Create Your Account
       </p>
-      <form className="form" onSubmit={ onSubmit }>
-        <input type="text" name="username" placeholder="username" minLength="4" maxLength="50" value={ username } onChange={ onChange } className="form-control" required />
-        <input type="email" name="email" placeholder="Email Address" maxLength="255" value={ email } onChange={ onChange } className="form-control" required />
+      <form className="form" onSubmit={onSubmit}>
+        <input
+          type="text"
+          name="username"
+          placeholder="username"
+          minLength="4"
+          maxLength="50"
+          value={username}
+          onChange={onChange}
+          className="form-control"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          maxLength="255"
+          value={email}
+          onChange={onChange}
+          className="form-control"
+          required
+        />
         <small className="form-text">
-          This site uses Gravatar so if you want a profile image, use a
-          Gravatar email
+          This site uses Gravatar so if you want a profile image, use a Gravatar
+          email
         </small>
-        <input type="password" name="password" placeholder="Password" minLength="4" value={ password } onChange={ onChange } className="form-control" required />
-        <input type="password" name="password2" placeholder="Confirm password" minLength="4" value={ password2 } onChange={ onChange } className="form-control" required />
-        <button type="submit" className="btn btn-primary form-control" value="Register" />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          minLength="4"
+          value={password}
+          onChange={onChange}
+          className="form-control"
+          required
+        />
+        <input
+          type="password"
+          name="password2"
+          placeholder="Confirm password"
+          minLength="4"
+          value={password2}
+          onChange={onChange}
+          className="form-control"
+          required
+        />
+        <button
+          type="submit"
+          className="btn btn-primary form-control"
+          value="Register"
+        />
       </form>
-
     </>
   );
-}
-
+};
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
-}
+  isAuthenticated: PropTypes.bool,
+};
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { setAlert, register })(Register);
+export default connect(
+  mapStateToProps,
+  { setAlert, register },
+)(Register);
