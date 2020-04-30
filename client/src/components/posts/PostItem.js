@@ -48,7 +48,7 @@ const PostItem = ({
         Posted on <Moment format="YYYY/MM/DD">{created_at}</Moment>
       </p>
     </div>
-    {showActions && (
+    {showActions ? (
       <div className="control-buttons">
         <Link to={`/posts/${id}`} className="btn btn-dark">
           Discussion{' '}
@@ -59,7 +59,7 @@ const PostItem = ({
         {!auth.loading && auth.user && authorId === auth.user.id && (
           <>
             <Link to={`/posts/${id}/edit`} className="btn btn-dark">
-              <i class="fab fa-elementor" />
+              <i className="fab fa-elementor" />
             </Link>
             <button
               type="button"
@@ -70,6 +70,13 @@ const PostItem = ({
             </button>
           </>
         )}
+      </div>
+    ) : (
+      <div className="control-buttons">
+        <i className="fas fa-thumbs-up" />
+        <span className="mx-3">{likes.length}</span>
+        <i className="fas fa-thumbs-down" />
+        <span className="mx-3">{dislikes.length}</span>
       </div>
     )}
   </div>
