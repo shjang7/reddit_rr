@@ -63,6 +63,7 @@ const PostCreate = ({ auth: { loading, user }, addPost }) => {
 
 PostCreate.propTypes = {
   addPost: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
