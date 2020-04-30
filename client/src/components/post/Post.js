@@ -17,7 +17,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     <Spinner />
   ) : (
     <>
-      <Link to="/posts" className="btn btn-dark">
+      <Link to="/" className="btn btn-dark">
         Back To Posts
       </Link>
       <PostItem post={post} showActions={false} />

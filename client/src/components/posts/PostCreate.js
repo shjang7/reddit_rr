@@ -24,18 +24,17 @@ const PostCreate = ({ auth: { loading, user }, addPost }) => {
     !loading &&
     user && (
       <div className="post-form">
+        {console.log(loading, user)}
         <h5>Upload a url...</h5>
         <form className="form my-1" onSubmit={onSubmit}>
           <div className="form-group">
-            <input
-              type="text"
+            <textarea
               name="title"
               placeholder="Write a title"
               value={title}
               onChange={onChange}
               className="form-control"
-              required
-            />
+            ></textarea>
           </div>
           <div className="form-group">
             <input
@@ -45,7 +44,6 @@ const PostCreate = ({ auth: { loading, user }, addPost }) => {
               value={url}
               onChange={onChange}
               className="form-control"
-              required
             />
           </div>
           <div className="form-group">

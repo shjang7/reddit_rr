@@ -22,10 +22,10 @@ export const getPosts = () => async dispatch => {
       payload: res.data,
     })
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    dispatch({ type: POST_ERROR })
+    dispatch(
+      setAlert(err.response.data.errors || err.response.statusText, 'danger'),
+    )
   }
 }
 
@@ -39,10 +39,10 @@ export const upVote = id => async dispatch => {
       payload: res.data,
     })
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    dispatch({ type: POST_ERROR })
+    dispatch(
+      setAlert(err.response.data.errors || err.response.statusText, 'danger'),
+    )
   }
 }
 
@@ -56,10 +56,10 @@ export const downVote = id => async dispatch => {
       payload: res.data,
     })
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    dispatch({ type: POST_ERROR })
+    dispatch(
+      setAlert(err.response.data.errors || err.response.statusText, 'danger'),
+    )
   }
 }
 
@@ -75,11 +75,10 @@ export const deletePost = id => async dispatch => {
 
     dispatch(setAlert('Post Removed', 'alert'))
   } catch (err) {
-    console.error(err)
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    dispatch({ type: POST_ERROR })
+    dispatch(
+      setAlert(err.response.data.errors || err.response.statusText, 'danger'),
+    )
   }
 }
 
@@ -101,14 +100,14 @@ export const addPost = formData => async dispatch => {
 
     dispatch(setAlert('Post Created', 'success'))
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    dispatch({ type: POST_ERROR })
+    dispatch(
+      setAlert(err.response.data.errors || err.response.statusText, 'danger'),
+    )
   }
 }
 
-// Add post
+// Update post
 export const updatePost = (id, formData, history = null) => async dispatch => {
   const config = {
     headers: {
@@ -130,10 +129,10 @@ export const updatePost = (id, formData, history = null) => async dispatch => {
       history.push('/')
     }
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    dispatch({ type: POST_ERROR })
+    dispatch(
+      setAlert(err.response.data.errors || err.response.statusText, 'danger'),
+    )
   }
 }
 
@@ -147,10 +146,10 @@ export const getPost = id => async dispatch => {
       payload: res.data,
     })
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    dispatch({ type: POST_ERROR })
+    dispatch(
+      setAlert(err.response.data.errors || err.response.statusText, 'danger'),
+    )
   }
 }
 
@@ -176,10 +175,10 @@ export const addComment = (postId, formData) => async dispatch => {
 
     dispatch(setAlert('Comment Added', 'success'))
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    dispatch({ type: POST_ERROR })
+    dispatch(
+      setAlert(err.response.data.errors || err.response.statusText, 'danger'),
+    )
   }
 }
 
@@ -195,9 +194,9 @@ export const deleteComment = (postId, commentId) => async dispatch => {
 
     dispatch(setAlert('Comment Removed', 'success'))
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    dispatch({ type: POST_ERROR })
+    dispatch(
+      setAlert(err.response.data.errors || err.response.statusText, 'danger'),
+    )
   }
 }

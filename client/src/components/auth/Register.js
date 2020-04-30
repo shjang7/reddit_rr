@@ -48,7 +48,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={username}
             onChange={onChange}
             className="form-control"
-            required
           />
         </div>
         <div className="form-group">
@@ -60,7 +59,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={email}
             onChange={onChange}
             className="form-control"
-            required
           />
         </div>
         <div className="form-group">
@@ -72,7 +70,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={password}
             onChange={onChange}
             className="form-control"
-            required
           />
         </div>
         <div className="form-group">
@@ -84,7 +81,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={password2}
             onChange={onChange}
             className="form-control"
-            required
           />
         </div>
         <button type="submit" className="btn btn-primary form-control">

@@ -27,7 +27,6 @@ const CommentForm = ({ auth: { loading, user }, postId, addComment }) => {
               value={text}
               onChange={e => setText(e.target.value)}
               className="form-control"
-              required
             />
           </div>
           <div className="form-group">

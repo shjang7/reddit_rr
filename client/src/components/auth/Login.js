@@ -41,7 +41,6 @@ const Login = ({ login, isAuthenticated }) => {
             value={username}
             onChange={onChange}
             className="form-control"
-            required
           />
         </div>
         <div className="form-group">
@@ -53,7 +52,6 @@ const Login = ({ login, isAuthenticated }) => {
             value={password}
             onChange={onChange}
             className="form-control"
-            required
           />
         </div>
 

@@ -57,7 +57,6 @@ const PostEdit = ({
               value={title}
               onChange={onChange}
               className="form-control"
-              required
             />
           </div>
           <div className="form-group">
@@ -68,7 +67,6 @@ const PostEdit = ({
               value={url}
               onChange={onChange}
               className="form-control"
-              required
             />
           </div>
           <div className="form-group">

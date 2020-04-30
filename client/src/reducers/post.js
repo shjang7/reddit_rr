@@ -14,7 +14,6 @@ const initialState = {
   posts: [],
   post: null,
   loading: true,
-  error: {},
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -72,7 +71,6 @@ export default (state = initialState, { type, payload }) => {
     case POST_ERROR:
       return {
         ...state,
-        error: payload,
         loading: false,
       }
     default:
