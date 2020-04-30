@@ -28,7 +28,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   }
 
   if (isAuthenticated) {
-    return <Redirect to="/dashboard" />
+    return <Redirect to="/" />
   }
 
   return (
@@ -62,10 +62,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             className="form-control"
             required
           />
-          <small className="form-text">
-            This site uses Gravatar so if you want a profile image, use a
-            Gravatar email
-          </small>
         </div>
         <div className="form-group">
           <input
