@@ -14,7 +14,6 @@ class LinksController < ApiController
 
   def create
     @link = current_user.links.build(link_params)
-    connect_https
 
     if @link.save
       render json: @link, include: associated_infos, status: 200
@@ -25,7 +24,6 @@ class LinksController < ApiController
 
   def update
     if @link.update(link_params)
-      connect_https; @link.save
       render json: @link, include: associated_infos, status: 200
     else
       render json: { errors: @link.errors.full_messages }, status: 500
@@ -73,11 +71,6 @@ class LinksController < ApiController
     if current_user.id != @link.user_id
       render json: { errors: ['unauthorized'] }, status: 500
     end
-  end
-
-  def connect_https
-    temp = @link.url
-    @link.url = 'https://' + temp unless temp.include?('https://') || temp.include?('http://')
   end
 
   def associated_infos

@@ -31,7 +31,7 @@ button,
 input,
 select,
 textarea {
-  font-family: $typographic-font-family;
+  font-family: $typographic-font-family-montserrat;
   color: $color-base;
 }
 
@@ -93,6 +93,11 @@ a.btn-base {
 .alert-dark {
   background: var(--dark-color);
   color: #fff;
+}
+
+.alert-alert {
+  background-color: var(--light-color);
+  color: #000;
 }
 
 ul {

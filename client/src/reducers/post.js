@@ -40,9 +40,9 @@ export default (state = initialState, { type, payload }) => {
     case UPDATE_LIKES:
       return {
         ...state,
-        posts: state.posts
-          .map(post => (post.id === payload.id ? payload : post))
-          .sort((a, b) => a.get_upvotes.length > b.get_upvotes.length),
+        posts: state.posts.map(post =>
+          post.id === payload.id ? payload : post,
+        ),
         loading: false,
       }
     case ADD_COMMENT:

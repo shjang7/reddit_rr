@@ -7,7 +7,7 @@
 }
 
 .lead {
-  font: 300 21px/1.4 Georgia, serif;
+  font: 300 21px/1.4 $typographic-font-family-montserrat;
   margin-bottom: 20px;
 }
 
@@ -46,6 +46,7 @@
     flex-direction: column;
     margin-right: 1rem;
     background: $color-bg; /* fallback for old browsers */
+    font-family: $typographic-font-family-barlow;
     a {
       padding: 1.5rem 1rem;
       width: 3.5rem;
@@ -63,6 +64,9 @@
         $color-green,
         var(--dark-color)
       ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      & i {
+        margin-right: 0.3rem;
+      }
     }
   }
   .votings + div {

@@ -5,6 +5,9 @@ import Moment from 'react-moment'
 import { connect } from 'react-redux'
 import { upVote, downVote, deletePost } from '../../actions/post'
 
+const connect_https = url =>
+  url.includes('https://') || url.includes('http://') ? url : `https://${url}`
+
 const PostItem = ({
   upVote,
   downVote,
@@ -28,11 +31,11 @@ const PostItem = ({
     {showActions && (
       <div className="votings">
         <a type="button" onClick={() => upVote(id)}>
-          <i className="fas fa-long-arrow-alt-up" />{' '}
+          <i className="fas fa-long-arrow-alt-up" />
           <span>{likes.length || ''}</span>
         </a>
         <a type="button" onClick={() => downVote(id)}>
-          <i className="fas fa-long-arrow-alt-down" />{' '}
+          <i className="fas fa-long-arrow-alt-down" />
           <span>{dislikes.length || ''}</span>
         </a>
       </div>
@@ -41,8 +44,8 @@ const PostItem = ({
       <div>{authorName}</div>
 
       <p className="text-white my-1">{title}</p>
-      <a href={url}>
-        <p className="text-warning my-1">{url}</p>
+      <a href={connect_https(url)}>
+        <p className="text-warning my-1">{connect_https(url)}</p>
       </a>
       <p className="text-white post-date">
         Posted on <Moment format="YYYY/MM/DD">{created_at}</Moment>
