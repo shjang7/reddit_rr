@@ -6,14 +6,14 @@ import {
   LOGIN_FAILURE,
   AUTH_ERROR,
   LOGOUT,
-} from '../common/types';
+} from '../common/types'
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
   user: null,
-};
+}
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -23,31 +23,31 @@ export default (state = initialState, { type, payload }) => {
         isAuthenticated: true,
         loading: false,
         user: payload,
-      };
+      }
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      localStorage.setItem('token', payload.token);
+      localStorage.setItem('token', payload.token)
       return {
         ...state,
         ...payload,
         isAuthenticated: true,
         loading: false,
         user: payload,
-      };
+      }
     case REGISTER_FAILURE:
     case LOGIN_FAILURE:
     case AUTH_ERROR:
     case LOGOUT:
       // case ACCOUNT_DELETED:
-      localStorage.removeItem('token');
+      localStorage.removeItem('token')
       return {
         ...state,
         token: null,
         isAuthenticated: false,
         loading: false,
         user: null,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
