@@ -4,12 +4,13 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { loadUser } from './actions/auth'
 import setAuthToken from './common/setAuthToken'
-// import PrivateRoute from './components/routing/PrivateRoute'
+import PrivateRoute from './components/routing/PrivateRoute'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import NavBar from './components/layouts/NavBar'
 import Alert from './components/layouts/Alert'
 import Posts from './components/posts/Posts'
+import PostEdit from './components/posts/PostEdit'
 import Post from './components/post/Post'
 import NotFound from './components/layouts/NotFound'
 
@@ -19,8 +20,8 @@ const App = () => {
   useEffect(() => {
     if (localStorage.token) {
       setAuthToken(localStorage.token)
-      store.dispatch(loadUser())
     }
+    store.dispatch(loadUser())
   }, [])
 
   return (
@@ -36,6 +37,7 @@ const App = () => {
               <Route exact path="/" component={Posts} />
               <Route exact path="/posts" component={Posts} />
               <Route exact path="/posts/:id" component={Post} />
+              <PrivateRoute exact path="/posts/:id/edit" component={PostEdit} />
               <Route component={NotFound} />
             </Switch>
           </section>
@@ -44,6 +46,5 @@ const App = () => {
     </Provider>
   )
 }
-// <PrivateRoute exact path="/posts/:id/edit" component={Dashboard} />
 
 export default App

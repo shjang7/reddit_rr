@@ -83,7 +83,7 @@ export const deletePost = id => async dispatch => {
 }
 
 // Add post
-export const addPost = formData => async dispatch => {
+export const addPost = (formData, history = null) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -99,6 +99,10 @@ export const addPost = formData => async dispatch => {
     })
 
     dispatch(setAlert('Post Created', 'success'))
+
+    if (history) {
+      history.push('/')
+    }
   } catch (err) {
     dispatch({
       type: POST_ERROR,
