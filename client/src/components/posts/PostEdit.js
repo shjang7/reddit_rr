@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { addPost, getPost } from '../../actions/post'
+import { updatePost, getPost } from '../../actions/post'
 import { Link } from 'react-router-dom'
 
-const PostEdit = ({ post: { post, loading }, addPost, getPost, history }) => {
+const PostEdit = ({
+  post: { post, loading },
+  updatePost,
+  getPost,
+  history,
+  match,
+}) => {
   const [formData, setFormData] = useState({
     title: '',
     url: '',
   })
 
   useEffect(() => {
-    getPost()
+    getPost(match.params.id)
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(() => {
     if (!loading && post) {
       setFormData({
         title: post.title,
@@ -19,7 +29,7 @@ const PostEdit = ({ post: { post, loading }, addPost, getPost, history }) => {
       })
     }
     // eslint-disable-next-line
-  }, [loading, getPost])
+  }, [loading, post])
 
   const { title, url } = formData
 
@@ -28,7 +38,7 @@ const PostEdit = ({ post: { post, loading }, addPost, getPost, history }) => {
 
   const onSubmit = async e => {
     e.preventDefault()
-    await addPost({ title, url }, history)
+    await updatePost(match.params.id, { title, url }, history)
   }
 
   return (
@@ -75,7 +85,7 @@ const PostEdit = ({ post: { post, loading }, addPost, getPost, history }) => {
 }
 
 PostEdit.propTypes = {
-  addPost: PropTypes.func.isRequired,
+  updatePost: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 }
@@ -86,5 +96,5 @@ const setStateToProps = state => ({
 
 export default connect(
   setStateToProps,
-  { addPost, getPost },
+  { updatePost, getPost },
 )(PostEdit)

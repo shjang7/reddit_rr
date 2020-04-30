@@ -9,6 +9,7 @@ import {
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
+  UPDATE_POST,
 } from '../common/types'
 
 // Get posts
@@ -83,7 +84,7 @@ export const deletePost = id => async dispatch => {
 }
 
 // Add post
-export const addPost = (formData, history = null) => async dispatch => {
+export const addPost = formData => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -99,6 +100,31 @@ export const addPost = (formData, history = null) => async dispatch => {
     })
 
     dispatch(setAlert('Post Created', 'success'))
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    })
+  }
+}
+
+// Add post
+export const updatePost = (id, formData, history = null) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  try {
+    const res = await axios.put(`/links/${id}`, { link: formData }, config)
+
+    dispatch({
+      type: UPDATE_POST,
+      payload: res.data,
+    })
+
+    dispatch(setAlert('Post Updated', 'success'))
 
     if (history) {
       history.push('/')

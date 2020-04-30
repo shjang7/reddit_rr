@@ -6,13 +6,13 @@ User.destroy_all
   User.create!(username: "user-#{i}", email: "user-#{i}@example.com", password: 'foobar', password_confirmation: 'foobar')
 end
 
-users = User.all
-
-users.each_with_index do |u, i|
-  (i%2 + 1).times do
+User.first(3).reverse.each_with_index do |u, i|
+  (3 - i).times do
     u.links.create!({ title: Faker::Hipster.sentence, url: Faker::Internet.url(host: 'example.com') })
   end
 end
+
+users = User.all
 
 Link.all.each_with_index do |l, i|
   (6 - i%5).times do |j|
