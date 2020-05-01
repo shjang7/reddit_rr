@@ -30,11 +30,11 @@ const PostItem = ({
   <div className="post border border-success rounded my-3">
     {showActions && (
       <div className="votings">
-        <a type="button" onClick={() => upVote(id)}>
+        <a type="button" href="#!" onClick={() => upVote(id)}>
           <i className="fas fa-long-arrow-alt-up" />
           <span>{likes.length || ''}</span>
         </a>
-        <a type="button" onClick={() => downVote(id)}>
+        <a type="button" href="#!" onClick={() => downVote(id)}>
           <i className="fas fa-long-arrow-alt-down" />
           <span>{dislikes.length || ''}</span>
         </a>
