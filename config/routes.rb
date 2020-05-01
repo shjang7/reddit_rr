@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'static/index'
-
   resources :links, only: %i[create destroy index show update] do
     resources :comments, only: %i[create destroy index]
     member do
@@ -16,8 +14,6 @@ Rails.application.routes.draw do
   get '*path', to: 'application#fallback_index_html', constraints: ->(req) do
     !req.xhr? && req.format.html?
   end
-
-  root 'static#index'
 
   match '*unmatched', to: 'errors#not_found', via: :all
 end

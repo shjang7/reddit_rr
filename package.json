@@ -15,23 +15,10 @@
     "npm": "6.13.4",
     "node": "v12.16.1"
   },
-  "dependencies": {
-    "@babel/preset-react": "^7.8.3",
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "4.2.2",
-    "axios": "^0.19.2",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "babel-polyfill": "^6.26.0",
-    "prop-types": "^15.7.2",
-    "reselect": "^4.0.0",
-    "turbolinks": "^5.2.0"
-  },
+  "dependencies": {},
   "version": "0.1.0",
   "devDependencies": {
-    "concurrently": "^5.2.0",
-    "webpack-dev-server": "^3.10.1"
+    "concurrently": "^5.2.0"
   },
   "description": "reddit app",
   "main": "index.js",

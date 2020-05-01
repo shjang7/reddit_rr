@@ -1,8 +1,12 @@
-class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+class ApplicationController < ActionController::API
+  # protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token, raise: false # ?
   before_action :authenticate_request
   attr_reader :current_user
+
+  def fallback_index_html
+    render :file => 'client/public/index.html'
+  end
 
   private
 
