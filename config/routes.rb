@@ -8,13 +8,12 @@ Rails.application.routes.draw do
       get 'downvote', to: 'links#downvote'
     end
   end
-  # resources :users, only: :create
   resources :profiles, only: %i[index show]
   get '/me', to: 'profiles#me'
   post '/signup', to: 'auth#signup'
   post '/login', to: 'auth#login'
 
-  get '*page', to: 'static#index', constraints: ->(req) do
+  get '*path', to: 'application#fallback_index_html', constraints: ->(req) do
     !req.xhr? && req.format.html?
   end
 

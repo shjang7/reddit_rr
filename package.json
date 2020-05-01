@@ -1,11 +1,19 @@
 {
   "name": "reddit_rr",
-  "private": true,
+  "private": false,
   "scripts": {
+    "build": "cd client && yarn install && yarn build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "yarn build && yarn deploy && echo 'Client built!'",
     "server": "rails s",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "engines": {
+    "yarn": "1.17.3",
+    "npm": "6.13.4",
+    "node": "v12.16.1"
   },
   "dependencies": {
     "@babel/preset-react": "^7.8.3",
@@ -34,5 +42,10 @@
   "devDependencies": {
     "concurrently": "^5.2.0",
     "webpack-dev-server": "^3.10.1"
-  }
+  },
+  "description": "reddit app",
+  "main": "index.js",
+  "repository": "git@github.com:shjang7/reddit_rr.git",
+  "author": "shjang7 <suhy.jang.shj@gmail.com>",
+  "license": "MIT"
 }

@@ -36,6 +36,8 @@ module RedditRr
     config.consider_all_requests_local = false
     config.exceptions_app = self.routes
 
+    config.assets.initialize_on_precompile = false
+
     config.middleware.insert_before 0, Rack::Cors do
 			allow do
 				origins 'http://localhost:3001'
