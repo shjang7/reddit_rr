@@ -24,7 +24,6 @@ const PostCreate = ({ auth: { loading, user }, addPost }) => {
     !loading &&
     user && (
       <div className="post-form">
-        {console.log(loading, user)}
         <h5>Upload a url...</h5>
         <form className="form my-1" onSubmit={onSubmit}>
           <div className="form-group">
