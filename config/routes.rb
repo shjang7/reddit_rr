@@ -15,5 +15,7 @@ Rails.application.routes.draw do
     !req.xhr? && req.format.html?
   end
 
+  root 'links#index'
+
   match '*unmatched', to: 'errors#not_found', via: :all
 end

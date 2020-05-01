@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@babel/core": "7.9.0",
     "@svgr/webpack": "4.3.3",
@@ -91,7 +92,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001",
   "jest": {
     "roots": [
       "<rootDir>/src"
