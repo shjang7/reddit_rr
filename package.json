@@ -2,13 +2,9 @@
   "name": "reddit_rr",
   "private": false,
   "scripts": {
-    "build": "cd client && npm install && npm run build && npm audit fix && cd ..",
-    "deploy": "cp -a client/build/. client/public/",
-    "postinstall": "yarn build && yarn deploy && echo 'Client built!'",
     "server": "rails s",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "engines": {
     "yarn": "1.17.3",
