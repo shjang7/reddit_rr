@@ -6,26 +6,20 @@ The main feature is including link post, voting, comment, user sign-in.
 ##### Entity Relationship diagram
 ![](./docs/e-r-diagram.png)
 
-##### Back-end
-![](./docs/link_list_backend.png)
-##### Front-end
-![](./docs/login.png)
+##### Server - all posts
+![](./docs/server.png)
 
-![](./docs/link_index.png)
+##### Client
+![](./docs/index.png)
 
-![](./docs/link_new.png)
-
-![](./docs/link_show.png)
-
-![](./docs/link_edit.png)
+![](./docs/post.png)
 
 ## Built With
 
 - Ruby 2.6.3
 - Rails 6.0
 - PostgreSQL 10.10
-- Sass 3.7
-- Rspec 3.9
+- Sass
 - [Acts as votable](https://github.com/ryanto/acts_as_votable/)
 - [Faker](https://github.com/faker-ruby/faker)
 - Webpacker 4.0
@@ -60,6 +54,7 @@ $ rails db:create
 ```
 $ bundle install
 $ yarn install
+$ cd client; npm install; cd ..
 ```
 
 > Migrate database
@@ -68,25 +63,19 @@ $ yarn install
 $ rails db:migrate
 ```
 
-> Test rails code
-
-```
-$ rspec --format documentation
-```
-
 > Seed sample data
 
 ```
 $ rails db:seed
 ```
 
-> Open server
+> Open server and Run client concurrently
 
 ```
-$ rails server
+$ npm run dev
 ```
 
-> Go to `http://localhost:3001` using your browser.
+> Go to `http://localhost:3000` using your browser.
 
 ## Author
 
